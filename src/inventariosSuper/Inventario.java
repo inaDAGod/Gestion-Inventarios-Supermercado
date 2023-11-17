@@ -51,8 +51,6 @@ public class Inventario {
 		productoExistencias.put(producto.getCantidadStock(),producto);
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Inventario : \n" + productos + "\n proveedoresProducto:" + proveedoresProducto

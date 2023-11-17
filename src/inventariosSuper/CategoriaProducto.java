@@ -24,8 +24,6 @@ public class CategoriaProducto {
 	}
 	
 	
-
-
 	public String getNombre() {
 		return nombre;
 	}
