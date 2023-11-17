@@ -95,12 +95,6 @@ public class Producto {
     }
 
     public static void main(String[] args) {
-        Producto p = new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5)); // producto nuevo
-        CategoriaProducto c = new CategoriaProducto("Comestible", "Para comer");// categoria nueva
-
-        p.anadirCategoria(p,c); //se añade la categoria al producto
-
-        System.out.println(p);
-        System.out.println(c);
+        
     }
 }
