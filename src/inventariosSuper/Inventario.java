@@ -55,8 +55,8 @@ public class Inventario {
 
 	@Override
 	public String toString() {
-		return "Inventario [productos=" + productos + ", proveedoresProducto=" + proveedoresProducto
-				+ ", productoExistencias=" + productoExistencias + "]";
+		return "Inventario : \n" + productos + "\n proveedoresProducto: " + proveedoresProducto
+				+ "\n productoExistencias:" + productoExistencias + "]";
 	}
 
 
