@@ -7,6 +7,15 @@ public class Proveedor {
 	private String telefono;
     private String correoElectronico;
 	
+	public Proveedor(String id_Provedor, String nombre, String direccion, String telefono, String correoElectronico) {
+		super();
+		Id_Provedor = id_Provedor;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.correoElectronico = correoElectronico;
+	}
+
 	public String getId_Provedor() {
 		return Id_Provedor;
 	}
