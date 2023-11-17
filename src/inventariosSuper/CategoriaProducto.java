@@ -64,7 +64,7 @@ public class CategoriaProducto {
 	 
 	@Override
 	public String toString() {
-		return "CategoriaProducto [nombre=" + nombre + ", detalle=" + detalle + ", productos=" + productos + "]";
+		return "\n=============\nCategoria de Producto \nNombre=" + nombre + "\n Detalle=" + detalle + "\nProductos=" + productos + "\n=============";
 	}
 
 
