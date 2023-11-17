@@ -90,8 +90,8 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto [nombre=" + nombre + ", detalle=" + detalle + ", precio=" + precio + ", cantidadStock="
-                + cantidadStock + ", fechaVencimiento=" + fechaVencimiento + ", categorias=" + categorias + "]";
+        return "\n===========\nProducto \n Nombre: " + nombre + "\ndetalle: " + detalle + "\nprecio: " + precio + "\n cantidadStock: "
+                + cantidadStock + "\n fechaVencimiento: " + fechaVencimiento + "\n categorias: " + categorias + "\n===========";
     }
 
     public static void main(String[] args) {
