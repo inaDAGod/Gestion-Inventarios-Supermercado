@@ -47,12 +47,9 @@ public class Proveedor {
 		this.correoElectronico = correoElectronico;
 	}
 
-	@Override
 	public String toString() {
 		return "===============\n Proveedor \n  Id: " + Id_Provedor + " \n Nombre=" + nombre + "\n Direccion=" + direccion
 				+ "\n Telefono=" + telefono + "\n Correo electronico=" + correoElectronico + " \n===============";
 	}
     
-	
-	
 }
