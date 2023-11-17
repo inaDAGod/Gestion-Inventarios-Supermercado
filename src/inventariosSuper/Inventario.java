@@ -1,53 +1,76 @@
 package inventariosSuper;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Inventario {
-	// Estructura para almacenar productos por identificador único (árbol binario)
-    private Map<Integer, Producto> productosPorId = new HashMap<>();
+	private ArrayList<Producto> productos;
+	private Map <Proveedor,Producto> proveedoresProducto;
+	private Map <Integer,Producto> productoExistencias;
+	
+	
+	public Inventario() {
+		this.productos = new ArrayList<>();
+		this.proveedoresProducto = new HashMap<>();
+		this.productoExistencias = new HashMap<>();
+	}
 
-    // Lista enlazada para almacenar información detallada de productos
-    private LinkedList<Producto> listaProductosDetallada = new LinkedList<>();
+	
+	public Map<Proveedor, Producto> getProveedoresProducto() {
+		return proveedoresProducto;
+	}
 
-    // Estructura de datos de tipo "cola" para gestionar categorías de productos
-    private Queue<String> categoriasProductos = new LinkedList<>();
 
-    // Estructura de datos de tipo "mapa" o "tabla hash" para llevar un registro de existencias
-    private Map<Integer, Integer> existenciasProductos = new HashMap<>();
+	public void setProveedoresProducto(Map<Proveedor, Producto> proveedoresProducto) {
+		this.proveedoresProducto = proveedoresProducto;
+	}
 
-    // Estructura de datos de tipo "tabla hash" o "diccionario" para gestionar proveedores
-    private Map<Proveedor, LinkedList<Producto>> productosPorProveedor = new HashMap<>();
 
-    // Métodos para gestionar productos
-    public void agregarProducto(Producto producto, String categoria) {
-        int id = producto.getId(); // Suponiendo que Producto tiene un método getId()
-        
-        // Agregar producto al árbol binario por identificador único
-        productosPorId.put(id, producto);
+	public Map<Integer,Producto> getProductoExistencias() {
+		return productoExistencias;
+	}
 
-        // Agregar información detallada del producto a la lista enlazada
-        listaProductosDetallada.add(producto);
 
-        // Agregar categoría a la cola
-        categoriasProductos.offer(categoria);
-    }
+	public void setProductoExistencias(Map<Integer,Producto> productoExistencias) {
+		this.productoExistencias = productoExistencias;
+	}
+	
+	
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
 
-    public void actualizarExistencias(int idProducto, int cantidad) {
-        // Actualizar existencias utilizando la tabla hash
-        existenciasProductos.put(idProducto, cantidad);
-    }
 
-    // Métodos para gestionar proveedores
-    public void agregarProveedor(Proveedor proveedor, Producto producto) {
-        // Asociar proveedor con producto utilizando la tabla hash
-        LinkedList<Producto> productosProveedor = productosPorProveedor.getOrDefault(proveedor, new LinkedList<>());
-        productosProveedor.add(producto);
-        productosPorProveedor.put(proveedor, productosProveedor);
-    }
+	public void setProductos(ArrayList<Producto> productos) {
+		this.productos = productos;
+	}
 
-    // Otros métodos y lógica de negocio según sea necesario
-    // ...
 
-    public static void main(String[] args) {
-        // Puedes realizar pruebas aquí
+	public void añadirProducto (Producto producto, Proveedor proveedor) {
+		productos.add(producto);
+		proveedoresProducto.put(proveedor, producto);
+		productoExistencias.put(producto.getCantidadStock(),producto);
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Inventario [productos=" + productos + ", proveedoresProducto=" + proveedoresProducto
+				+ ", productoExistencias=" + productoExistencias + "]";
+	}
+
+
+	public static void main(String[] args) {
+		Inventario i = new Inventario();
+		Proveedor prove = new Proveedor("1", "Juan", "Avenida siempre vivas", "454", "jj@gmail.com");
+		Producto produ = new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5)); // producto nuevo
+        CategoriaProducto c = new CategoriaProducto("Comestible", "Para comer");// categoria nueva
+
+        produ.anadirCategoria(produ,c); //se añade la categoria al producto
+        i.añadirProducto(produ, prove);
+        System.out.println("Proveedor: " + prove);
+        System.out.println("Producto: " + produ);
+        System.out.println("Categoria: " + c);
+        System.out.println(i);
     }
 }
