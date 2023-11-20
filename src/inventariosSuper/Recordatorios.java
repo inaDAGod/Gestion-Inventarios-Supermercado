@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class Recordatorios {
     private PriorityQueue<Alerta> alertas;
-    
+
     private final Comparator<Alerta> comparadorAlertas = Comparator.comparingInt(Alerta::getPrioridad);
 
     public Recordatorios() {
