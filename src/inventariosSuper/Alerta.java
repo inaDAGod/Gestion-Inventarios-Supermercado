@@ -1,11 +1,22 @@
 package inventariosSuper;
-public class Alerta implements Comparable<Alerta> {
+
+import java.time.LocalDate;
+
+public class Alerta {
     private String mensaje;
     private int prioridad;
+    private TipoAlerta tipo;
+    private Producto producto;
 
-    public Alerta(String mensaje, int prioridad) {
+    public enum TipoAlerta {
+        PRONTO_A_VENCER, STOCK_BAJO
+    }
+
+    public Alerta(String mensaje, int prioridad, TipoAlerta tipo, Producto producto) {
         this.mensaje = mensaje;
         this.prioridad = prioridad;
+        this.tipo = tipo;
+        this.producto = producto;
     }
 
     public String getMensaje() {
@@ -24,11 +35,20 @@ public class Alerta implements Comparable<Alerta> {
         this.prioridad = prioridad;
     }
 
-    @Override
-    public int compareTo(Alerta otra) {
-        // Ordena las alertas por prioridad, de mayor a menor
-        return Integer.compare(otra.prioridad, this.prioridad);
+    public TipoAlerta getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoAlerta tipo) {
+        this.tipo = tipo;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
 }
-
