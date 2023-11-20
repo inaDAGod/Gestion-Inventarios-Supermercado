@@ -5,13 +5,11 @@ import java.util.*;
 public class Inventario {
 	private ArrayList<Producto> productos;
 	private Map <Proveedor,Producto> proveedoresProducto;
-	private Map <Integer,Producto> productoExistencias;
 	
 	
 	public Inventario() {
 		this.productos = new ArrayList<>();
 		this.proveedoresProducto = new HashMap<>();
-		this.productoExistencias = new HashMap<>();
 	}
 
 	
@@ -25,15 +23,6 @@ public class Inventario {
 	}
 
 
-	public Map<Integer,Producto> getProductoExistencias() {
-		return productoExistencias;
-	}
-
-
-	public void setProductoExistencias(Map<Integer,Producto> productoExistencias) {
-		this.productoExistencias = productoExistencias;
-	}
-	
 	
 	public ArrayList<Producto> getProductos() {
 		return productos;
@@ -48,13 +37,11 @@ public class Inventario {
 	public void añadirProducto (Producto producto, Proveedor proveedor) {
 		productos.add(producto);
 		proveedoresProducto.put(proveedor, producto);
-		productoExistencias.put(producto.getCantidadStock(),producto);
 	}
 
 	@Override
 	public String toString() {
-		return "Inventario : \n" + productos + "\n proveedoresProducto:" + proveedoresProducto
-				+ "\nproductoExistencias:" + productoExistencias;
+		return "Inventario : \n" + productos + "\n proveedoresProducto:" + proveedoresProducto;
 	}
 
 
