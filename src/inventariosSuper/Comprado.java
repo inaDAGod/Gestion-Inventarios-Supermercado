@@ -29,8 +29,8 @@ public class Comprado {
             LocalDateTime fechaCompra = entry.getValue();
 
             System.out.println("Cliente: " + currentCliente.getNombre() + ", Fecha: " + fechaCompra);
-            currentCliente.mostrarListaDeCompras(); // Assuming this method prints individual purchase details
-            System.out.println(); // Just for clarity between clients
+            currentCliente.mostrarListaDeCompras(); 
+            System.out.println(); 
         }
     }
 }
