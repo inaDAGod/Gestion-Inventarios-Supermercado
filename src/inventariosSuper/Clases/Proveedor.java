@@ -1,4 +1,4 @@
-package inventariosSuper;
+package inventariosSuper.Clases;
 
 public class Proveedor {
 	private String Id_Provedor;
