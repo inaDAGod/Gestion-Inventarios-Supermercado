@@ -1,4 +1,4 @@
-package inventariosSuper;
+package inventariosSuper.Clases;
 
 import java.time.*;
 import java.util.*;
