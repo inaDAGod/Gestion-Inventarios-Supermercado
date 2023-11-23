@@ -13,6 +13,10 @@ import inventariosSuper.Clases.Proveedor;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 import java.awt.event.ActionEvent;
 
 public class AnadirProducto extends JFrame {
@@ -33,8 +37,6 @@ public class AnadirProducto extends JFrame {
 			public void run() {
 				try {
 					Inventario i = new Inventario();
-					
-					
 			        CategoriaProducto c = new CategoriaProducto("Comestible", "Para comer");// categoria nueva
 			        CategoriaProducto c2 = new CategoriaProducto("Ropa", "Para ponerte");// categoria nueva
 			        Proveedor p = new Proveedor("1", "Coca Cola", "Obrajes", "4564", "coca@gmail.com");
@@ -51,9 +53,6 @@ public class AnadirProducto extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AnadirProducto(Inventario i) {
 		this.inventario = i;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,6 +136,7 @@ public class AnadirProducto extends JFrame {
 		
 		JComboBox comboBoxMeses = new JComboBox();
 		comboBoxMeses.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
+		comboBoxMeses.setSelectedIndex(1);
 		comboBoxMeses.setBounds(134, 303, 107, 22);
 		panelFormularioProducto.add(comboBoxMeses);
 		
@@ -179,10 +179,10 @@ public class AnadirProducto extends JFrame {
 	     DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(); 
 
 		    for (Proveedor p : inventario.getProveedores()) {
-		        model.addElement(p.getNombre()); // Agrega elementos al modelo
+		        model.addElement(p.getNombre()); // Agrega proveedores al combobox de acuerdo a los proveedores en el inventario
 		    }
-
-		    comboBoxProveedores.setModel(model); // Establece el modelo en el JComboBox
+		    comboBoxProveedores.setModel(model); 
+		    comboBoxProveedores.setSelectedIndex(0);
 	     comboBoxProveedores.setBounds(879, 243, 139, 22);
 	     panelFormularioProducto.add(comboBoxProveedores);
 	     
@@ -198,6 +198,45 @@ public class AnadirProducto extends JFrame {
 	     panelFormularioProducto.add(scrollCategorias);
 	     
 	     JButton btnRegistrar = new JButton("REGISTRAR");
+	     btnRegistrar.addActionListener(new ActionListener() {
+	     	public void actionPerformed(ActionEvent e) {
+	     		
+	     		Boolean bandera = false;
+	     		try {
+	     			String nom = txtNombreProducto.getText();
+		     		String deta = txtDetalles.getText();
+	     		    Double precio = Double.parseDouble(txtPrecioProducto.getText());
+	     		    int cantidad = Integer.parseInt(txtExistencias.getText());
+		     		int anio = Integer.parseInt(txtAnio.getText());
+		     		int mes = comboBoxMeses.getSelectedIndex()+1;
+		     		int dia = Integer.parseInt(txtDia.getText());
+	   				LocalDate vence = LocalDate.of(anio, mes, dia);
+	   				Proveedor p = i.getProveedores().get(comboBoxProveedores.getSelectedIndex());
+	   				Queue<CategoriaProducto> cate = new LinkedList<CategoriaProducto>();
+	   				for (Component component : panelCategorias.getComponents()) {
+	   		            if (component instanceof JComboBox) {
+	   		                JComboBox comboBox = (JComboBox) component;
+	   		                cate.add(i.getCategoriasProductos().get(comboBox.getSelectedIndex()));
+	   		            }
+	   		        }
+	   				Producto produ = new Producto(nom, deta, precio, cantidad, vence, cate);
+	   				i.añadirProducto(produ, p);
+	   				//System.out.println(produ);
+	   				//System.out.println(i);
+	   				JOptionPane.showMessageDialog(null, "El producto se registro correctamente", "Error", JOptionPane.INFORMATION_MESSAGE);
+	   				txtNombreProducto.setText("");
+		   	        txtPrecioProducto.setText("");
+		   	        txtAnio.setText("Ej: 2023");
+		   	        txtDia.setText("Ej: 28");
+		   	        txtExistencias.setText("Ej: 120");
+		   	        txtDetalles.setText("");
+	     		} catch (NumberFormatException e2) {
+	     			 JOptionPane.showMessageDialog(null, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	     		}
+	     	
+	     		
+	     	}
+	     });
 	     btnRegistrar.setBackground(new Color(250, 240, 230));
 	     btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 15));
 	     btnRegistrar.setBounds(915, 533, 184, 23);
@@ -230,6 +269,9 @@ public class AnadirProducto extends JFrame {
 		     });
 		
 	}
+	/***
+	 * Cuando se crea un comboBox de categorias jala estas categorias del inventario
+	 */
 	public void anadirCategoria() {
 	    JComboBox<String> cb = new JComboBox<>(); // Especifica el tipo de elementos en el JComboBox
 	    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(); 
@@ -243,4 +285,5 @@ public class AnadirProducto extends JFrame {
 	    panelCategorias.revalidate();
 	    panelCategorias.repaint();
 	}
+	
 }
