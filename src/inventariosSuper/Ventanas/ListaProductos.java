@@ -148,7 +148,7 @@ private JTextField txtDatoABuscar;
         panel_1.add(lblSedatoABuscar);
         
         JButton btnNewButton = new JButton("Buscar ");
-        btnNewButton.setBounds(1051, 47, 115, 39);
+        btnNewButton.setBounds(1013, 47, 153, 39);
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -159,16 +159,21 @@ private JTextField txtDatoABuscar;
             }
         });
         panel_1.add(btnNewButton);
-        
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+
         JRadioButton rdbtnNewRadioButton = new JRadioButton(" Nombre");
         rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
         rdbtnNewRadioButton.setBounds(721, 5, 123, 39);
         panel_1.add(rdbtnNewRadioButton);
-        
+
         JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Categoria");
         rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
         rdbtnNewRadioButton_1.setBounds(415, 5, 133, 39);
         panel_1.add(rdbtnNewRadioButton_1);
+
+        buttonGroup.add(rdbtnNewRadioButton); // Agregar al ButtonGroup
+        buttonGroup.add(rdbtnNewRadioButton_1); // Agregar al ButtonGroup
         
      
         
