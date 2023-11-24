@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -28,6 +29,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import inventariosSuper.Clases.Producto;
+import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 
 
@@ -83,6 +85,14 @@ private JTextField txtDatoABuscar;
 	        inventario.añadirProducto(producto543, null); // No se especifica el proveedor en este ejemplo
 	        Producto producto5413 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
 	        inventario.añadirProducto(producto5413, null); // No se especifica el proveedor en este ejemplo
+	        Producto producto77 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
+	        inventario.añadirProducto(producto77, null); // No se especifica el proveedor en este ejemplo
+	        Producto producto88 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
+	        inventario.añadirProducto(producto88, null); // No se especifica el proveedor en este ejemplo
+	        Producto producto889 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
+	        inventario.añadirProducto(producto889, null); // No se especifica el proveedor en este ejemplo
+	        Producto producto8899 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
+	        inventario.añadirProducto(producto8899, null); // No se especifica el proveedor en este ejemplo
 
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setBounds(100, 100, 1200, 800);
@@ -141,25 +151,6 @@ private JTextField txtDatoABuscar;
         txtDatoABuscar.setBounds(302, 48, 701, 37);
         panel_1.add(txtDatoABuscar);
         txtDatoABuscar.setColumns(10);
-        
-        JLabel lblSedatoABuscar = new JLabel("Seleccione el tipo de dato:");
-        lblSedatoABuscar.setFont(new Font("Tahoma", Font.PLAIN, 25));
-        lblSedatoABuscar.setBounds(0, 9, 298, 31);
-        panel_1.add(lblSedatoABuscar);
-        
-        JButton btnNewButton = new JButton("Buscar ");
-        btnNewButton.setBounds(1013, 47, 153, 39);
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para buscar productos
-                String datoABuscar = txtDatoABuscar.getText();
-                // Puedes utilizar el datoABuscar para buscar productos en el inventario
-                // y actualizar la visualización en consecuencia
-            }
-        });
-        panel_1.add(btnNewButton);
-
         ButtonGroup buttonGroup = new ButtonGroup();
 
         JRadioButton rdbtnNewRadioButton = new JRadioButton(" Nombre");
@@ -174,25 +165,54 @@ private JTextField txtDatoABuscar;
 
         buttonGroup.add(rdbtnNewRadioButton); // Agregar al ButtonGroup
         buttonGroup.add(rdbtnNewRadioButton_1); // Agregar al ButtonGroup
-        
-     
-        
-     // Agrupar los JRadioButtons para permitir solo una selección
-       
-        
+
 
         JPanel panel_2 = new JPanel();
         panel_2.setBounds(0, 96, 1176, 542);
         panel.add(panel_2);
         panel_2.setLayout(new BorderLayout());
 
-        JPanel panelTarjetas = new JPanel();
+        JPanel panelTarjetas = new JPanel(new GridLayout(0, 4, 10, 10));
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         panel_2.add(scrollPane, BorderLayout.CENTER);
 
         mostrarProductos(inventario.getProductos(), panelTarjetas);
+        
+        JLabel lblSedatoABuscar = new JLabel("Seleccione el tipo de dato:");
+        lblSedatoABuscar.setFont(new Font("Tahoma", Font.PLAIN, 25));
+        lblSedatoABuscar.setBounds(0, 9, 298, 31);
+        panel_1.add(lblSedatoABuscar);
+        
+        JButton btnNewButton = new JButton("Buscar ");
+        btnNewButton.setBounds(1013, 47, 153, 39);
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Lógica para buscar productos
+                String datoABuscar = txtDatoABuscar.getText();
+
+                if (rdbtnNewRadioButton.isSelected()) {
+                    // Buscar por nombre
+                    List<Producto> productosPorNombre = buscarPorNombre(inventario.getProductos(), datoABuscar);
+                    mostrarProductos(productosPorNombre, panelTarjetas);
+                } else if (rdbtnNewRadioButton_1.isSelected()) {
+                    // Buscar por categoría
+                    List<Producto> productosPorCategoria = buscarPorCategoria(inventario.getProductos(), datoABuscar);
+                    mostrarProductos(productosPorCategoria, panelTarjetas);
+                }
+            }
+        });
+        panel_1.add(btnNewButton);
+
+       
+     
+        
+     // Agrupar los JRadioButtons para permitir solo una selección
+       
+        
     }
 	 private void mostrarProductos(List<Producto> listaProductos, JPanel panelTarjetas) {
+		  panelTarjetas.removeAll();
 		 int numProductos = listaProductos.size();
 		    
 		    // Asegúrate de que haya al menos una fila
@@ -229,6 +249,8 @@ private JTextField txtDatoABuscar;
 
 	            panelTarjetas.add(buttonProducto);
 	        }
+	        panelTarjetas.revalidate();
+	        panelTarjetas.repaint();
 	    }
 
 	private void mostrarProductosEnPanelEspecifico(JScrollPane scrollPane) {
@@ -244,4 +266,42 @@ private JTextField txtDatoABuscar;
 	private void mostrarTodosLosProductos(JScrollPane scrollPane) {
 	    contentPane.add(scrollPane, BorderLayout.CENTER);
 	}
+	private List<Producto> buscarPorNombre(List<Producto> productos, String nombre) {
+	    List<Producto> resultados = new ArrayList<>();
+
+	    for (Producto producto : productos) {
+	        if (producto.getNombre().equalsIgnoreCase(nombre)) {
+	            resultados.add(producto);
+	        }
+	    }
+
+	    // Agrega mensajes de depuración
+	    System.out.println("Texto a buscar: " + nombre);
+	    System.out.println("Resultados encontrados: " + resultados.size());
+	    for (Producto p : resultados) {
+	        System.out.println("Producto encontrado: " + p.getNombre());
+	    }
+
+	    return resultados;
+	}
+
+	private List<Producto> buscarPorCategoria(List<Producto> productos, String categoria) {
+	    List<Producto> resultados = new ArrayList<>();
+
+	    for (Producto producto : productos) {
+	        Queue<CategoriaProducto> categorias = producto.getCategorias();
+
+	        // Iterar sobre las categorías del producto
+	        for (CategoriaProducto cat : categorias) {
+	            // Comparar el nombre de la categoría con la categoría buscada
+	            if (cat.getNombre().equalsIgnoreCase(categoria)) {
+	                resultados.add(producto);
+	                break;  // No necesitas seguir iterando si encontraste una coincidencia
+	            }
+	        }
+	    }
+
+	    return resultados;
+	}
+	
 	}
