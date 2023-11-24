@@ -173,7 +173,34 @@ public class DetallesProducto extends JFrame {
 	     panelFormularioProducto.add(txtProveedor);
 	     txtProveedor.setColumns(10);
 	     
-		
+	     JButton btnMasExistencias = new JButton("AGREGAR STOCK");
+	    
+	     btnMasExistencias.setFont(new Font("Times New Roman", Font.BOLD, 13));
+	     btnMasExistencias.setBounds(300, 316, 189, 23);
+	     panelFormularioProducto.add(btnMasExistencias);
+	     
+	     JButton btnGuardar = new JButton("GUARDAR");
+	    
+	     btnGuardar.setFont(new Font("Times New Roman", Font.BOLD, 13));
+	     btnGuardar.setBounds(156, 360, 113, 23);
+	     btnGuardar.setVisible(false);
+	     panelFormularioProducto.add(btnGuardar);
+	     btnMasExistencias.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		btnMasExistencias.setVisible(false);
+		     		txtExistencias.setEditable(true);
+		     		btnGuardar.setVisible(true);
+		     	}
+		     });
+	     btnGuardar.addActionListener(new ActionListener() {
+		     	public void actionPerformed(ActionEvent e) {
+		     		btnGuardar.setVisible(false);
+		     		txtExistencias.setEditable(false);
+		     		btnMasExistencias.setVisible(true);
+		     		producto.setCantidadStock(Integer.parseInt(txtExistencias.getText()));
+		     		txtExistencias.setText(Integer.toString(producto.getCantidadStock()));
+		     	}
+		     });
 	}
 	
 	public String categorias() {
@@ -199,3 +226,5 @@ public class DetallesProducto extends JFrame {
         return null;
     }
 }
+
+
