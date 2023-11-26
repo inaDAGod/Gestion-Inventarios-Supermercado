@@ -36,7 +36,7 @@ import java.awt.Color;
 public class RegistrandoCli extends JFrame {
 
     private List<Cliente> listaClientes;
-    private Cliente clienteSeleccionado;
+    private Cliente clienteRegistrado;
     private JTextField campoBusqueda;
     private JTextArea areaResultado;
 
@@ -149,14 +149,14 @@ public class RegistrandoCli extends JFrame {
         }
 
         if (!clientesEncontrados.isEmpty()) {
-            clienteSeleccionado = seleccionarCliente(clientesEncontrados);
-            if (clienteSeleccionado != null) {
+        	clienteRegistrado = seleccionarCliente(clientesEncontrados);
+            if (clienteRegistrado != null) {
                 areaResultado.setText(
                         "Cliente seleccionado:\n" +
-                                "Nombre: " + clienteSeleccionado.getNombre() + "\n" +
-                                "ID: " + clienteSeleccionado.getId() + "\n" +
-                                "Número: " + clienteSeleccionado.getNumero() + "\n" +
-                                "Dirección: " + clienteSeleccionado.getDireccion()
+                                "Nombre: " + clienteRegistrado.getNombre() + "\n" +
+                                "ID: " + clienteRegistrado.getId() + "\n" +
+                                "Número: " + clienteRegistrado.getNumero() + "\n" +
+                                "Dirección: " + clienteRegistrado.getDireccion()
                 );
             }
         } else {
@@ -177,15 +177,15 @@ public class RegistrandoCli extends JFrame {
                     clientesArray[0]
             );
 
-            return clienteSeleccionado;
+            return clienteRegistrado;
         }
         
         private void abrirPaginaFactura() {
-        	if (clienteSeleccionado != null) {
-                FacturaPage facturaPage = new FacturaPage(clienteSeleccionado);
+        	if (clienteRegistrado != null) {
+                FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
                 facturaPage.setVisible(true);
                 setVisible(false);
-	            dispose();
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Por favor, selecciona un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
             }

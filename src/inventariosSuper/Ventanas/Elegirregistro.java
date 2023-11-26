@@ -25,6 +25,9 @@ import inventariosSuper.Clases.Proveedor;
 import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Comprado;
+import inventariosSuper.Ventanas.Nuevocli;
+import inventariosSuper.Ventanas.RegistrandoCli;
+
 
 import java.awt.EventQueue;
 
@@ -115,5 +118,11 @@ public class Elegirregistro extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(310, 80, 488, 96);
 		panel.add(lblNewLabel);
+		
+		
 	}
+	private void abrirFacturaConCliente(Cliente cliente) {
+        FacturaPage facturaPage = new FacturaPage(cliente);
+        facturaPage.setVisible(true);
+    }
 }
