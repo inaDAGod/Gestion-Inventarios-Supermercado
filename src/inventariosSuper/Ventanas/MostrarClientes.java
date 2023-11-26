@@ -1,7 +1,11 @@
-package inventariosSuper;
+package inventariosSuper.Ventanas;
+
+
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import inventariosSuper.Clases.Cliente;
 
 import java.awt.Font;
 import java.io.*;

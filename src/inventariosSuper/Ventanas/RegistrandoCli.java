@@ -1,6 +1,11 @@
-package inventariosSuper;
+package inventariosSuper.Ventanas;
+
+
 
 import javax.swing.*;
+
+import inventariosSuper.Clases.Cliente;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

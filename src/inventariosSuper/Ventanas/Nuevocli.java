@@ -1,4 +1,6 @@
-package inventariosSuper;
+package inventariosSuper.Ventanas;
+
+
 
 import java.awt.EventQueue;
 import java.io.BufferedWriter;
@@ -10,6 +12,9 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import inventariosSuper.Clases.Cliente;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
