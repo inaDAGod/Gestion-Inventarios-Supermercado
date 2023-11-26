@@ -3,6 +3,31 @@ package inventariosSuper.Ventanas;
 
 import java.awt.EventQueue;
 
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import inventariosSuper.Clases.CategoriaProducto;
+import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.Producto;
+import inventariosSuper.Clases.Proveedor;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Compras;
+import inventariosSuper.Clases.Comprado;
+
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
