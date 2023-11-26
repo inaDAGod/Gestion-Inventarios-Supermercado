@@ -39,7 +39,7 @@ public class Auditoria {
     public static void main(String[] args) {
 
         Auditoria auditoria = new Auditoria();
-        Cliente cliente1 = new Cliente("Cliente1");
+        Cliente cliente1 = new Cliente("Cliente1", 3234364, 78754635,"Cota cota");
         Producto producto1 = new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5));
 
         // Simular una compra
