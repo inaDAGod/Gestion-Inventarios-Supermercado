@@ -14,6 +14,23 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
+import inventariosSuper.Clases.CategoriaProducto;
+import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.Producto;
+import inventariosSuper.Clases.Proveedor;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Compras;
+import inventariosSuper.Clases.Comprado;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+
 public class FacturaPage extends JFrame {
 
 	private JPanel contentPane;
