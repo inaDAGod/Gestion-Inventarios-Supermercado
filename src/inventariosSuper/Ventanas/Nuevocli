@@ -1,6 +1,9 @@
 package inventariosSuper;
 
 import java.awt.EventQueue;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,22 +163,32 @@ public class Nuevocli extends JFrame {
 			        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
 			    } else {
 
-			        try {
-			            int id = Integer.parseInt(carnetText);
-			            int numero = Integer.parseInt(numeroText);
-			            Cliente nuevoCliente = new Cliente(nombre, id, numero, direccion);
-			            listaClientes.add(nuevoCliente);
-			            clienteRegistrado = nuevoCliente;
+			    	try {
+			    	    int id = Integer.parseInt(carnetText);
+			    	    int numero = Integer.parseInt(numeroText);
+			    	    Cliente nuevoCliente = new Cliente(nombre, id, numero, direccion);
+			    	    listaClientes.add(nuevoCliente);
 
-			            JOptionPane.showMessageDialog(null, "Nuevo cliente registrado: " + nuevoCliente.getNombre(), "Nuevo Cliente", JOptionPane.INFORMATION_MESSAGE);
+			    	    // Agregar el cliente al archivo de texto
+			    	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
+			    	        writer.write(nuevoCliente.getNombre() + "," + nuevoCliente.getId() + "," + nuevoCliente.getNumero() + "," + nuevoCliente.getDireccion());
+			    	        writer.newLine();
+			    	    } catch (IOException ex) {
+			    	        ex.printStackTrace();
+			    	    }
 
-			            abrirPaginaFactura();
+			    	    clienteRegistrado = nuevoCliente;
 
-			            limpiarCampos();
-			        } catch (NumberFormatException e) {
-			            JOptionPane.showMessageDialog(this, "El ID y el número deben ser valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
-			        }
-			    }
+			    	    JOptionPane.showMessageDialog(null, "Nuevo cliente registrado: " + nuevoCliente.getNombre(), "Nuevo Cliente", JOptionPane.INFORMATION_MESSAGE);
+
+			    	    abrirPaginaFactura();
+
+			    	    limpiarCampos();
+			    	} catch (NumberFormatException e) {
+			    	    JOptionPane.showMessageDialog(this, "El ID y el número deben ser valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+			    	}
+			    	}
+
 			    }
 			    
 			    private void limpiarCampos() {
@@ -203,4 +216,3 @@ public class Nuevocli extends JFrame {
 			
 			//--------------
 }
-
