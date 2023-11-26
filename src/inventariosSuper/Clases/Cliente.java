@@ -5,14 +5,61 @@ import java.util.List;
 
 public class Cliente {
     private String nombre;
+    private int id;
+    private int numero;
+    private String direccion;
     private List<Compras> compra;
+    
+    
 
-    public Cliente(String nombre) {
-        this.nombre = nombre;
+    public Cliente(String nombre, int id, int numero, String direccion) {
+		super();
+		this.nombre = nombre;
+		this.id = id;
+		this.numero = numero;
+		this.direccion = direccion;
         this.compra = new ArrayList<>();
     }
+    
+    
+    
+    public int getId() {
+		return id;
+	}
 
-    public String getNombre() {
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public int getNumero() {
+		return numero;
+	}
+
+
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+
+
+	public String getNombre() {
         return nombre;
     }
 
@@ -25,8 +72,8 @@ public class Cliente {
     }
 
 
-    public void realizarcompras(Producto producto, int cantidad) {
-        Compras nuevaCompra = new Compras(producto, cantidad);
+    public void realizarcompras(Producto producto, int cant) {
+        Compras nuevaCompra = new Compras(producto, cant);
         this.compra.add(nuevaCompra);
         //producto.reducirStock(cantidad); // Reducir el stock del producto nose
     }
