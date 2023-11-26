@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
+import inventariosSuper.FacturaPage;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
@@ -34,7 +35,7 @@ import java.awt.Font;
 public class FacturaPage extends JFrame {
 
 	private JPanel contentPane;
-	private Cliente cliente;
+	private static Cliente cliente;
 
     public FacturaPage(Cliente cliente) {
         this.cliente = cliente;
@@ -87,17 +88,25 @@ public class FacturaPage extends JFrame {
 		lblDireccionCliente.setBounds(142, 169, 171, 14);
 		contentPane.add(lblDireccionCliente);
 	}
-
+	//----------
+	
+	
+	//------------
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FacturaPage frame = new FacturaPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+            public void run() {
+                try {
+                    // Asumiendo que 'clienteRegistrado' está definido en alguna otra parte de tu código
+                    //Cliente clienteRegistrado = obtenerClienteRegistrado(); // Una función hipotética para obtener el cliente registrado
+                    FacturaPage frame = new FacturaPage(cliente);
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 	}
 }
+
