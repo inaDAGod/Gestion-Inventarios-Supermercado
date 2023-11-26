@@ -21,6 +21,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import inventariosSuper.Clases.CategoriaProducto;
+import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.Producto;
+import inventariosSuper.Clases.Proveedor;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Compras;
+import inventariosSuper.Clases.Comprado;
+
 public class Nuevocli extends JFrame {
 
 	private List<Cliente> listaClientes = new ArrayList<>();
