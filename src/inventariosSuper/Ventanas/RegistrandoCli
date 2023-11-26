@@ -1,6 +1,16 @@
 package inventariosSuper;
 
 import javax.swing.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.Font;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,15 +29,18 @@ public class RegistrandoCli extends JFrame {
         super("Búsqueda de Clientes");
         listaClientes = new ArrayList<>();
 
-        // Clientes de ejemplo
-        Cliente cliente1 = new Cliente("Juan", 1, 12345, "Calle A");
-        Cliente cliente2 = new Cliente("María", 2, 67890, "Calle B");
-        listaClientes.add(cliente1);
-        listaClientes.add(cliente2);
+        // Crear algunos clientes de ejemplo
+        //Cliente cliente1 = new Cliente("Juan", 1, 12345, "Calle A");
+        //Cliente cliente2 = new Cliente("María", 2, 67890, "Calle B");
+        //listaClientes.add(cliente1);
+        //listaClientes.add(cliente2);
 
+        // Configurar la interfaz gráfica
         setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        cargarClientesDesdeArchivo("clientes.txt");
+        
 
         JPanel panel = new JPanel();
         JLabel etiqueta = new JLabel("Nombre del Cliente:");
@@ -162,8 +175,21 @@ public class RegistrandoCli extends JFrame {
                 JOptionPane.showMessageDialog(this, "Por favor, selecciona un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-     
- 
+//-----------        
+        private void cargarClientesDesdeArchivo(String rutaArchivo) {
+            try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    String[] datosCliente = linea.split(",");
+                    // Crear el cliente a partir de los datos del archivo
+                    Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3]);
+                    listaClientes.add(cliente);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 //--------    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -174,4 +200,3 @@ public class RegistrandoCli extends JFrame {
         });
     }
 }
-
