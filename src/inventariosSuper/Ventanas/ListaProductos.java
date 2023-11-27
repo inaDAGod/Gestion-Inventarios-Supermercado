@@ -86,7 +86,7 @@ public class ListaProductos extends JFrame {
         btnProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ProveedorProductos ventanaProveedores= new ProveedorProductos(inventario);
+				Proveedores ventanaProveedores= new Proveedores(inventario);
 				ventanaProveedores.setVisible(true);
 			}
 		});

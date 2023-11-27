@@ -28,29 +28,7 @@ public class DetallesProducto extends JFrame {
 	private JTextField txtFechaVence;
 	private JTextField txtProveedor;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inventario i = new Inventario();
-					Proveedor prove = new Proveedor("1", "Juan", "Avenida siempre vivas", "454", "jj@gmail.com");
-					Producto produ = new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5)); // producto nuevo
-					
-			        CategoriaProducto c = new CategoriaProducto("Comestible", "Para comer");// categoria nueva
-
-			        produ.anadirCategoria(produ,c); //se añade la categoria al producto
-			        i.añadirProducto(produ, prove);
-					DetallesProducto frame = new DetallesProducto(produ,i);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	public DetallesProducto(Producto produ,Inventario i) {
 		this.producto = produ;
@@ -78,14 +56,14 @@ public class DetallesProducto extends JFrame {
 		
 		JPanel panelCabecera = new JPanel();
 		panelCabecera.setBackground(new Color(255, 240, 245));
-		panelCabecera.setPreferredSize(new Dimension(1800, 130));
+		panelCabecera.setPreferredSize(new Dimension(1200, 130));
 		contentPane.add(panelCabecera, BorderLayout.NORTH);
 		panelCabecera.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel(producto.getNombre());
 		lblTitulo.setFont(new Font("Times New Roman", Font.BOLD, 32));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(258, 48, 636, 50);
+		lblTitulo.setBounds(270, 48, 636, 50);
 		panelCabecera.add(lblTitulo);
 		
 		JPanel panelFormularioProducto = new JPanel();
@@ -163,7 +141,7 @@ public class DetallesProducto extends JFrame {
 	     txtFechaVence.setColumns(10);
 	     
 	     txtProveedor = new JTextField();
-	     Proveedor prove = proveedor();
+	     Proveedor prove = proveedor(producto,inventario.getProveedoresProducto());
 	     if(prove!= null) {
 	    	 txtProveedor.setText(prove.getNombre());
 	     }
@@ -219,14 +197,16 @@ public class DetallesProducto extends JFrame {
 		}
 		return categorias;
 	}
-	public Proveedor proveedor() {
-        for (Map.Entry<Proveedor, Producto> entry : inventario.getProveedoresProducto().entrySet()) {
-            if (entry.getValue().equals(producto)) {
-                return entry.getKey(); 
-            }
-        }
-        return null;
-    }
+	public Proveedor proveedor(Producto producto, Map<Proveedor, ArrayList<Producto>> inventario) {
+	    for (Map.Entry<Proveedor, ArrayList<Producto>> entry : inventario.entrySet()) {
+	        ArrayList<Producto> productosDelProveedor = entry.getValue();
+	        if (productosDelProveedor.contains(producto)) {
+	            return entry.getKey();
+	        }
+	    }
+	    return null;
+	}
+
 }
 
 

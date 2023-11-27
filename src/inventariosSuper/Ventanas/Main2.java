@@ -86,10 +86,10 @@ public class Main2 {
 	    Producto producto15 = new Producto("Galletas", "Galletas de chocolate", 2.2, 90, LocalDate.of(2024, 7, 31), new LinkedList<>(Arrays.asList(snacksCategoria)));
 	    Producto producto16 = new Producto("Jugo de naranja", "Jugo de naranja natural", 1.8, 120, LocalDate.of(2023, 12, 15), new LinkedList<>(Arrays.asList(bebidasCategoria)));
 
-	    inventario.añadirProducto(producto1,proveedor4);
-	    inventario.añadirProducto(producto2,proveedor2);
+	    inventario.añadirProducto(producto1,proveedor1);
+	    inventario.añadirProducto(producto2,proveedor1);
 	    inventario.añadirProducto(producto3,proveedor6);
-	    inventario.añadirProducto(producto4,proveedor1);
+	    inventario.añadirProducto(producto4,proveedor2);
 	    inventario.añadirProducto(producto5,proveedor5);
 	    inventario.añadirProducto(producto6,proveedor3);
 	    inventario.añadirProducto(producto7, proveedor7);

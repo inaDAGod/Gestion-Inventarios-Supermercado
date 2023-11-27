@@ -29,12 +29,12 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class ProveedorProductos extends JFrame {
+public class Proveedores extends JFrame {
 	private Inventario inventario;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPanel panelTarjetas;
-	public ProveedorProductos(Inventario inventario) {
+	public Proveedores(Inventario inventario) {
 		this.inventario = inventario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,  1200, 800);
@@ -43,6 +43,13 @@ public class ProveedorProductos extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenuItem mntmVolver = new JMenuItem("< Volver");
+		mntmVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				ListaProductos frame = new ListaProductos(inventario);
+				frame.setVisible(true);
+			}
+		});
 		menuBar.add(mntmVolver);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,6 +94,7 @@ public class ProveedorProductos extends JFrame {
 		mostrarProveedores(inventario.getProveedores(), panelTarjetas);
 		
 	}
+	
 	private void mostrarProveedores(ArrayList<Proveedor> proveedores, JPanel panelTarjetas) {
 		  panelTarjetas.removeAll();
 		 int numProveedor = proveedores.size();
@@ -106,7 +114,9 @@ public class ProveedorProductos extends JFrame {
 	            buttonProvee.add(labelImagen, BorderLayout.CENTER);
 	            buttonProvee.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				
+	    				ProductosProveedor ventanaProductosProve = new ProductosProveedor(inventario, proveedor);
+	    				ventanaProductosProve.setVisible(true);
+	    				setVisible(false);
 	    			}
 	    		});
 
