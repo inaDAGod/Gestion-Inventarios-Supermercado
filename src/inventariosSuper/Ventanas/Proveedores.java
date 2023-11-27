@@ -32,7 +32,7 @@ import javax.swing.JMenuItem;
 public class Proveedores extends JFrame {
 	private Inventario inventario;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtBuscar;
 	private JPanel panelTarjetas;
 	public Proveedores(Inventario inventario) {
 		this.inventario = inventario;
@@ -67,13 +67,18 @@ public class Proveedores extends JFrame {
 		lblBuscarProveedor.setBounds(26, 152, 343, 14);
 		panelBuscador.add(lblBuscarProveedor);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setBounds(262, 148, 518, 23);
-		panelBuscador.add(textField);
-		textField.setColumns(10);
+		txtBuscar = new JTextField();
+		txtBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtBuscar.setBounds(262, 137, 518, 34);
+		panelBuscador.add(txtBuscar);
+		txtBuscar.setColumns(10);
 		
 		JButton btnBuscar = new JButton("BUSCAR");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarProveedores(buscarPorNombre(inventario.getProveedores(),txtBuscar.getText()), panelTarjetas);
+			}
+		});
 		btnBuscar.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		btnBuscar.setBounds(797, 150, 122, 23);
 		panelBuscador.add(btnBuscar);
@@ -142,4 +147,23 @@ public class Proveedores extends JFrame {
 	        panelTarjetas.revalidate();
 	        panelTarjetas.repaint();
 	    }
+	
+	private ArrayList<Proveedor>  buscarPorNombre(ArrayList<Proveedor>  proveedores, String nombre) {
+		ArrayList<Proveedor>  resultados = new ArrayList<>();
+
+	    for (Proveedor proveedor : proveedores) {
+	        if (proveedor.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+	            resultados.add(proveedor);
+	        }
+	    }
+
+	    // Agrega mensajes de depuración
+	    System.out.println("Texto a buscar: " + nombre);
+	    System.out.println("Resultados encontrados: " + resultados.size());
+	    for (Proveedor p : resultados) {
+	        System.out.println("Producto encontrado: " + p.getNombre());
+	    }
+
+	    return resultados;
+	}
 }
