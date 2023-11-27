@@ -49,12 +49,12 @@ public class Nuevocli extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Compras compras = new Compras(); // Crear una instancia de Compras
+		Compras compras = new Compras(); 
 
 	    EventQueue.invokeLater(new Runnable() {
 	        public void run() {
 	            try {
-	                Nuevocli frame = new Nuevocli(compras); // Pasar la instancia de Compras a Nuevocli
+	                Nuevocli frame = new Nuevocli(compras); 
 	                frame.setVisible(true);
 	            } catch (Exception e) {
 	                e.printStackTrace();
