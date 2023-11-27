@@ -58,7 +58,7 @@ class MinHeap {
 
     public void insertar(Alerta value) {
         heap.add(value);
-        heapifyUp(heap.size() - 1);
+        subirEnMonticulo(heap.size() - 1);
     }
 
     public Alerta extraerMinimo() {
@@ -71,7 +71,7 @@ class MinHeap {
 
         if (!estaVacio()) {
             heap.set(0, lastElement);
-            heapifyDown(0);
+            bajarEnMonticulo(0);
         }
 
         return min;
@@ -86,16 +86,16 @@ class MinHeap {
         if (indice != -1) {
             heap.set(indice, heap.get(heap.size() - 1));
             heap.remove(heap.size() - 1);
-            heapifyUp(indice);
-            heapifyDown(indice);
+            subirEnMonticulo(indice);
+            bajarEnMonticulo(indice);
         }
     }
 
-    private void heapifyUp(int index) {
+    private void subirEnMonticulo(int index) {
         while (index > 0) {
             int parentIndex = (index - 1) / 2;
             if (heap.get(index).getPrioridad() < heap.get(parentIndex).getPrioridad()) {
-                swap(index, parentIndex);
+                intercambiar(index, parentIndex);
                 index = parentIndex;
             } else {
                 break;
@@ -103,7 +103,7 @@ class MinHeap {
         }
     }
 
-    private void heapifyDown(int index) {
+    private void bajarEnMonticulo(int index) {
         int size = heap.size();
         while (2 * index + 1 < size) {
             int leftChild = 2 * index + 1;
@@ -115,7 +115,7 @@ class MinHeap {
             }
 
             if (heap.get(smallestChild).getPrioridad() < heap.get(index).getPrioridad()) {
-                swap(index, smallestChild);
+                intercambiar(index, smallestChild);
                 index = smallestChild;
             } else {
                 break;
@@ -123,7 +123,7 @@ class MinHeap {
         }
     }
 
-    private void swap(int i, int j) {
+    private void intercambiar(int i, int j) {
         Alerta temp = heap.get(i);
         heap.set(i, heap.get(j));
         heap.set(j, temp);
