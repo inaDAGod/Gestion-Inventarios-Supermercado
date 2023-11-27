@@ -208,16 +208,13 @@ public class Nuevocli extends JFrame {
 			    
 			    
 			    private void abrirPaginaFactura() {
-			        if (clienteRegistrado != null) {
-			            // Abre la página de la factura y pasa el cliente registrado
-			        	FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
+			    	if (clienteRegistrado != null) {
+			            FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
 			            facturaPage.setVisible(true);
-
-			            // Close the current window
 			            setVisible(false);
 			            dispose();
 			        } else {
-			            JOptionPane.showMessageDialog(this, "Por favor, registre un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
+			            JOptionPane.showMessageDialog(this, "Por favor, registra un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
 			        }
 			    }
 			
