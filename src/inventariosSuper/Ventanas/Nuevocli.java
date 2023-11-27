@@ -43,27 +43,31 @@ public class Nuevocli extends JFrame {
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
 	private JButton btnRegistro;
+	private Compras compras;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Nuevocli frame = new Nuevocli();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		Compras compras = new Compras(); // Crear una instancia de Compras
+
+	    EventQueue.invokeLater(new Runnable() {
+	        public void run() {
+	            try {
+	                Nuevocli frame = new Nuevocli(compras); // Pasar la instancia de Compras a Nuevocli
+	                frame.setVisible(true);
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    });
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Nuevocli() {
+	public Nuevocli(Compras compras) {
+		this.compras=compras;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
@@ -209,6 +213,7 @@ public class Nuevocli extends JFrame {
 			    
 			    private void abrirPaginaFactura() {
 			    	if (clienteRegistrado != null) {
+			    		clienteRegistrado.realizarCompra(compras.getProd(), compras.getCant());
 			            FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
 			            facturaPage.setVisible(true);
 			            setVisible(false);

@@ -1,34 +1,30 @@
 package inventariosSuper.Ventanas;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import inventariosSuper.Clases.CategoriaProducto;
-import inventariosSuper.Clases.Inventario;
-import inventariosSuper.Clases.Producto;
-import inventariosSuper.Clases.Proveedor;
 import inventariosSuper.Clases.Cliente;
-import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Comprado;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.JTextArea;
 import java.awt.Font;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.EventQueue;
 
 public class MostrarClientes extends JFrame {
 
     private JTextArea textArea;
     private List<Cliente> listaClientes;
+    private Comprado historialCompras; // Agregamos el historial de compras
 
-    public MostrarClientes(List<Cliente> clientes) {
-        listaClientes = clientes;
+    public MostrarClientes(List<Cliente> clientes, Comprado historialCompras) {
+        this.listaClientes = clientes;
+        this.historialCompras = historialCompras;
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -43,6 +39,7 @@ public class MostrarClientes extends JFrame {
         contentPane.add(textArea);
 
         mostrarClientes(listaClientes);
+        mostrarCompras();
     }
 
     private void mostrarClientes(List<Cliente> clientes) {
@@ -56,11 +53,17 @@ public class MostrarClientes extends JFrame {
         textArea.setText(clientesInfo.toString());
     }
 
+    private void mostrarCompras() {
+        textArea.append("\n\nHistorial de compras:\n");
+        historialCompras.mostrarCompras();
+    }
+
     public static void main(String[] args) {
         List<Cliente> listaClientes = cargarClientesDesdeArchivo("clientes.txt");
+        Comprado historialCompras = cargarComprasDesdeArchivo("compras.txt", listaClientes);
         EventQueue.invokeLater(() -> {
             try {
-                MostrarClientes frame = new MostrarClientes(listaClientes);
+                MostrarClientes frame = new MostrarClientes(listaClientes, historialCompras);
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -74,12 +77,40 @@ public class MostrarClientes extends JFrame {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datosCliente = linea.split(",");
-                Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3]);
+                Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]),
+                        Integer.parseInt(datosCliente[2]), datosCliente[3]);
                 clientes.add(cliente);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return clientes;
+    }
+
+    private static Comprado cargarComprasDesdeArchivo(String rutaArchivo, List<Cliente> listaClientes) {
+        Comprado historialCompras = new Comprado();
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datosCompra = linea.split(",");
+                int idCliente = Integer.parseInt(datosCompra[0]);
+                Cliente cliente = buscarClientePorId(idCliente, listaClientes);
+                if (cliente != null) {
+                    historialCompras.agregarCompra(cliente, LocalDateTime.parse(datosCompra[1]));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return historialCompras;
+    }
+
+    private static Cliente buscarClientePorId(int id, List<Cliente> listaClientes) {
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getId() == id) {
+                return cliente;
+            }
+        }
+        return null;
     }
 }

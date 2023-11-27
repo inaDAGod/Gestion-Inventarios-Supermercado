@@ -1,18 +1,26 @@
 package inventariosSuper.Clases;
 
-
 public class Compras {
     private Producto prod;
     private int cant;
     private double costoTotal;
+    
+    
+    
+    public Compras() {
+		this.prod = prod;
+		this.cant = cant;
+		this.costoTotal = costoTotal;
+	}
 
-    public Compras(Producto prod, int cant) {
+
+	public Compras(Producto prod, int cant) {
         this.prod = prod;
         this.cant = cant;
         this.costoTotal = calcularCostoTotal();
     }
-//ghj
-    
+
+
     public Producto getProd() {
         return prod;
     }
@@ -38,4 +46,3 @@ public class Compras {
         return this.prod.getPrecio() * this.cant;
     }
 }
-

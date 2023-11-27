@@ -1,11 +1,10 @@
 package inventariosSuper.Clases;
 
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-public class Comprado {
 
+public class Comprado {
     private HashMap<Cliente, LocalDateTime> compras;
 
     public Comprado() {
@@ -20,18 +19,15 @@ public class Comprado {
         return compras.getOrDefault(cliente, null);
     }
 
-
-
     public void mostrarCompras() {
         System.out.println("Historial de compras:");
         for (Map.Entry<Cliente, LocalDateTime> entry : compras.entrySet()) {
-            Cliente currentCliente = entry.getKey();
-            LocalDateTime fechaCompra = entry.getValue();
+            Cliente cliente = entry.getKey();
+            LocalDateTime fecha = entry.getValue();
 
-            System.out.println("Cliente: " + currentCliente.getNombre() + ", Fecha: " + fechaCompra);
-            currentCliente.mostrarListaDeCompras(); 
-            System.out.println(); 
+            System.out.println("Cliente: " + cliente.getNombre() + ", Fecha: " + fecha);
+            cliente.mostrarListaDeCompras(); // Método para mostrar la lista de compras del cliente
+            System.out.println();
         }
     }
 }
-
