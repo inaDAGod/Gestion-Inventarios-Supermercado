@@ -6,7 +6,8 @@ import java.util.*;
 import inventariosSuper.Clases.*;
 
 public class Main2 {
-
+	// lo que no cambiaremos  y se tiene que mantener deberiamos crear en el main y mandar como parametro a la verntana inicio la que mandara como 
+	//parametro a nuestras ventanas
 	public static void main(String[] args) {
 		Inventario inventario = new Inventario();
 		llenadoInventario(inventario);
