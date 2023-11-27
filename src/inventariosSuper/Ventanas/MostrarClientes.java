@@ -6,6 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Comprado;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import java.awt.Window;
+import java.io.BufferedReader;
 
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -15,8 +19,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class MostrarClientes extends JFrame {
+public class MostrarClientes<JButton> extends JFrame {
 
     private JTextArea textArea;
     private List<Cliente> listaClientes;
@@ -40,6 +48,8 @@ public class MostrarClientes extends JFrame {
 
         mostrarClientes(listaClientes);
         mostrarCompras();
+        
+        
     }
 
     private void mostrarClientes(List<Cliente> clientes) {
@@ -53,7 +63,7 @@ public class MostrarClientes extends JFrame {
         textArea.setText(clientesInfo.toString());
     }
 
-    private void mostrarCompras() {
+    public void mostrarCompras() {
         textArea.append("\n\nHistorial de compras:\n");
         historialCompras.mostrarCompras();
     }
