@@ -209,7 +209,7 @@ public class ListaProductos extends JFrame {
                     
                 } else if (rdbtnNewRadioButton_1.isSelected()) {
                     // Buscar por categoría
-                    List<Producto> productosPorCategoria = buscarPorCategoria(inventario.getProductos(), datoABuscar);
+                    List<Producto> productosPorCategoria = buscarPorCategoria(inventario.getCategoriasProductos(), datoABuscar);
                     mostrarProductos(productosPorCategoria, panelTarjetas);
                 }
             }
@@ -306,10 +306,40 @@ public class ListaProductos extends JFrame {
 
 	    return resultados;
 	}
+	
+	private List<Producto> buscarPorCategoria(ArrayList <CategoriaProducto> categorias , String nombre) {
+	    List<Producto> resultados = new ArrayList<>();
+	  
+	    for (CategoriaProducto categoria : categorias) {
+	    	System.out.println(categoria.getNombre()+"-----------------------------"+nombre );
+	        if (categoria.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+	        	System.out.println(categoria.getNombre()+"-----------------------------"+nombre );
 
-	private List<Producto> buscarPorCategoria(List<Producto> productos, String categoria) {
+	            for (Producto producto : categoria.getProductos()) {
+	            	System.out.println(producto );
+	    	            resultados.add(producto);
+	    	        
+	    	    }
+	            
+	        }
+	    }
+
+
+	    System.out.println("Texto a buscar: " + nombre);
+	    System.out.println("Resultados encontrados: " + resultados.size());
+	    for (Producto p : resultados) {
+	        System.out.println("Producto encontrado: " + p.getNombre());
+	    }
+
+	    return resultados;
+	}
+	
+
+	private List<Producto> buscarPorCategoria1(List<Producto> productos, String categoria) {
 		  List<Producto> resultados = new ArrayList<>();
-		   
+		
+				
+		  
 		    List<CategoriaProducto> categorias = inventario.getCategoriasProductos();
 
 		    for (Producto producto : productos) {
@@ -323,6 +353,9 @@ public class ListaProductos extends JFrame {
 		            	System.out.println(categoriaInventario.getNombre().toLowerCase()+"======"+ categoria.toLowerCase());
 		            	System.out.println("=======================" );
 		            	 if (categoriaInventario.getNombre().toLowerCase().contains(categoria.toLowerCase())) {
+		            		 
+		            		 
+		            	 }
 		                	System.out.println("/////////////////////////" );
 		                	System.out.println(producto );
 			            	System.out.println("/////////////////////////" );
@@ -331,7 +364,7 @@ public class ListaProductos extends JFrame {
 		        
 		            }
 		        }
-		    }
+		   
 
 		    System.out.println("Texto a buscar: " + categoria);
 		    System.out.println("Resultados encontrados: " + resultados.size());
