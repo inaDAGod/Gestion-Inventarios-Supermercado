@@ -124,6 +124,7 @@ public class ListaProductos extends JFrame {
 				setVisible(false);
 				VentanaInicio ventanaInicio = new VentanaInicio(inventario);
 				ventanaInicio.setVisible(true);
+				
 			}
 		});
 
@@ -287,7 +288,7 @@ public class ListaProductos extends JFrame {
 	    List<Producto> resultados = new ArrayList<>();
 
 	    for (Producto producto : productos) {
-	        if (producto.getNombre().equalsIgnoreCase(nombre)) {
+	        if (producto.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
 	            resultados.add(producto);
 	        }
 	    }
@@ -311,7 +312,7 @@ public class ListaProductos extends JFrame {
 	        // Iterar sobre las categorías del producto
 	        for (CategoriaProducto cat : categorias) {
 	            // Comparar el nombre de la categoría con la categoría buscada
-	            if (cat.getNombre().equalsIgnoreCase(categoria)) {
+	            if (cat.getNombre().toLowerCase().contains(categoria.toLowerCase())) {
 	                resultados.add(producto);
 	                break;  // No necesitas seguir iterando si encontraste una coincidencia
 	            }
