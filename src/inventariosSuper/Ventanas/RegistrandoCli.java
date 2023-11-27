@@ -45,12 +45,12 @@ public class RegistrandoCli extends JFrame {
     private GestorClientes gestorClientes;
     
     public static void main(String[] args) {
-    	Compras compras = new Compras(); // Creas una instancia de Compras (o usas alguna lógica para inicializarla)
+    	Compras compras = new Compras(); 
         
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new RegistrandoCli(compras); // Luego pasas esa instancia de Compras al constructor de RegistrandoCli
+                new RegistrandoCli(compras); 
             }
         });
     }
@@ -69,7 +69,7 @@ public class RegistrandoCli extends JFrame {
         listaClientes.add(cliente1);
         //listaClientes.add(cliente2);
 
-        // Configurar la interfaz gráfica
+        
         setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -193,7 +193,7 @@ public class RegistrandoCli extends JFrame {
                 String linea;
                 while ((linea = br.readLine()) != null) {
                     String[] datosCliente = linea.split(",");
-                    // Crear el cliente a partir de los datos del archivo
+                    
                     Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3]);
                     listaClientes.add(cliente);
                 }
