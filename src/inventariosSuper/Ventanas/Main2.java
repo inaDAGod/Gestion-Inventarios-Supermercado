@@ -19,12 +19,12 @@ public class Main2 {
 	
 	public static void llenadoInventario(Inventario inventario) {
 	    // Categorías
-	    CategoriaProducto comidaCategoria = new CategoriaProducto("COMIDA", null);
-	    CategoriaProducto cuidadoPersonalCategoria = new CategoriaProducto("CUIDADO PERSONAL", null);
-	    CategoriaProducto limpiezaCategoria = new CategoriaProducto("LIMPIEZA", null);
-	    CategoriaProducto bebidasCategoria = new CategoriaProducto("BEBIDAS", null);
-	    CategoriaProducto hogarCategoria = new CategoriaProducto("HOGAR", null);
-	    CategoriaProducto snacksCategoria = new CategoriaProducto("SNACKS", null);
+	    CategoriaProducto comidaCategoria = new CategoriaProducto("COMIDA");
+	    CategoriaProducto cuidadoPersonalCategoria = new CategoriaProducto("CUIDADO PERSONAL");
+	    CategoriaProducto limpiezaCategoria = new CategoriaProducto("LIMPIEZA");
+	    CategoriaProducto bebidasCategoria = new CategoriaProducto("BEBIDAS");
+	    CategoriaProducto hogarCategoria = new CategoriaProducto("HOGAR");
+	    CategoriaProducto snacksCategoria = new CategoriaProducto("SNACKS");
 	    
 	    inventario.añadirCategoriaProducto(comidaCategoria);
 	    inventario.añadirCategoriaProducto(cuidadoPersonalCategoria);
@@ -86,10 +86,10 @@ public class Main2 {
 	    Producto producto15 = new Producto("Galletas", "Galletas de chocolate", 2.2, 90, LocalDate.of(2024, 7, 31), new LinkedList<>(Arrays.asList(snacksCategoria)));
 	    Producto producto16 = new Producto("Jugo de naranja", "Jugo de naranja natural", 1.8, 120, LocalDate.of(2023, 12, 15), new LinkedList<>(Arrays.asList(bebidasCategoria)));
 
-	    inventario.añadirProducto(producto1,proveedor1);
-	    inventario.añadirProducto(producto2,proveedor1);
+	    inventario.añadirProducto(producto1,proveedor4);
+	    inventario.añadirProducto(producto2,proveedor4);
 	    inventario.añadirProducto(producto3,proveedor6);
-	    inventario.añadirProducto(producto4,proveedor2);
+	    inventario.añadirProducto(producto4,proveedor1);
 	    inventario.añadirProducto(producto5,proveedor5);
 	    inventario.añadirProducto(producto6,proveedor3);
 	    inventario.añadirProducto(producto7, proveedor7);
@@ -99,9 +99,10 @@ public class Main2 {
 	    inventario.añadirProducto(producto11, proveedor11);
 	    inventario.añadirProducto(producto12, proveedor12);
 	    inventario.añadirProducto(producto13, proveedor13);
-	    inventario.añadirProducto(producto14, proveedor14);
+	    inventario.añadirProducto(producto14, proveedor1);
 	    inventario.añadirProducto(producto15, proveedor15);
 	    inventario.añadirProducto(producto16, proveedor16);
+	
 	}
 
 

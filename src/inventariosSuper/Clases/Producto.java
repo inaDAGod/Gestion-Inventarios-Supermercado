@@ -91,7 +91,7 @@ public class Producto {
     @Override
     public String toString() {
         return "\n===========\nProducto \n Nombre: " + nombre + "\ndetalle: " + detalle + "\nprecio: " + precio + "\n cantidadStock: "
-                + cantidadStock + "\n fechaVencimiento: " + fechaVencimiento + "\n categorias: " + categorias + "\n===========";
+                + cantidadStock + "\n fechaVencimiento: " + fechaVencimiento ;
     }
 
     public static void main(String[] args) {

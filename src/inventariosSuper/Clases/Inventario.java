@@ -51,6 +51,11 @@ public class Inventario {
 		ArrayList<Producto> productosAsociados = proveedoresProducto.get(proveedor);
 		productosAsociados.add(producto);
 		
+		 for( CategoriaProducto categorias: producto.getCategorias()) {
+			categorias.anadirProducto(producto);
+		}
+		 
+		
 	}
 	public void añadirCategoriaProducto(CategoriaProducto c) {
 		categoriasProductos.add(c);
@@ -68,7 +73,7 @@ public class Inventario {
 		this.categoriasProductos = categoriasProductos;
 	}
 	
-
+	
 
 	
 	public ArrayList<Proveedor> getProveedores() {

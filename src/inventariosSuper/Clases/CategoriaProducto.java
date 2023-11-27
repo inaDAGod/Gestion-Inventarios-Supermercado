@@ -9,7 +9,7 @@ public class CategoriaProducto {
 	
 	
 	public CategoriaProducto(String nombre, String detalle, ArrayList<Producto> productos) {
-		super();
+	
 		this.nombre = nombre;
 		this.detalle = detalle;
 		this.productos = productos;
@@ -17,11 +17,18 @@ public class CategoriaProducto {
 	
 
 	public CategoriaProducto(String nombre, String detalle) {
-		super();
+	
 		this.nombre = nombre;
 		this.detalle = detalle;
 		this.productos = new ArrayList<Producto>();
 	}
+	
+	public CategoriaProducto(String nombre) {	
+		this.nombre = nombre;
+		this.detalle = "";
+		this.productos = new ArrayList<Producto>();
+	}
+	
 	
 	
 	public String getNombre() {
@@ -57,7 +64,8 @@ public class CategoriaProducto {
 	 * @param producto , Producto que sera añadido a esta categoria
 	 */
 	 public void anadirProducto(Producto producto) {
-		 productos.add(producto);
+	
+	        this.productos.add(producto); 
 	 }
 	 
 	@Override
