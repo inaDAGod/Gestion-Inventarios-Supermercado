@@ -38,7 +38,7 @@ public class ListaProductos extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Inventario inventario;
-private JTextField txtDatoABuscar;
+	private JTextField txtDatoABuscar;
 	/**
 	 * Launch the application.
 	 */
@@ -236,6 +236,7 @@ private JTextField txtDatoABuscar;
 	    			public void actionPerformed(ActionEvent e) {
 	    				DetallesProducto detalleProducto = new DetallesProducto(producto,inventario);
 	    				detalleProducto.setVisible(true);
+	    				setVisible(false);
 	    			}
 	    		});
 

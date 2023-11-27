@@ -65,6 +65,8 @@ public class DetallesProducto extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				ListaProductos frame = new ListaProductos(inventario);
+				frame.setVisible(true);
 			}
 		});
 		menuBar.add(mntmNewMenuItem);
