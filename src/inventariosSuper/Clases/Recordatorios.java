@@ -44,8 +44,16 @@ public class Recordatorios {
             recordatorios.agregarAlerta(new Alerta(producto));
         }
 
-        // Desplegar alertas ordenadas por prioridad
         recordatorios.desplegarAlertas();
+    }
+
+    //Para la Interfaz
+    public List<Alerta> obtenerAlertasOrdenadas() {
+        List<Alerta> alertasOrdenadas = new ArrayList<>();
+        while (!alertas.estaVacio()) {
+            alertasOrdenadas.add(alertas.extraerMinimo());
+        }
+        return alertasOrdenadas;
     }
 }
 
