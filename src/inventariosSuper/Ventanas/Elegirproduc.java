@@ -1,5 +1,12 @@
 package inventariosSuper.Ventanas;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -31,13 +38,15 @@ import javax.swing.border.EmptyBorder;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.Compras;
 
 
-public class ListaProductos extends JFrame {
+public class Elegirproduc extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Inventario inventario;
+	private Compras compras;
 	private JTextField txtDatoABuscar;
 	/**
 	 * Launch the application.
@@ -81,7 +90,7 @@ public class ListaProductos extends JFrame {
 			        inventario.añadirProducto(producto889, null); // No se especifica el proveedor en este ejemplo
 			        Producto producto8899 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
 			        inventario.añadirProducto(producto8899, null); // No se especifica el proveedor en este ejemplo
-					ListaProductos frame = new ListaProductos(inventario);
+					Elegirproduc frame = new Elegirproduc(inventario);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -93,7 +102,7 @@ public class ListaProductos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListaProductos(Inventario inventario) {
+	public Elegirproduc(Inventario inventario) {
 			this.inventario = inventario;
 	        
 
@@ -227,14 +236,14 @@ public class ListaProductos extends JFrame {
 	            buttonProducto.setLayout(new BorderLayout());
 
 	            String rutaImagen = "/imagenes/producto.png";
-	            ImageIcon iconProducto = new ImageIcon(ListaProductos.class.getResource(rutaImagen));
+	            ImageIcon iconProducto = new ImageIcon(Elegirproduc.class.getResource(rutaImagen));
 	            Image imagenRedimensionada = iconProducto.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 	            ImageIcon iconRedimensionado = new ImageIcon(imagenRedimensionada);
 	            JLabel labelImagen = new JLabel(iconRedimensionado);
 	            buttonProducto.add(labelImagen, BorderLayout.CENTER);
 	            buttonProducto.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				DetallesProducto detalleProducto = new DetallesProducto(producto,inventario);
+	    				Agregarproduc detalleProducto = new Agregarproduc(producto,inventario,compras);
 	    				detalleProducto.setVisible(true);
 	    				setVisible(false);
 	    			}

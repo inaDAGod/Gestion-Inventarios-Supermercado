@@ -1,111 +1,94 @@
 package inventariosSuper.Ventanas;
 
-import java.awt.EventQueue;
-
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import inventariosSuper.Clases.Cliente;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-
-import inventariosSuper.Clases.CategoriaProducto;
-import inventariosSuper.Clases.Inventario;
-import inventariosSuper.Clases.Producto;
-import inventariosSuper.Clases.Proveedor;
 import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Comprado;
+import inventariosSuper.Clases.Producto;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class FacturaPage extends JFrame {
 
-	private JPanel contentPane;
-	private static Cliente cliente;
+    private JPanel contentPane;
+    private Cliente cliente;
+    private JButton btnMostrarCompras;
+    private JTextArea textAreaCompras;
+    private Comprado historialCompras;
 
     public FacturaPage(Cliente cliente) {
-        this.cliente = cliente;
+    	this.cliente = cliente;
+        this.historialCompras = new Comprado();
         initialize();
     }
 
-	public void initialize() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1200, 800);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblClienteSeleccionado = new JLabel("Cliente Seleccionado");
-		lblClienteSeleccionado.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblClienteSeleccionado.setHorizontalAlignment(SwingConstants.CENTER);
-		lblClienteSeleccionado.setBounds(109, 29, 216, 20);
-		contentPane.add(lblClienteSeleccionado);
-		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(59, 79, 73, 14);
-		contentPane.add(lblNombre);
-		
-		JLabel lblId = new JLabel("ID:");
-		lblId.setBounds(59, 109, 46, 14);
-		contentPane.add(lblId);
-		
-		JLabel lblNumero = new JLabel("Número:");
-		lblNumero.setBounds(59, 139, 73, 14);
-		contentPane.add(lblNumero);
-		
-		JLabel lblDireccion = new JLabel("Dirección:");
-		lblDireccion.setBounds(59, 169, 73, 14);
-		contentPane.add(lblDireccion);
-		
-		JLabel lblNombreCliente = new JLabel(cliente.getNombre());
-		lblNombreCliente.setBounds(142, 79, 171, 14);
-		contentPane.add(lblNombreCliente);
-		
-		JLabel lblIdCliente = new JLabel(String.valueOf(cliente.getId()));
-		lblIdCliente.setBounds(142, 109, 171, 14);
-		contentPane.add(lblIdCliente);
-		
-		JLabel lblNumeroCliente = new JLabel(String.valueOf(cliente.getNumero()));
-		lblNumeroCliente.setBounds(142, 139, 171, 14);
-		contentPane.add(lblNumeroCliente);
-		
-		JLabel lblDireccionCliente = new JLabel(cliente.getDireccion());
-		lblDireccionCliente.setBounds(142, 169, 171, 14);
-		contentPane.add(lblDireccionCliente);
-	}
-	//----------
-	
-	
-	//------------
-	
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    // Asumiendo que 'clienteRegistrado' está definido en alguna otra parte de tu código
-                    //Cliente clienteRegistrado = obtenerClienteRegistrado(); // Una función hipotética para obtener el cliente registrado
-                    FacturaPage frame = new FacturaPage(cliente);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+    public void initialize() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 600, 500);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel lblClienteSeleccionado = new JLabel("Cliente Seleccionado");
+        lblClienteSeleccionado.setFont(new Font("Tahoma", Font.BOLD, 16));
+        lblClienteSeleccionado.setBounds(200, 10, 200, 20);
+        contentPane.add(lblClienteSeleccionado);
+
+        JLabel lblNombre = new JLabel("Nombre:");
+        lblNombre.setBounds(30, 50, 100, 14);
+        contentPane.add(lblNombre);
+
+        // ... Aquí se agregan otros JLabel con los detalles del cliente
+
+        textAreaCompras = new JTextArea();
+        textAreaCompras.setBounds(30, 100, 500, 300);
+        contentPane.add(textAreaCompras);
+
+        btnMostrarCompras = new JButton("Mostrar Compras");
+        btnMostrarCompras.setBounds(200, 420, 150, 30);
+        contentPane.add(btnMostrarCompras);
+
+        btnMostrarCompras.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mostrarListaDeCompras();
             }
         });
-	}
-}
+        
+        JButton btnRegistrarCompra = new JButton("Registrar Compra");
+        btnRegistrarCompra.setBounds(30, 420, 150, 30);
+        contentPane.add(btnRegistrarCompra);
 
+        btnRegistrarCompra.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	registrarCompra();
+            }
+        });
+    }
+
+    public void mostrarListaDeCompras() {
+        textAreaCompras.setText(""); // Limpia el área de texto antes de mostrar las compras
+
+        textAreaCompras.append("Lista de compras de " + cliente.getNombre() + ":\n");
+        for (Compras comp : cliente.getListaCompras()) {
+            Producto producto = comp.getProd();
+            int cantidad = comp.getCant();
+            double costoTotal = comp.getCostoTotal();
+
+            textAreaCompras.append("Producto: " + producto.getNombre() +
+                    " - Cantidad: " + cantidad +
+                    " - Costo Total: $" + costoTotal + "\n");
+        }
+    }
+    
+    public void registrarCompra() {
+        LocalDateTime fechaActual = LocalDateTime.now(); // Obtiene la fecha actual
+        historialCompras.agregarCompra(cliente, fechaActual); // Agrega la compra al historial
+        JOptionPane.showMessageDialog(null, "Compra registrada para " + cliente.getNombre());
+    }
+    
+}

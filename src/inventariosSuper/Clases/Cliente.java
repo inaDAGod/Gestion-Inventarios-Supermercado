@@ -8,58 +8,19 @@ public class Cliente {
     private int id;
     private int numero;
     private String direccion;
-    private List<Compras> compra;
-    
-    
+    private List<Compras> listaCompras; // Lista de compras del cliente
 
     public Cliente(String nombre, int id, int numero, String direccion) {
-		super();
-		this.nombre = nombre;
-		this.id = id;
-		this.numero = numero;
-		this.direccion = direccion;
-        this.compra = new ArrayList<>();
+        this.nombre = nombre;
+        this.id = id;
+        this.numero = numero;
+        this.direccion = direccion;
+        this.listaCompras = new ArrayList<>(); // Inicializar la lista de compras al crear un cliente
     }
-    
-    
-    
-    public int getId() {
-		return id;
-	}
 
+    // Getters y setters
 
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-
-	public int getNumero() {
-		return numero;
-	}
-
-
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
-
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-
-
-	public String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
@@ -67,28 +28,55 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public List<Compras> getCompras() {
-        return compra;
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public void realizarcompras(Producto producto, int cant) {
-        Compras nuevaCompra = new Compras(producto, cant);
-        this.compra.add(nuevaCompra);
-        //producto.reducirStock(cantidad); // Reducir el stock del producto nose
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void agregarCompra(Compras compra) {
+        listaCompras.add(compra);
+    }
+
+    public List<Compras> getListaCompras() {
+        return listaCompras;
+    }
+
+    public void realizarCompra(Producto producto, int cantidad) {
+        Compras nuevaCompra = new Compras(producto, cantidad);
+        listaCompras.add(nuevaCompra);
+        //producto.reducirStock(cantidad); // Reducir el stock del producto
     }
 
     public double calcularTotalGastado() {
         double total = 0;
-        for (Compras comp : compra) {
+        for (Compras comp : listaCompras) {
             total += comp.getCostoTotal();
         }
         return total;
     }
 
     public void mostrarListaDeCompras() {
-        System.out.println("Lista de compras de :");
-        for (Compras comp : compra) {
+        System.out.println("Lista de compras de " + nombre + ":");
+        for (Compras comp : listaCompras) {
             Producto producto = comp.getProd();
             int cantidad = comp.getCant();
             double costoTotal = comp.getCostoTotal();
@@ -96,14 +84,6 @@ public class Cliente {
             System.out.println("Producto: " + producto.getNombre() +
                     " - Cantidad: " + cantidad +
                     " - Costo Total: $" + costoTotal);
-
         }
     }
-
-
-
-
-    }
-
-
-
+}
