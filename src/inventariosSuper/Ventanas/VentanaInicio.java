@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 public class VentanaInicio extends JFrame {
+	private Inventario inventario;
 
-    public VentanaInicio() {
+    public VentanaInicio(Inventario i) {
+    	this.inventario = i;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 
@@ -79,57 +81,16 @@ public class VentanaInicio extends JFrame {
         //Botón Añadir Producto
         btnAnadirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Inventario i = new Inventario();
-                CategoriaProducto c = new CategoriaProducto("Comestible", "Para comer");// categoria nueva
-                CategoriaProducto c2 = new CategoriaProducto("Ropa", "Para ponerte");// categoria nueva
-                Proveedor p = new Proveedor("1", "Coca Cola", "Obrajes", "4564", "coca@gmail.com");
-                i.añadirProveedor(p);
-                i.añadirCategoriaProducto(c);
-                i.añadirCategoriaProducto(c2);
 
-                AnadirProducto frame = new AnadirProducto(i);
+                AnadirProducto frame = new AnadirProducto(inventario);
                 frame.setVisible(true);
+                setVisible(false);
             }
         });
 
         //Botón elegir Producto
         btnElegirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Inventario inventario = new Inventario();
-                Producto producto1 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto2 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto1, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto2, null); // No se especifica el proveedor en este ejemplo
-                Producto producto11 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto21 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto11, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto21, null); // No se especifica el proveedor en este ejemplo
-                Producto producto12 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto22 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto12, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto22, null); // No se especifica el proveedor en este ejemplo
-                Producto producto112 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto212 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto112, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto212, null); // No se especifica el proveedor en este ejemplo
-                Producto producto5 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto5, null); // No se especifica el proveedor en este ejemplo
-                Producto producto54 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto54, null); // No se especifica el proveedor en este ejemplo
-                Producto producto541 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto541, null); // No se especifica el proveedor en este ejemplo
-                Producto producto543 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto543, null); // No se especifica el proveedor en este ejemplo
-                Producto producto5413 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto5413, null); // No se especifica el proveedor en este ejemplo
-                Producto producto77 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto77, null); // No se especifica el proveedor en este ejemplo
-                Producto producto88 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto88, null); // No se especifica el proveedor en este ejemplo
-                Producto producto889 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto889, null); // No se especifica el proveedor en este ejemplo
-                Producto producto8899 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto8899, null); // No se especifica el proveedor en este ejemplo
                 Elegirproduc frame = new Elegirproduc(inventario);
                 frame.setVisible(true);
             }
@@ -148,43 +109,9 @@ public class VentanaInicio extends JFrame {
         //Botón Productos
         btnProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Inventario inventario = new Inventario();
-                Producto producto1 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto2 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto1, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto2, null); // No se especifica el proveedor en este ejemplo
-                Producto producto11 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto21 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto11, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto21, null); // No se especifica el proveedor en este ejemplo
-                Producto producto12 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto22 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto12, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto22, null); // No se especifica el proveedor en este ejemplo
-                Producto producto112 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
-                Producto producto212 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto112, null); // No se especifica el proveedor en este ejemplo
-                inventario.añadirProducto(producto212, null); // No se especifica el proveedor en este ejemplo
-                Producto producto5 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto5, null); // No se especifica el proveedor en este ejemplo
-                Producto producto54 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto54, null); // No se especifica el proveedor en este ejemplo
-                Producto producto541 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto541, null); // No se especifica el proveedor en este ejemplo
-                Producto producto543 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto543, null); // No se especifica el proveedor en este ejemplo
-                Producto producto5413 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto5413, null); // No se especifica el proveedor en este ejemplo
-                Producto producto77 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto77, null); // No se especifica el proveedor en este ejemplo
-                Producto producto88 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto88, null); // No se especifica el proveedor en este ejemplo
-                Producto producto889 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto889, null); // No se especifica el proveedor en este ejemplo
-                Producto producto8899 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
-                inventario.añadirProducto(producto8899, null); // No se especifica el proveedor en este ejemplo
                 ListaProductos frame = new ListaProductos(inventario);
                 frame.setVisible(true);
+                setVisible(false);
             }
         });
         //Boton Auditorías
@@ -205,14 +132,4 @@ public class VentanaInicio extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                VentanaInicio frame = new VentanaInicio();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
 }

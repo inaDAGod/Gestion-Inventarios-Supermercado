@@ -119,6 +119,13 @@ public class ListaProductos extends JFrame {
 
         JButton btnAtras = new JButton("< Volver");
         panelBotonesCabecera.add(btnAtras);
+        btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaInicio ventanaInicio = new VentanaInicio(inventario);
+				ventanaInicio.setVisible(true);
+			}
+		});
 
         JButton btnPerfil = new JButton("");
         ImageIcon iconOriginal = new ImageIcon("/imagenes/perfilpersona.png");

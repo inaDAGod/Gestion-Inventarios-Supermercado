@@ -62,11 +62,7 @@ public class AnadirProducto extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("< Volver");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
+		
 		menuBar.add(mntmNewMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -267,6 +263,17 @@ public class AnadirProducto extends JFrame {
 		     		anadirCategoria();
 		     	}
 		     });
+	     
+	     /***
+	      * Boton de volver, vuelve mandar el inventario actualizado
+	      */
+	     mntmNewMenuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+					VentanaInicio ventanaInicio = new VentanaInicio(inventario);
+					ventanaInicio.setVisible(true);
+				}
+			});
 		
 	}
 	/***
