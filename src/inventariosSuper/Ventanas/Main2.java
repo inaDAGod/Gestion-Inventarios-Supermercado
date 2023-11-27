@@ -18,13 +18,14 @@ public class Main2 {
 	
 	
 	public static void llenadoInventario(Inventario inventario) {
-	    // Categorías
+
 	    CategoriaProducto comidaCategoria = new CategoriaProducto("COMIDA");
 	    CategoriaProducto cuidadoPersonalCategoria = new CategoriaProducto("CUIDADO PERSONAL");
 	    CategoriaProducto limpiezaCategoria = new CategoriaProducto("LIMPIEZA");
 	    CategoriaProducto bebidasCategoria = new CategoriaProducto("BEBIDAS");
 	    CategoriaProducto hogarCategoria = new CategoriaProducto("HOGAR");
 	    CategoriaProducto snacksCategoria = new CategoriaProducto("SNACKS");
+
 	    
 	    inventario.añadirCategoriaProducto(comidaCategoria);
 	    inventario.añadirCategoriaProducto(cuidadoPersonalCategoria);
