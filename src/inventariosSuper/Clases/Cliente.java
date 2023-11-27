@@ -8,17 +8,17 @@ public class Cliente {
     private int id;
     private int numero;
     private String direccion;
-    private List<Compras> listaCompras; 
+    private List<Compras> listaCompras; // Lista de compras del cliente
 
     public Cliente(String nombre, int id, int numero, String direccion) {
         this.nombre = nombre;
         this.id = id;
         this.numero = numero;
         this.direccion = direccion;
-        this.listaCompras = new ArrayList<>(); 
+        this.listaCompras = new ArrayList<>(); // Inicializar la lista de compras al crear un cliente
     }
 
-    
+    // Getters y setters
 
     public String getNombre() {
         return nombre;

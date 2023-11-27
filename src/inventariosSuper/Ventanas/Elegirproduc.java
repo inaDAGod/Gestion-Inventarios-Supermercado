@@ -175,8 +175,8 @@ public class Elegirproduc extends JFrame {
         rdbtnNewRadioButton_1.setBounds(415, 5, 133, 39);
         panel_1.add(rdbtnNewRadioButton_1);
 
-        buttonGroup.add(rdbtnNewRadioButton); 
-        buttonGroup.add(rdbtnNewRadioButton_1); 
+        buttonGroup.add(rdbtnNewRadioButton); // Agregar al ButtonGroup
+        buttonGroup.add(rdbtnNewRadioButton_1); // Agregar al ButtonGroup
 
 
         JPanel panel_2 = new JPanel();
@@ -200,7 +200,7 @@ public class Elegirproduc extends JFrame {
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                // Lógica para buscar productos
                 String datoABuscar = txtDatoABuscar.getText();
 
                 if (rdbtnNewRadioButton.isSelected()) {
@@ -310,12 +310,12 @@ public class Elegirproduc extends JFrame {
 	    for (Producto producto : productos) {
 	        Queue<CategoriaProducto> categorias = producto.getCategorias();
 
-	        
+	        // Iterar sobre las categorías del producto
 	        for (CategoriaProducto cat : categorias) {
-	            
+	            // Comparar el nombre de la categoría con la categoría buscada
 	            if (cat.getNombre().equalsIgnoreCase(categoria)) {
 	                resultados.add(producto);
-	                break; 
+	                break;  // No necesitas seguir iterando si encontraste una coincidencia
 	            }
 	        }
 	    }
