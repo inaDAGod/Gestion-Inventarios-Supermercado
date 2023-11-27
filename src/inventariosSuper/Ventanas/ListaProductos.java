@@ -124,6 +124,7 @@ public class ListaProductos extends JFrame {
 				setVisible(false);
 				VentanaInicio ventanaInicio = new VentanaInicio(inventario);
 				ventanaInicio.setVisible(true);
+				
 			}
 		});
 
@@ -205,9 +206,10 @@ public class ListaProductos extends JFrame {
                     // Buscar por nombre
                     List<Producto> productosPorNombre = buscarPorNombre(inventario.getProductos(), datoABuscar);
                     mostrarProductos(productosPorNombre, panelTarjetas);
+                    
                 } else if (rdbtnNewRadioButton_1.isSelected()) {
                     // Buscar por categoría
-                    List<Producto> productosPorCategoria = buscarPorCategoria(inventario.getProductos(), datoABuscar);
+                    List<Producto> productosPorCategoria = buscarPorCategoria(inventario.getCategoriasProductos(), datoABuscar);
                     mostrarProductos(productosPorCategoria, panelTarjetas);
                 }
             }
@@ -283,11 +285,14 @@ public class ListaProductos extends JFrame {
 	private void mostrarTodosLosProductos(JScrollPane scrollPane) {
 	    contentPane.add(scrollPane, BorderLayout.CENTER);
 	}
+	
+	
+	
 	private List<Producto> buscarPorNombre(List<Producto> productos, String nombre) {
 	    List<Producto> resultados = new ArrayList<>();
 
 	    for (Producto producto : productos) {
-	        if (producto.getNombre().equalsIgnoreCase(nombre)) {
+	        if (producto.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
 	            resultados.add(producto);
 	        }
 	    }
@@ -301,24 +306,73 @@ public class ListaProductos extends JFrame {
 
 	    return resultados;
 	}
-
-	private List<Producto> buscarPorCategoria(List<Producto> productos, String categoria) {
+	
+	private List<Producto> buscarPorCategoria(ArrayList <CategoriaProducto> categorias , String nombre) {
 	    List<Producto> resultados = new ArrayList<>();
+	  
+	    for (CategoriaProducto categoria : categorias) {
+	    	System.out.println(categoria.getNombre()+"-----------------------------"+nombre );
+	        if (categoria.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+	        	System.out.println(categoria.getNombre()+"-----------------------------"+nombre );
 
-	    for (Producto producto : productos) {
-	        Queue<CategoriaProducto> categorias = producto.getCategorias();
-
-	        // Iterar sobre las categorías del producto
-	        for (CategoriaProducto cat : categorias) {
-	            // Comparar el nombre de la categoría con la categoría buscada
-	            if (cat.getNombre().equalsIgnoreCase(categoria)) {
-	                resultados.add(producto);
-	                break;  // No necesitas seguir iterando si encontraste una coincidencia
-	            }
+	            for (Producto producto : categoria.getProductos()) {
+	            	System.out.println(producto );
+	    	            resultados.add(producto);
+	    	        
+	    	    }
+	            
 	        }
+	    }
+
+
+	    System.out.println("Texto a buscar: " + nombre);
+	    System.out.println("Resultados encontrados: " + resultados.size());
+	    for (Producto p : resultados) {
+	        System.out.println("Producto encontrado: " + p.getNombre());
 	    }
 
 	    return resultados;
 	}
+	
+
+	private List<Producto> buscarPorCategoria1(List<Producto> productos, String categoria) {
+		  List<Producto> resultados = new ArrayList<>();
+		
+				
+		  
+		    List<CategoriaProducto> categorias = inventario.getCategoriasProductos();
+
+		    for (Producto producto : productos) {
+		        Queue<CategoriaProducto> categoriasProducto = producto.getCategorias();
+		        System.out.println("-----------------------------" );
+		        System.out.println(producto);
+		        System.out.println("-----------------------------" );
+
+		            for (CategoriaProducto categoriaInventario : categorias) {
+		            	System.out.println("=======================" );
+		            	System.out.println(categoriaInventario.getNombre().toLowerCase()+"======"+ categoria.toLowerCase());
+		            	System.out.println("=======================" );
+		            	 if (categoriaInventario.getNombre().toLowerCase().contains(categoria.toLowerCase())) {
+		            		 
+		            		 
+		            	 }
+		                	System.out.println("/////////////////////////" );
+		                	System.out.println(producto );
+			            	System.out.println("/////////////////////////" );
+		                    resultados.add(producto);
+		                    break;  
+		        
+		            }
+		        }
+		   
+
+		    System.out.println("Texto a buscar: " + categoria);
+		    System.out.println("Resultados encontrados: " + resultados.size());
+		    for (Producto p : resultados) {
+		        System.out.println("Producto encontrado: " + p.getNombre());
+		    }
+
+		    return resultados;
+		}
 	
 	}

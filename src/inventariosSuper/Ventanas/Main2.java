@@ -19,7 +19,7 @@ public class Main2 {
 	
 	public static void llenadoInventario(Inventario inventario) {
 	    // Categorías
-	    CategoriaProducto comidaCategoria = new CategoriaProducto("COMIDA", null);
+	    CategoriaProducto comidaCategoria = new CategoriaProducto("comida", null);
 	    CategoriaProducto cuidadoPersonalCategoria = new CategoriaProducto("CUIDADO PERSONAL", null);
 	    CategoriaProducto limpiezaCategoria = new CategoriaProducto("LIMPIEZA", null);
 	    CategoriaProducto bebidasCategoria = new CategoriaProducto("BEBIDAS", null);
