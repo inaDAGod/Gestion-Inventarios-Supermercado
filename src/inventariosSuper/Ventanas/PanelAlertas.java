@@ -61,7 +61,10 @@ public class PanelAlertas extends JPanel {
 
         JTextArea txtDetalles = new JTextArea();
         txtDetalles.setText("Producto: " + alerta.getProducto().getNombre() +
-                "\nFecha de Vencimiento: " + alerta.getProducto().getFechaVencimiento());
+                "   " + alerta.getMensaje() +
+                "\n Prioridad: " + alerta.getPrioridad() +
+                "\nFecha de Vencimiento: " + alerta.getProducto().getFechaVencimiento()
+                );
         txtDetalles.setEditable(false);
         panelRecordatorio.add(txtDetalles, BorderLayout.CENTER);
 
