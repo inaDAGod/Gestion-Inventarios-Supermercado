@@ -71,6 +71,15 @@ public class VentanaAuditoria extends JFrame {
         lblComprasEfectuadasEntre.setBounds(192, 262, 541, 41);
         getContentPane().add(lblComprasEfectuadasEntre);
 
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
+        btnVolver.setBounds(1039, 11, 115, 30);
+        getContentPane().add(btnVolver);
+
         setVisible(true);
     }
 
