@@ -1,11 +1,17 @@
 package inventariosSuper.Ventanas;
 
 import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import javax.swing.border.EmptyBorder;
 import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Producto;
+import inventariosSuper.Clases.ManejadorArchivo;
+import inventariosSuper.Ventanas.MostrarClientes;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,11 +26,15 @@ public class FacturaPage extends JFrame {
     private JTextArea textAreaCompras;
     private Comprado historialCompras;
 
+    private MostrarClientes mostrarClientes;
+
     public FacturaPage(Cliente cliente) {
-    	this.cliente = cliente;
+        this.cliente = cliente;
         this.historialCompras = new Comprado();
+        this.mostrarClientes = mostrarClientes; // Guarda la instancia de MostrarClientes
         initialize();
     }
+
 
     public void initialize() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +75,7 @@ public class FacturaPage extends JFrame {
 
         btnRegistrarCompra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	registrarCompra();
+            	registrarCompra( );
             }
         });
     }
@@ -82,13 +92,27 @@ public class FacturaPage extends JFrame {
             textAreaCompras.append("Producto: " + producto.getNombre() +
                     " - Cantidad: " + cantidad +
                     " - Costo Total: $" + costoTotal + "\n");
-        }
-    }
+        }}
+    
     
     public void registrarCompra() {
         LocalDateTime fechaActual = LocalDateTime.now(); // Obtiene la fecha actual
         historialCompras.agregarCompra(cliente, fechaActual); // Agrega la compra al historial
         JOptionPane.showMessageDialog(null, "Compra registrada para " + cliente.getNombre());
+
+        // Guardar en un archivo de texto
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("compras.txt", true))) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDate = fechaActual.format(formatter);
+            String data = cliente.getId() + "," + formattedDate + "\n";
+            writer.write(data);
+            writer.flush(); // Asegúrate de que los datos se escriban en el archivo
+            
+            // Actualiza la visualización de compras en la instancia de MostrarClientes
+            mostrarClientes.mostrarCompras();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    
+
 }
