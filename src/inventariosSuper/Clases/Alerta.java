@@ -5,18 +5,11 @@ import java.time.LocalDate;
 public class Alerta {
     private String mensaje;
     private int prioridad;
-    private TipoAlerta tipo;
     private Producto producto;
 
-    public enum TipoAlerta {
-        PRONTO_A_VENCER, STOCK_BAJO
-    }
-
-    public Alerta(String mensaje, int prioridad, TipoAlerta tipo, Producto producto) {
-        this.mensaje = mensaje;
-        this.prioridad = prioridad;
-        this.tipo = tipo;
+    public Alerta(Producto producto) {
         this.producto = producto;
+        definirAlerta();
     }
 
     public String getMensaje() {
@@ -35,14 +28,6 @@ public class Alerta {
         this.prioridad = prioridad;
     }
 
-    public TipoAlerta getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoAlerta tipo) {
-        this.tipo = tipo;
-    }
-
     public Producto getProducto() {
         return producto;
     }
@@ -51,4 +36,34 @@ public class Alerta {
         this.producto = producto;
     }
 
+    private void definirAlerta() {
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fechaVencimiento = producto.getFechaVencimiento();
+
+        if (fechaVencimiento.isBefore(fechaActual)) {
+            // Producto vencido
+            this.mensaje = "Producto vencido, Sacar del Stock";
+            this.prioridad = 1;
+        } else if (fechaVencimiento.isEqual(fechaActual) || fechaVencimiento.minusDays(2).isBefore(fechaActual)) {
+            // Producto a punto de vencer
+            this.mensaje = "Producto a punto de vencer";
+            this.prioridad = 2;
+        } else if (producto.getCantidadStock() <= 3) {
+            // Producto bajo en cantidad
+            this.mensaje = "Producto bajo en cantidad";
+            this.prioridad = 3;
+        } else {
+            // Producto agotado, ordenar más
+            this.mensaje = "Producto agotado, ordenar más";
+            this.prioridad = 1;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Producto: " + producto.getNombre() +
+                "  Mensaje: " + mensaje + '\'' +
+                "  (prioridad: " + prioridad + ")"
+                ;
+    }
 }
