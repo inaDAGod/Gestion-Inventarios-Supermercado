@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JTextArea;
 
 public class Auditoria {
     private Queue<Compra> compras;
@@ -18,20 +19,21 @@ public class Auditoria {
         compras.offer(compra);
     }
     //muestra las facturaas ingresadas sin el intervalo de fechas, como tal las transacciones
-    public void mostrarCompras() {
-        System.out.println("Registro de Compras:");
+    public void mostrarCompras(JTextArea textArea) {
+        textArea.append("Registro de Compras:\n");
         for (Compra compra : compras) {
-            System.out.println(compra);
+            textArea.append(compra + "\n");
         }
     }
+
     //solo facturas emitidas entre cierto rango de fechas
-    public void mostrarComprasEnRango(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+    public void mostrarComprasEnRango(LocalDateTime fechaInicio, LocalDateTime fechaFin, JTextArea textArea) {
         // Mostrar compras en el rango de fechas
-        System.out.println("Compras en el rango de fechas:");
+        textArea.append("Compras en el rango de fechas:\n");
         for (Compra compra : compras) {
             LocalDateTime fechaCompra = compra.getFechaCompra();
             if (fechaCompra != null && fechaCompra.isAfter(fechaInicio) && fechaCompra.isBefore(fechaFin)) {
-                System.out.println(compra);
+                textArea.append(compra + "\n");
             }
         }
     }
@@ -47,7 +49,8 @@ public class Auditoria {
         auditoria.agregarCompra(cliente1, producto1, 2, fechaCompra);
 
         // Mostrar todas las compras
-        auditoria.mostrarCompras();
+        JTextArea txtADisplay = new JTextArea();  // Crea un JTextArea para mostrar las compras
+        auditoria.mostrarCompras(txtADisplay);
 
         // Filtrar compras por rango de fechas
         Scanner scanner = new Scanner(System.in);
@@ -59,7 +62,7 @@ public class Auditoria {
         System.out.print("Ingrese la fecha de fin (yyyy-MM-dd): ");
         LocalDate fechaFin = LocalDate.from(LocalDate.parse(scanner.nextLine(), formatter).plusDays(1).atStartOfDay());
 
-        auditoria.mostrarComprasEnRango(fechaInicio.atStartOfDay(), fechaFin.atStartOfDay());
+        auditoria.mostrarComprasEnRango(fechaInicio.atStartOfDay(), fechaFin.atStartOfDay(), txtADisplay);
 
         scanner.close();
     }
