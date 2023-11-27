@@ -45,7 +45,7 @@ public class VentanaInicio extends JFrame {
         panelBotones.add(btnAnadirProducto);
 
         // Botón "Elegir Producto"
-        JButton btnElegirProducto = new JButton("ELEGIR PRODUCTO");
+        JButton btnElegirProducto = new JButton("COMPRAR");
         btnElegirProducto.setFont(fontBotones);
         btnElegirProducto.setPreferredSize(new Dimension(280, 120)); // Ajuste en el ancho
         panelBotones.add(btnElegirProducto);
@@ -57,7 +57,7 @@ public class VentanaInicio extends JFrame {
         panelBotones.add(btnCliente);
 
         // Botón "Productos"
-        JButton btnProductos = new JButton("PRODUCTOS");
+        JButton btnProductos = new JButton("INVENTARIO");
         btnProductos.setFont(fontBotones);
         btnProductos.setPreferredSize(new Dimension(280, 120)); // Ajuste en el ancho
         panelBotones.add(btnProductos);
