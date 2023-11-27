@@ -50,16 +50,14 @@ public class Elegirregistro extends JFrame {
 	private JPanel contentPane;
 	private Compras compras;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
-		Compras compras = new Compras(); // Creas una instancia de Compras
+		Compras compras = new Compras(); 
 
 	    EventQueue.invokeLater(new Runnable() {
 	        public void run() {
 	            try {
-	                Elegirregistro frame = new Elegirregistro(compras); // Pasas la instancia de Compras a Elegirregistro
+	                Elegirregistro frame = new Elegirregistro(compras); 
 	                frame.setVisible(true);
 	            } catch (Exception e) {
 	                e.printStackTrace();
@@ -68,9 +66,7 @@ public class Elegirregistro extends JFrame {
 	    });
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public Elegirregistro(Compras compras) {
 		this.compras = compras;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,7 +124,7 @@ public class Elegirregistro extends JFrame {
 	private void abrirFacturaConCliente(Cliente cliente) {
 	    FacturaPage facturaPage = new FacturaPage(cliente);
 	    facturaPage.setVisible(true);
-	    dispose();  // Cerrar la ventana actual
+	    dispose();  
 	}
 
 }

@@ -28,7 +28,7 @@ public class MostrarClientes<JButton> extends JFrame {
 
     private JTextArea textArea;
     private List<Cliente> listaClientes;
-    private Comprado historialCompras; // Agregamos el historial de compras
+    private Comprado historialCompras; 
 
     public MostrarClientes(List<Cliente> clientes, Comprado historialCompras) {
         this.listaClientes = clientes;

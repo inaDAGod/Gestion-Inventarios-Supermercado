@@ -30,13 +30,13 @@ public class FacturaPage extends JFrame {
 
     public FacturaPage(Cliente cliente) {
         this.cliente = cliente;
-        this.historialCompras = new Comprado();
-        this.mostrarClientes = mostrarClientes; // Guarda la instancia de MostrarClientes
+        this.mostrarClientes = mostrarClientes; 
         initialize();
     }
 
 
     public void initialize() {
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 500);
         contentPane = new JPanel();
@@ -53,7 +53,7 @@ public class FacturaPage extends JFrame {
         lblNombre.setBounds(30, 50, 100, 14);
         contentPane.add(lblNombre);
 
-        // ... Aquí se agregan otros JLabel con los detalles del cliente
+        
 
         textAreaCompras = new JTextArea();
         textAreaCompras.setBounds(30, 100, 500, 300);
@@ -81,7 +81,7 @@ public class FacturaPage extends JFrame {
     }
 
     public void mostrarListaDeCompras() {
-        textAreaCompras.setText(""); // Limpia el área de texto antes de mostrar las compras
+        textAreaCompras.setText(""); 
 
         textAreaCompras.append("Lista de compras de " + cliente.getNombre() + ":\n");
         for (Compras comp : cliente.getListaCompras()) {
@@ -96,19 +96,16 @@ public class FacturaPage extends JFrame {
     
     
     public void registrarCompra() {
-        LocalDateTime fechaActual = LocalDateTime.now(); // Obtiene la fecha actual
-        historialCompras.agregarCompra(cliente, fechaActual); // Agrega la compra al historial
+        LocalDateTime fechaActual = LocalDateTime.now(); 
+        historialCompras.agregarCompra(cliente, fechaActual); 
         JOptionPane.showMessageDialog(null, "Compra registrada para " + cliente.getNombre());
 
-        // Guardar en un archivo de texto
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("compras.txt", true))) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDate = fechaActual.format(formatter);
             String data = cliente.getId() + "," + formattedDate + "\n";
             writer.write(data);
-            writer.flush(); // Asegúrate de que los datos se escriban en el archivo
-            
-            // Actualiza la visualización de compras en la instancia de MostrarClientes
+            writer.flush(); 
             mostrarClientes.mostrarCompras();
         } catch (IOException e) {
             e.printStackTrace();
