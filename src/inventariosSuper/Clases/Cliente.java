@@ -10,7 +10,7 @@ public class Cliente {
     private String direccion;
     private List<Compras> listaCompras; // Lista de compras del cliente
 
-    public Cliente(String nombre, int id, int numero, String direccion) {
+    public Cliente(String nombre, int id, int numero, String direccion,List<Compras> listaCompras) {
         this.nombre = nombre;
         this.id = id;
         this.numero = numero;

@@ -13,8 +13,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.awt.Container;
+import java.awt.EventQueue;
 
 public class Agregarproduc extends JFrame {
 
@@ -24,6 +30,11 @@ public class Agregarproduc extends JFrame {
     private double numeroIngresado; // Variable para almacenar el número ingresado
     private Producto producto;
     private Compras compra;
+    private List<Compras> listaCompras;
+    private JTextArea textArea_2;
+    private StringBuilder comprasTexto;
+    
+    
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -38,8 +49,16 @@ public class Agregarproduc extends JFrame {
         });
     }
 
-    public Agregarproduc(Producto produ, Inventario i, Compras compras) {
-    	this.producto = produ;
+    ;
+
+    public Agregarproduc(Producto produ, Inventario i, List<Compras> listaCompras) {
+        this.producto = produ;
+        this.listaCompras = listaCompras != null ? new ArrayList<>(listaCompras) : new ArrayList<>();
+        
+
+
+
+
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         contentPane = new JPanel();
@@ -49,7 +68,7 @@ public class Agregarproduc extends JFrame {
         contentPane.setLayout(null);
 
         JTextArea textArea = new JTextArea();
-        textArea.setBounds(36, 49, 463, 536);
+        textArea.setBounds(36, 96, 470, 171);
         contentPane.add(textArea);
 
         if (produ != null) {
@@ -63,12 +82,12 @@ public class Agregarproduc extends JFrame {
         }
 
         textField = new JTextField();
-        textField.setBounds(704, 83, 293, 45);
+        textField.setBounds(713, 86, 284, 45);
         contentPane.add(textField);
         textField.setColumns(10);
 
         JButton btnCalcular = new JButton("Calcular");
-        btnCalcular.setBounds(767, 411, 217, 76);
+        btnCalcular.setBounds(713, 409, 126, 56);
         contentPane.add(btnCalcular);
 
         btnCalcular.addActionListener(new ActionListener() {
@@ -85,44 +104,99 @@ public class Agregarproduc extends JFrame {
                 }
             }
         });
+        
+        textArea_2 = new JTextArea();
+        textArea_2.setBounds(36, 405, 470, 171);
+        contentPane.add(textArea_2);
 
-        JButton btnNewButton = new JButton("Registrar"); // Renombrado el botón
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		try {
-                    String texto = textField.getText();
-                    numeroIngresado = Double.parseDouble(texto);
+        comprasTexto = new StringBuilder(); // Inicializa comprasTexto aquí
+        actualizarListaCompras();
+        
+        
+        
+        JButton btnRegistrar = new JButton("Registrar");
+        btnRegistrar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (listaCompras != null) {
+                        int cantidad = Integer.parseInt(textField.getText());
+                        Compras nuevaCompra = new Compras(producto, cantidad);
+                        double resultado = Double.parseDouble(textField.getText()) * producto.getPrecio();
+                        textArea_1.setText("El total es: " + resultado);
 
-                    double resultado = numeroIngresado * producto.getPrecio();
+                        listaCompras.add(nuevaCompra);
 
-                    textArea_1.setText("El total es: " + resultado);
+                        JOptionPane.showMessageDialog(null, "¡Registro exitoso!\n");
+                        System.out.println(listaCompras);
 
-                    int cantidad = Integer.parseInt(textField.getText()); // Suponiendo que aquí ingresas la cantidad
-                    compra = new Compras(producto, cantidad);
-
-                    // Si necesitas hacer algo más con 'compra', es el momento de hacerlo aquí
-                    // Por ejemplo, guardar 'compra' en una lista de compras
-                    // listaDeCompras.add(compra);
-
-                    // O imprimir información sobre la compra
-                    JOptionPane.showMessageDialog(null, "¡Registro exitoso!\nEl total es: " + resultado);
-                    Elegirregistro detalleProducto = new Elegirregistro(compra);
-                    detalleProducto.setVisible(true);
-                    setVisible(false);
-    	            dispose();
+                        actualizarListaCompras();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: La lista de compras no está inicializada");
+                    }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Error: Ingresa un número válido");
                 }
             }
         });
+
+        btnRegistrar.setBounds(871, 409, 126, 56);
+        contentPane.add(btnRegistrar);
+        
+        
+        
+
+        JButton btnNewButton = new JButton("Siguiente"); // Renombrado el botón
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Elegirregistro detalleProducto = new Elegirregistro(listaCompras);
+                    detalleProducto.setVisible(true);
+                    setVisible(false);
+                    dispose();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Error: Ingresa un número válido");
+                }
+            }
+        });
+
         	
-        btnNewButton.setBounds(767, 500, 217, 76);
+        btnNewButton.setBounds(752, 500, 217, 76);
         contentPane.add(btnNewButton);
         
         
         
         textArea_1 = new JTextArea();
-        textArea_1.setBounds(713, 169, 284, 226);
+        textArea_1.setBounds(713, 146, 284, 226);
         contentPane.add(textArea_1);
+        
+        
+        
+        
+        
+        
+        
+        
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setBounds(36, 619, 126, 56);
+        contentPane.add(btnVolver);
+        btnVolver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	Elegirproduc paginaAnterior = new Elegirproduc(i, listaCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
+                paginaAnterior.setVisible(true); // Muestra la página anterior
+                dispose(); // Cierra la página actual
+            }
+        });
+        
     }
+    
+    private void actualizarListaCompras() {
+        StringBuilder comprasTexto = new StringBuilder();
+        comprasTexto.append("Lista de Compras:\n");
+        for (Compras compra : listaCompras) {
+            comprasTexto.append("Producto: ").append(compra.getProd().getNombre()).append(", Cantidad: ").append(compra.getCant()).append("\n");
+            // Añade más detalles si es necesario, como el precio o información adicional de la compra
+        }
+        textArea_2.setText(comprasTexto.toString());
+    }
+
 }
