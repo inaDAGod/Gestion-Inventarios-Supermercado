@@ -6,7 +6,7 @@ public class Inventario {
 	private ArrayList<Producto> productos;
 	private ArrayList<Proveedor> proveedores;
 	private ArrayList<CategoriaProducto> categoriasProductos;
-	private Map <Proveedor,Producto> proveedoresProducto;
+	private Map <Proveedor,ArrayList<Producto> > proveedoresProducto;
 	
 	
 	public Inventario() {
@@ -17,17 +17,25 @@ public class Inventario {
 	}
 
 	
-	public Map<Proveedor, Producto> getProveedoresProducto() {
+
+
+	
+	public Map<Proveedor, ArrayList<Producto>> getProveedoresProducto() {
 		return proveedoresProducto;
 	}
 
 
-	public void setProveedoresProducto(Map<Proveedor, Producto> proveedoresProducto) {
+
+
+
+	public void setProveedoresProducto(Map<Proveedor, ArrayList<Producto>> proveedoresProducto) {
 		this.proveedoresProducto = proveedoresProducto;
 	}
 
 
-	
+
+
+
 	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
@@ -40,10 +48,18 @@ public class Inventario {
 
 	public void añadirProducto (Producto producto, Proveedor proveedor) {
 		productos.add(producto);
-		proveedoresProducto.put(proveedor, producto);
+		ArrayList<Producto> productosAsociados = proveedoresProducto.get(proveedor);
+		productosAsociados.add(producto);
+		
+		 for( CategoriaProducto categorias: producto.getCategorias()) {
+			categorias.anadirProducto(producto);
+		}
+		 
+		
 	}
 	public void añadirCategoriaProducto(CategoriaProducto c) {
 		categoriasProductos.add(c);
+		
 	}
 	
 
@@ -57,7 +73,7 @@ public class Inventario {
 		this.categoriasProductos = categoriasProductos;
 	}
 	
-
+	
 
 	
 	public ArrayList<Proveedor> getProveedores() {
@@ -71,6 +87,8 @@ public class Inventario {
 
 	public void añadirProveedor(Proveedor p) {
 		proveedores.add(p);
+		ArrayList<Producto> nuevaListaProductos = new ArrayList<>();
+	    proveedoresProducto.put(p, nuevaListaProductos);
 	}
 
 	@Override
