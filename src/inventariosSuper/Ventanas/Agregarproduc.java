@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.ListaComprasCompartida;
 import inventariosSuper.Clases.Producto;
 
 import javax.swing.JTextArea;
@@ -30,9 +31,10 @@ public class Agregarproduc extends JFrame {
     private double numeroIngresado; // Variable para almacenar el número ingresado
     private Producto producto;
     private Compras compra;
-    private List<Compras> listaCompras;
     private JTextArea textArea_2;
     private StringBuilder comprasTexto;
+    private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
+
     
     
 
@@ -145,7 +147,7 @@ public class Agregarproduc extends JFrame {
         
         
 
-        JButton btnNewButton = new JButton("Siguiente"); // Renombrado el botón
+        JButton btnNewButton = new JButton("Siguiente");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -158,6 +160,7 @@ public class Agregarproduc extends JFrame {
                 }
             }
         });
+
 
         	
         btnNewButton.setBounds(752, 500, 217, 76);

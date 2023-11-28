@@ -46,17 +46,30 @@ public class Inventario {
 	}
 
 
-	public void añadirProducto (Producto producto, Proveedor proveedor) {
-		productos.add(producto);
-		ArrayList<Producto> productosAsociados = proveedoresProducto.get(proveedor);
-		productosAsociados.add(producto);
-		
-		 for( CategoriaProducto categorias: producto.getCategorias()) {
-			categorias.anadirProducto(producto);
-		}
-		 
-		
+	
+	
+
+	public void añadirProducto(Producto producto, Proveedor proveedor) {
+	    productos.add(producto);
+
+	    ArrayList<Producto> productosAsociados = proveedoresProducto.get(proveedor);
+	    
+	    // Verifica si la lista asociada al proveedor está inicializada
+	    if (productosAsociados == null) {
+	        productosAsociados = new ArrayList<>(); // Inicializa la lista si es null
+	        proveedoresProducto.put(proveedor, productosAsociados); // Asocia la nueva lista con el proveedor
+	    }
+	    
+	    productosAsociados.add(producto);
+	    
+	    for (CategoriaProducto categorias : producto.getCategorias()) {
+	        categorias.anadirProducto(producto);
+	    }
 	}
+
+	
+
+	
 	public void añadirCategoriaProducto(CategoriaProducto c) {
 		categoriasProductos.add(c);
 		
@@ -80,15 +93,18 @@ public class Inventario {
 		return proveedores;
 	}
 
-
 	public void setProveedores(ArrayList<Proveedor> proveedores) {
 		this.proveedores = proveedores;
 	}
-
+	
+	
+	
+	
 	public void añadirProveedor(Proveedor p) {
 		proveedores.add(p);
 		ArrayList<Producto> nuevaListaProductos = new ArrayList<>();
 	    proveedoresProducto.put(p, nuevaListaProductos);
+	    
 	}
 
 	@Override

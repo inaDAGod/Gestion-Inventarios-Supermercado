@@ -21,14 +21,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import inventariosSuper.Elegirregistro;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.ListaComprasCompartida;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Proveedor;
 import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Comprado;
-
+import inventariosSuper.Clases.Compras;
 public class Nuevocli extends JFrame {
 
 	private List<Cliente> listaClientes = new ArrayList<>();
@@ -44,17 +46,19 @@ public class Nuevocli extends JFrame {
 	private JLabel lblNewLabel_5;
 	private JButton btnRegistro;
 	private Compras compras;
+	private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Compras compras = new Compras(); // Crear una instancia de Compras
+	    // Assuming you have a reference to listaCompras in the scope of Elegirregistro
+	    List<Compras> listaCompras = new ArrayList<>(); // Populate this with your actual data
 
 	    EventQueue.invokeLater(new Runnable() {
 	        public void run() {
 	            try {
-	                Nuevocli frame = new Nuevocli(compras); // Pasar la instancia de Compras a Nuevocli
+	                Nuevocli frame = new Nuevocli(listaCompras);
 	                frame.setVisible(true);
 	            } catch (Exception e) {
 	                e.printStackTrace();
@@ -63,11 +67,19 @@ public class Nuevocli extends JFrame {
 	    });
 	}
 
+
+
 	/**
 	 * Create the frame.
 	 */
-	public Nuevocli(Compras compras) {
-		this.compras=compras;
+	public Nuevocli(List<Compras> listaCompras) {
+	    this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
+	    // ... rest of your constructor code
+	    for (Compras compra : listaCompras) {
+	        System.out.println("Producto: " + compra.getProd().getNombre() + ", Cantidad: " + compra.getCant());
+	    }
+
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
@@ -178,7 +190,7 @@ public class Nuevocli extends JFrame {
 			    	try {
 			    	    int id = Integer.parseInt(carnetText);
 			    	    int numero = Integer.parseInt(numeroText);
-			    	    Cliente nuevoCliente = new Cliente(nombre, id, numero, direccion);
+			    	    Cliente nuevoCliente = new Cliente(nombre, id, numero, direccion, listaCompras);
 			    	    listaClientes.add(nuevoCliente);
 
 			    	    // Agregar el cliente al archivo de texto
@@ -212,16 +224,21 @@ public class Nuevocli extends JFrame {
 			    
 			    
 			    private void abrirPaginaFactura() {
-			    	if (clienteRegistrado != null) {
-			    		clienteRegistrado.realizarCompra(compras.getProd(), compras.getCant());
-			            FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
-			            facturaPage.setVisible(true);
-			            setVisible(false);
-			            dispose();
+			        if (clienteRegistrado != null) {
+			            if (!clienteRegistrado.getListaCompras().isEmpty()) {
+			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
+			                facturaPage.setVisible(true);
+			                setVisible(false);
+			                dispose();
+			            } else {
+			                JOptionPane.showMessageDialog(this, "El cliente no tiene compras registradas.", "Error", JOptionPane.ERROR_MESSAGE);
+			            }
 			        } else {
 			            JOptionPane.showMessageDialog(this, "Por favor, registra un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
 			        }
 			    }
+
+
 			
 			
 			//--------------

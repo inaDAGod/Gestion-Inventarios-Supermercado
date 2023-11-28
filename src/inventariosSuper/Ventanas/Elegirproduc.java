@@ -38,6 +38,7 @@ import javax.swing.border.EmptyBorder;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.ListaComprasCompartida;
 import inventariosSuper.Clases.Compras;
 
 
@@ -53,8 +54,9 @@ public class Elegirproduc extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+		List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
+			EventQueue.invokeLater(new Runnable() {
+		        public void run() {
 				try {
 					Inventario inventario = new Inventario();
 					Producto producto1 = new Producto("Producto 1", "Descripción del Producto 1", 10.0, 100, LocalDate.now().plusDays(30));
@@ -91,7 +93,10 @@ public class Elegirproduc extends JFrame {
 			        inventario.añadirProducto(producto889, null); // No se especifica el proveedor en este ejemplo
 			        Producto producto8899 = new Producto("Producto 2", "Descripción del Producto 2", 15.0, 50, LocalDate.now().plusDays(60));
 			        inventario.añadirProducto(producto8899, null); // No se especifica el proveedor en este ejemplo
-					Elegirproduc frame = new Elegirproduc(inventario,listaCompras);
+			        ;
+	                //List<Compras> listaCompras = new ArrayList<>();
+			        //System.out.println("Lista de compras en Elegirproduc: " + listaCompras);
+			        Elegirproduc frame = new Elegirproduc(inventario, listaCompras);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -244,6 +249,7 @@ public class Elegirproduc extends JFrame {
 	            buttonProducto.add(labelImagen, BorderLayout.CENTER);
 	            buttonProducto.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
+	    				System.out.println("Lista de compras en Elegirproduc: " + listaCompras);
 	    				Agregarproduc frame = new Agregarproduc(producto, inventario, listaCompras);
 
 	    				frame.setVisible(true);

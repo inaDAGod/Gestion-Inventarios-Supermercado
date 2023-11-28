@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
+import inventariosSuper.Clases.ListaComprasCompartida;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Proveedor;
 import inventariosSuper.Clases.Cliente;
@@ -38,6 +39,7 @@ public class RegistrandoCli extends JFrame {
 
     private List<Cliente> listaClientes;
     private Compras compras;
+    private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
     private Cliente clienteRegistrado;
     private Cliente clienteSeleccionado;
     private JTextField campoBusqueda;
@@ -45,28 +47,35 @@ public class RegistrandoCli extends JFrame {
     private GestorClientes gestorClientes;
     
     public static void main(String[] args) {
-    	Compras compras = new Compras(); // Creas una instancia de Compras (o usas alguna lógica para inicializarla)
-        
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new RegistrandoCli(compras); // Luego pasas esa instancia de Compras al constructor de RegistrandoCli
-            }
-        });
-    }
+    	 List<Compras> listaCompras = new ArrayList<>(); // Populate this with your actual data
+
+ 	    EventQueue.invokeLater(new Runnable() {
+ 	        public void run() {
+ 	            try {
+ 	                RegistrandoCli frame = new RegistrandoCli(listaCompras);
+ 	                frame.setVisible(true);
+ 	            } catch (Exception e) {
+ 	                e.printStackTrace();
+ 	            }
+ 	        }
+ 	    });
+ 	}
     
-    public RegistrandoCli(Compras compras) {
+    public RegistrandoCli(List<Compras> listaCompras) {
     	
         super("Búsqueda de Clientes");
         listaClientes = new ArrayList<>();
         areaResultado = new JTextArea();
-        this.compras = compras;
+        this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
+	    // ... rest of your constructor code
+	    for (Compras compra : listaCompras) {
+	        System.out.println("Producto: " + compra.getProd().getNombre() + ", Cantidad: " + compra.getCant());;
         
         gestorClientes = new GestorClientes();
         mostrarClientesRegistrados();
-        Cliente cliente1 = new Cliente("Juan", 1, 12345, "Calle A");
+        //Cliente cliente1 = new Cliente("Juan", 1, 12345, "Calle A");
         //Cliente cliente2 = new Cliente("María", 2, 67890, "Calle B");
-        listaClientes.add(cliente1);
+        //listaClientes.add(cliente1);
         //listaClientes.add(cliente2);
 
         // Configurar la interfaz gráfica
@@ -128,7 +137,7 @@ public class RegistrandoCli extends JFrame {
         lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 45));
         lblNewLabel.setBounds(349, 54, 500, 84);
         panel.add(lblNewLabel);
-        setVisible(true);
+        setVisible(true);}
     }
 
     private void buscarCliente1() {
@@ -174,16 +183,20 @@ public class RegistrandoCli extends JFrame {
         }
         
         private void abrirPaginaFactura() {
-        	if (clienteSeleccionado != null) {
-        		clienteSeleccionado.realizarCompra(compras.getProd(), compras.getCant());
-                FacturaPage facturaPage = new FacturaPage(clienteSeleccionado);
-                facturaPage.setVisible(true);
-                setVisible(false);
-                dispose();
+            if (clienteSeleccionado != null) {
+                if (!clienteSeleccionado.getListaCompras().isEmpty()) {
+                    FacturaPage facturaPage = new FacturaPage(clienteSeleccionado);
+                    facturaPage.setVisible(true);
+                    setVisible(false);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "El cliente no tiene compras registradas.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Por favor, selecciona un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+
         
         
         
@@ -194,7 +207,7 @@ public class RegistrandoCli extends JFrame {
                 while ((linea = br.readLine()) != null) {
                     String[] datosCliente = linea.split(",");
                     // Crear el cliente a partir de los datos del archivo
-                    Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3]);
+                    Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3], listaCompras);
                     listaClientes.add(cliente);
                 }
             } catch (IOException e) {

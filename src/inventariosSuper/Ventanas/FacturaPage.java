@@ -26,11 +26,14 @@ public class FacturaPage extends JFrame {
     private JTextArea textAreaCompras;
     private Comprado historialCompras;
 
+
+
     private MostrarClientes mostrarClientes;
 
+    // Constructor que recibe MostrarClientes como parámetro adicional
     public FacturaPage(Cliente cliente) {
         this.cliente = cliente;
-        this.historialCompras = new Comprado();
+        this.historialCompras = new Comprado(cliente, LocalDateTime.now()); // Crear instancia con tiempo actual
         this.mostrarClientes = mostrarClientes; // Guarda la instancia de MostrarClientes
         initialize();
     }
@@ -92,7 +95,9 @@ public class FacturaPage extends JFrame {
             textAreaCompras.append("Producto: " + producto.getNombre() +
                     " - Cantidad: " + cantidad +
                     " - Costo Total: $" + costoTotal + "\n");
-        }}
+        }
+    }
+
     
     
     public void registrarCompra() {
