@@ -20,7 +20,7 @@ public class GestorClientes {
             while ((linea = br.readLine()) != null) {
                 String[] datosCliente = linea.split(",");
                 // Crear el cliente a partir de los datos del archivo
-                Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3]);
+                Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3], null);
                 listaClientes.add(cliente);
             }
         } catch (IOException e) {

@@ -4,11 +4,16 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Comprado {
     private HashMap<Cliente, LocalDateTime> compras;
 
-    public Comprado() {
+    public Comprado(Cliente cliente, LocalDateTime fecha) {
         this.compras = new HashMap<>();
+        agregarCompra(cliente, fecha);
     }
 
     public void agregarCompra(Cliente cliente, LocalDateTime fecha) {
