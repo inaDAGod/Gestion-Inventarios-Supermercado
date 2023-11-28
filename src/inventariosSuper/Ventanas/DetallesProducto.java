@@ -55,7 +55,7 @@ public class DetallesProducto extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelCabecera = new JPanel();
-		panelCabecera.setBackground(new Color(255, 240, 245));
+		panelCabecera.setBackground(new Color(246, 196, 205));
 		panelCabecera.setPreferredSize(new Dimension(1200, 130));
 		contentPane.add(panelCabecera, BorderLayout.NORTH);
 		panelCabecera.setLayout(null);
@@ -67,6 +67,7 @@ public class DetallesProducto extends JFrame {
 		panelCabecera.add(lblTitulo);
 		
 		JPanel panelFormularioProducto = new JPanel();
+		panelFormularioProducto.setBackground(new Color(233, 225,221));
 		contentPane.add(panelFormularioProducto, BorderLayout.CENTER);
 		panelFormularioProducto.setLayout(null);
 		

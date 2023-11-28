@@ -29,30 +29,7 @@ public class AnadirProducto extends JFrame {
 	private JTextField txtExistencias;
 	private JPanel panelCategorias;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inventario i = new Inventario();
-			        CategoriaProducto c = new CategoriaProducto("Comestible", "Para comer");// categoria nueva
-			        CategoriaProducto c2 = new CategoriaProducto("Ropa", "Para ponerte");// categoria nueva
-			        Proveedor p = new Proveedor("1", "Coca Cola", "Obrajes", "4564", "coca@gmail.com");
-			        i.añadirProveedor(p);
-			        i.añadirCategoriaProducto(c);
-			        i.añadirCategoriaProducto(c2);
-			        
-					AnadirProducto frame = new AnadirProducto(i);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	public AnadirProducto(Inventario i) {
 		this.inventario = i;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,7 +48,7 @@ public class AnadirProducto extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelCabecera = new JPanel();
-		panelCabecera.setBackground(new Color(255, 240, 245));
+		panelCabecera.setBackground(new Color(246, 196, 205));
 		panelCabecera.setPreferredSize(new Dimension(1800, 130));
 		contentPane.add(panelCabecera, BorderLayout.NORTH);
 		panelCabecera.setLayout(null);
@@ -83,6 +60,7 @@ public class AnadirProducto extends JFrame {
 		panelCabecera.add(lblTitulo);
 		
 		JPanel panelFormularioProducto = new JPanel();
+		panelFormularioProducto.setBackground(new Color(233, 225,221));
 		contentPane.add(panelFormularioProducto, BorderLayout.CENTER);
 		panelFormularioProducto.setLayout(null);
 		

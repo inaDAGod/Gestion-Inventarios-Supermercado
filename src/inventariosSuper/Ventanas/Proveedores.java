@@ -28,6 +28,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
 
 public class Proveedores extends JFrame {
 	private Inventario inventario;
@@ -57,7 +58,7 @@ public class Proveedores extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelBuscador = new JPanel();
-		panelBuscador.setBackground(new Color(255, 192, 203));
+		panelBuscador.setBackground(new Color(246, 196, 205));
 		contentPane.add(panelBuscador, BorderLayout.NORTH);
 		panelBuscador.setLayout(null);
 		panelBuscador.setPreferredSize(new Dimension(1200, 200));
@@ -93,6 +94,12 @@ public class Proveedores extends JFrame {
 		btnMostrarTodo.setBounds(961, 150, 189, 23);
 		panelBuscador.add(btnMostrarTodo);
 		
+		JLabel lblTitulo = new JLabel("PROVEEDORES");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Times New Roman", Font.BOLD, 44));
+		lblTitulo.setBounds(354, 42, 479, 47);
+		panelBuscador.add(lblTitulo);
+		
 		panelTarjetas = new JPanel();
 		JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         contentPane.add(scrollPane, BorderLayout.CENTER);
@@ -111,7 +118,7 @@ public class Proveedores extends JFrame {
 	            JButton buttonProvee = new JButton();
 	            buttonProvee.setLayout(new BorderLayout());
 
-	            String rutaImagen = "/imagenes/producto.png";
+	            String rutaImagen = "/imagenes/proveedores.png";
 	            ImageIcon iconProducto = new ImageIcon(ListaProductos.class.getResource(rutaImagen));
 	            Image imagenRedimensionada = iconProducto.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 	            ImageIcon iconRedimensionado = new ImageIcon(imagenRedimensionada);
