@@ -7,10 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class VentanaInicio extends JFrame {
 	private Inventario inventario;
+	private List<Cliente> listaClientes;
 
     public VentanaInicio(Inventario i) {
     	this.inventario = i;
@@ -100,10 +102,10 @@ public class VentanaInicio extends JFrame {
         //Botón Clientes
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Compras compras = new Compras();
+                
 
-                //Elegirregistro frame = new Elegirregistro(compras);
-                //frame.setVisible(true);
+                MostrarClientes frame = new MostrarClientes(listaClientes);
+                frame.setVisible(true);
             }
         });
 
