@@ -7,7 +7,7 @@ import java.util.Map;
 public class Comprado {
     private HashMap<Cliente, LocalDateTime> compras;
 
-    public Comprado() {
+    public Comprado(Cliente cliente, LocalDateTime localDateTime) {
         this.compras = new HashMap<>();
     }
 
@@ -17,6 +17,16 @@ public class Comprado {
 
     public LocalDateTime obtenerFechaDeCompra(Cliente cliente) {
         return compras.getOrDefault(cliente, null);
+    }
+
+    public LocalDateTime obtenerFechaDeCompra(String nombreCliente) {
+        for (Map.Entry<Cliente, LocalDateTime> entry : compras.entrySet()) {
+            Cliente cliente = entry.getKey();
+            if (cliente.getNombre().equals(nombreCliente)) {
+                return entry.getValue();
+            }
+        }
+        return null; // Return null if no matching cliente name is found
     }
 
     public void mostrarCompras() {

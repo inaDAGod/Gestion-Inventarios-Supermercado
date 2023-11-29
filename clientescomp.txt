@@ -1,0 +1,6 @@
+ana,234,8765,e,[inventariosSuper.Clases.Compras@25e91dc4]
+ana,234,8765,e,[inventariosSuper.Clases.Compras@799e6bb9]
+Petra,123,123,Direcion,asd,1234,1234,Direcion,[inventariosSuper.Clases.Compras@76939ab9]
+aaaaaaaa,123,234,Direcion,[inventariosSuper.Clases.Compras@5ce42c08]
+aaaaaaaa,123,123,Direcion,[inventariosSuper.Clases.Compras@3d5671fa]
+Petra,123,45,a,[inventariosSuper.Clases.Compras@3d5671fa]

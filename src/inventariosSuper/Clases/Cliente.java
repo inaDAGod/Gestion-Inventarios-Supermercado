@@ -10,12 +10,19 @@ public class Cliente {
     private String direccion;
     private List<Compras> listaCompras; // Lista de compras del cliente
 
+    public Cliente(String nombre, int id, int numero, String direccion, List<Compras> listaCompras) {
+        this.nombre = nombre;
+        this.id = id;
+        this.numero = numero;
+        this.direccion = direccion;
+        this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
+    }
     public Cliente(String nombre, int id, int numero, String direccion) {
         this.nombre = nombre;
         this.id = id;
         this.numero = numero;
         this.direccion = direccion;
-        this.listaCompras = new ArrayList<>(); // Inicializar la lista de compras al crear un cliente
+        this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
     }
 
     // Getters y setters
@@ -85,5 +92,12 @@ public class Cliente {
                     " - Cantidad: " + cantidad +
                     " - Costo Total: $" + costoTotal);
         }
+    }
+
+    public void setListacompras(List<Compras> listaCompras) {
+        this.listaCompras = listaCompras;
+    }
+    public void setListaCompras(List<Compras> listaCompras) {
+        this.listaCompras = listaCompras;
     }
 }

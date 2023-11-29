@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
+
 public class VentanaInicio extends JFrame {
 	private Inventario inventario;
 
@@ -99,10 +100,10 @@ public class VentanaInicio extends JFrame {
         //Botón Clientes
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Compras compras = new Compras();
+                //Compras compras = new Compras();
 
-                Elegirregistro frame = new Elegirregistro(compras);
-                frame.setVisible(true);
+                //Elegirregistro frame = new Elegirregistro(compras);
+                //frame.setVisible(true);
             }
         });
 
@@ -130,6 +131,16 @@ public class VentanaInicio extends JFrame {
             }
         });
 
+    }
+    public static void main(String[] args) {
+        // Create an instance of Inventario or retrieve it from somewhere
+        Inventario inventario = new Inventario();
+
+        // Create an instance of VentanaInicio
+        VentanaInicio ventanaInicio = new VentanaInicio(inventario);
+
+        // Set the frame visible
+        ventanaInicio.setVisible(true);
     }
 
 }
