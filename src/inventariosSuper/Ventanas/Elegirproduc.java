@@ -38,6 +38,8 @@ import javax.swing.border.EmptyBorder;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;
 import inventariosSuper.Clases.Compras;
@@ -52,6 +54,8 @@ public class Elegirproduc extends JFrame {
 	private JTextField txtDatoABuscar;
 	private static List<Compras> listaCompras = new ArrayList<>();
 	private Auditoria auditoria;
+	private List<Cliente> listaClientes;
+    private Comprado historialCompras;
 	
 	public Elegirproduc(Inventario inventario) {
         this.inventario = inventario;
@@ -83,7 +87,7 @@ public class Elegirproduc extends JFrame {
     btnAtras.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			setVisible(false);
-    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
     			ventanaInicio.setVisible(true);
     			
     		}
@@ -233,7 +237,7 @@ public class Elegirproduc extends JFrame {
         btnAtras.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
         			setVisible(false);
-        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
         			ventanaInicio.setVisible(true);
         			
         		}

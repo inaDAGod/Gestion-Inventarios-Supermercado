@@ -8,3 +8,6 @@ daniela,846888,14,achumani al fondo,[inventariosSuper.Clases.Compras@53c949c6, i
 Lea,1234,654,aloja,[inventariosSuper.Clases.Compras@2e0f15e2]
 u,1234,8765,Direcion,[inventariosSuper.Clases.Compras@1defdcab]
 petra,1234,543,Direcion,[inventariosSuper.Clases.Compras@1d03edaf]
+Petra,123,45,a,[inventariosSuper.Clases.Compras@7955add9]
+Ayana,123,1234,Direcion,[inventariosSuper.Clases.Compras@2a8d8e51]
+Ale,123,654,Obrajes,[inventariosSuper.Clases.Compras@f18514c, inventariosSuper.Clases.Compras@28acd75]

@@ -17,7 +17,7 @@ public class VentanaInicio extends JFrame {
 	private List<Cliente> listaClientes;
     private Comprado historialCompras;
 
-    public VentanaInicio(Inventario i, Auditoria a) {
+    public VentanaInicio(Inventario i, Auditoria a,List<Cliente> listaClientes,Comprado historialCompras) {
     	this.inventario = i;
     	this.auditoria = a;
     	this.listaClientes = listaClientes;
@@ -109,7 +109,7 @@ public class VentanaInicio extends JFrame {
 
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                MostrarClientes frame = new MostrarClientes();
+                MostrarClientes frame = new MostrarClientes(listaClientes, historialCompras);
                 
                 frame.setVisible(true);
             }
