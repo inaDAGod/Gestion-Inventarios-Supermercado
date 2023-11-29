@@ -7,15 +7,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class VentanaInicio extends JFrame {
 	private Inventario inventario;
-	private Auditoria auditoria;
+	private List<Cliente> listaClientes;
 
-    public VentanaInicio(Inventario i, Auditoria a) {
+    public VentanaInicio(Inventario i) {
     	this.inventario = i;
-    	this.auditoria = a;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 
@@ -85,7 +85,7 @@ public class VentanaInicio extends JFrame {
         btnAnadirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                AnadirProducto frame = new AnadirProducto(inventario,auditoria);
+                AnadirProducto frame = new AnadirProducto(inventario);
                 frame.setVisible(true);
                 setVisible(false);
             }
@@ -102,17 +102,17 @@ public class VentanaInicio extends JFrame {
         //Botón Clientes
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Compras compras = new Compras();
+                
 
-                //Elegirregistro frame = new Elegirregistro(compras);
-                //frame.setVisible(true);
+                MostrarClientes frame = new MostrarClientes();
+                frame.setVisible(true);
             }
         });
 
         //Botón Productos
         btnProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ListaProductos frame = new ListaProductos(inventario,auditoria);
+                ListaProductos frame = new ListaProductos(inventario);
                 frame.setVisible(true);
                 setVisible(false);
             }
@@ -120,7 +120,7 @@ public class VentanaInicio extends JFrame {
         //Boton Auditorías
         btnAuditoria.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                VentanaAuditoria ventanaAuditoria = new VentanaAuditoria(auditoria);
+                VentanaAuditoria ventanaAuditoria = new VentanaAuditoria();
                 ventanaAuditoria.setVisible(true);
             }
         });
@@ -128,22 +128,21 @@ public class VentanaInicio extends JFrame {
         // ActionListener para el botón "Recordatorios"
         btnRecordatorios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(creacionRecordatorio());
+                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana();
                 recordatoriosVentana.setVisible(true);
             }
         });
 
     }
-    
-    public Recordatorios creacionRecordatorio() {
-    	Recordatorios recordatorios = new Recordatorios();
-        for (Producto producto : inventario.getProductos()) {
-            recordatorios.agregarAlerta(new Alerta(producto));
-        }
-        return recordatorios;
+    public static void main(String[] args) {
+        // Create an instance of Inventario or retrieve it from somewhere
+        Inventario inventario = new Inventario();
 
-	}
+        // Create an instance of VentanaInicio
+        VentanaInicio ventanaInicio = new VentanaInicio(inventario);
 
+        // Set the frame visible
+        ventanaInicio.setVisible(true);
+    }
 
 }
