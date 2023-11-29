@@ -2,14 +2,22 @@ package inventariosSuper.Ventanas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import inventariosSuper.Clases.Auditoria;
+import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Recordatorios;
 
 public class RecordatoriosVentana extends JFrame {
     private Recordatorios recordatorios;
+    private Inventario inventario;
+    private Auditoria auditoria;
 
-    public RecordatoriosVentana(Recordatorios r) {
+    public RecordatoriosVentana(Inventario i, Auditoria a,Recordatorios r) {
         this.recordatorios = r;
+        this.inventario = i;
+        this.auditoria= a;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 
@@ -36,6 +44,13 @@ public class RecordatoriosVentana extends JFrame {
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitulo.setBounds(258, 48, 636, 50);
         panelCabecera.add(lblTitulo);
+        mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+				ventanaInicio.setVisible(true);
+			}
+		});
     }
 
    

@@ -142,7 +142,7 @@ public class VentanaInicio extends JFrame {
         // ActionListener para el botón "Recordatorios"
         btnRecordatorios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(creacionRecordatorio());
+                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(inventario,auditoria,creacionRecordatorio());
                 recordatoriosVentana.setVisible(true);
                 setVisible(false);
             }
