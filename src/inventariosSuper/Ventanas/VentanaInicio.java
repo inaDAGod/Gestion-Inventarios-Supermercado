@@ -106,7 +106,7 @@ public class VentanaInicio extends JFrame {
         //Botón elegir Producto
         btnElegirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Elegirproduc frame = new Elegirproduc(inventario);
+                Elegirproduc frame = new Elegirproduc(inventario,auditoria);
                 frame.setVisible(true);
             }
         });
@@ -116,7 +116,6 @@ public class VentanaInicio extends JFrame {
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MostrarClientes frame = new MostrarClientes(inventario, auditoria, listaClientes, historialCompras);
-                
                 frame.setVisible(true);
             }
         });
