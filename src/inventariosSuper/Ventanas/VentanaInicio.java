@@ -108,6 +108,7 @@ public class VentanaInicio extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Elegirproduc frame = new Elegirproduc(inventario,auditoria);
                 frame.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -117,6 +118,7 @@ public class VentanaInicio extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 MostrarClientes frame = new MostrarClientes(inventario, auditoria, listaClientes, historialCompras);
                 frame.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -132,8 +134,9 @@ public class VentanaInicio extends JFrame {
         //Boton Auditorías
         btnAuditoria.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                VentanaAuditoria ventanaAuditoria = new VentanaAuditoria(auditoria);
+                VentanaAuditoria ventanaAuditoria = new VentanaAuditoria(inventario,auditoria);
                 ventanaAuditoria.setVisible(true);
+                setVisible(false);
             }
         });
 
@@ -143,6 +146,7 @@ public class VentanaInicio extends JFrame {
             	
                 RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(creacionRecordatorio());
                 recordatoriosVentana.setVisible(true);
+                setVisible(false);
             }
         });
 
