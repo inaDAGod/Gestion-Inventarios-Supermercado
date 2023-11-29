@@ -97,7 +97,7 @@ public class Elegirregistro extends JFrame {
 		panel.setLayout(null);
 		
 		textArea = new JTextArea();
-        textArea.setBounds(10, 10, 564, 340);
+        textArea.setBounds(353, 506, 421, 237);
         panel.add(textArea);
 
         if (listaCompras != null && !listaCompras.isEmpty()) {
@@ -128,7 +128,7 @@ public class Elegirregistro extends JFrame {
 		btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 22));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(Color.PINK);
-		btnNewButton.setBounds(117, 327, 352, 96);
+		btnNewButton.setBounds(101, 292, 352, 96);
 		panel.add(btnNewButton);
 		
 		JButton btnClienteRecurente = new JButton("Cliente Recurente");
@@ -143,7 +143,7 @@ public class Elegirregistro extends JFrame {
 		btnClienteRecurente.setForeground(Color.WHITE);
 		btnClienteRecurente.setBackground(Color.PINK);
 		btnClienteRecurente.setFont(new Font("Times New Roman", Font.ITALIC, 20));
-		btnClienteRecurente.setBounds(644, 328, 352, 96);
+		btnClienteRecurente.setBounds(699, 293, 352, 96);
 		panel.add(btnClienteRecurente);
 		
 		JLabel lblNewLabel = new JLabel("Eleccion de Cliente");
@@ -153,6 +153,13 @@ public class Elegirregistro extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(310, 80, 488, 96);
 		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Compras");
+		lblNewLabel_1.setForeground(Color.PINK);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(479, 448, 168, 48);
+		panel.add(lblNewLabel_1);
 		
 		
 	}
