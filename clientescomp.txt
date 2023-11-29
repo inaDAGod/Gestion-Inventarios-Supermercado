@@ -4,3 +4,4 @@ Petra,123,123,Direcion,asd,1234,1234,Direcion,[inventariosSuper.Clases.Compras@7
 aaaaaaaa,123,234,Direcion,[inventariosSuper.Clases.Compras@5ce42c08]
 aaaaaaaa,123,123,Direcion,[inventariosSuper.Clases.Compras@3d5671fa]
 Petra,123,45,a,[inventariosSuper.Clases.Compras@3d5671fa]
+daniela,846888,14,achumani al fondo,[inventariosSuper.Clases.Compras@53c949c6, inventariosSuper.Clases.Compras@3bddc388]
