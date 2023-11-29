@@ -8,10 +8,17 @@ import inventariosSuper.Clases.*;
 public class Main2 {
 	
 	public static void main(String[] args) {
-		Inventario inventario = new Inventario();
-		llenadoInventario(inventario);
-		VentanaInicio ventanaInicio = new VentanaInicio(inventario);//se manda el inventario como parametro
-		ventanaInicio.setVisible(true);
+		try {
+			Inventario inventario = new Inventario();
+			Auditoria auditoria = new Auditoria();
+			llenadoInventario(inventario);
+			llenadoAuditoria(auditoria);
+			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);//se manda el inventario como parametro
+			ventanaInicio.setVisible(true);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
 		
 
 	}
@@ -105,6 +112,14 @@ public class Main2 {
 	    inventario.añadirProducto(producto16, proveedor16);
 	
 	}
+	
+	public static void llenadoAuditoria(Auditoria auditoria) {
+        auditoria.agregarCompra(new Cliente("Cliente1", 3234364, 78754635,"Cota cota"), new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5)), 2, LocalDateTime.now());
+	}
+	
+	
+	
+	
 
 
 }

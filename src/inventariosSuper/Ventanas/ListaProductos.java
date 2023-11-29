@@ -32,6 +32,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import inventariosSuper.Clases.Producto;
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 
@@ -42,11 +43,12 @@ public class ListaProductos extends JFrame {
 	private JPanel contentPane;
 	private Inventario inventario;
 	private JTextField txtDatoABuscar;
+	private Auditoria auditoria;
 	
-	public ListaProductos(Inventario inventario) {
+	
+	public ListaProductos(Inventario inventario,Auditoria a) {
 			this.inventario = inventario;
-	        
-
+	        this.auditoria = a;
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setBounds(100, 100, 1200, 800);
 	        contentPane = new JPanel();
@@ -75,12 +77,15 @@ public class ListaProductos extends JFrame {
         btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         btnAtras.setPreferredSize(new Dimension(150, 40));
         btnAtras.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                VentanaInicio ventanaInicio = new VentanaInicio(inventario);
-                ventanaInicio.setVisible(true);
-            }
-        });
+
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+				ventanaInicio.setVisible(true);
+				
+			}
+		});
+
 
         JButton btnProveedor = new JButton(" Proveedores");
         btnProveedor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -102,7 +107,7 @@ public class ListaProductos extends JFrame {
         btnProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Proveedores ventanaProveedores= new Proveedores(inventario);
+				Proveedores ventanaProveedores= new Proveedores(inventario,auditoria);
 				ventanaProveedores.setVisible(true);
 			}
 		});
@@ -236,7 +241,7 @@ public class ListaProductos extends JFrame {
 	            buttonProducto.add(labelImagen, BorderLayout.CENTER);
 	            buttonProducto.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				DetallesProducto detalleProducto = new DetallesProducto(producto,inventario);
+	    				DetallesProducto detalleProducto = new DetallesProducto(producto,inventario,auditoria);
 	    				detalleProducto.setVisible(true);
 	    				setVisible(false);
 	    			}

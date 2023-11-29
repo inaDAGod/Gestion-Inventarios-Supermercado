@@ -12,12 +12,13 @@ import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.Cliente;
 
 public class VentanaAuditoria extends JFrame {
-
+	private Auditoria auditoria;
     private JTextArea txtADisplay;
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
 
-    public VentanaAuditoria() {
+    public VentanaAuditoria(Auditoria auditoria) {
+    	this.auditoria = auditoria;
         getContentPane().setBackground(new Color(246, 196, 205));
         setTitle("Ventana Auditoria");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,8 +91,7 @@ public class VentanaAuditoria extends JFrame {
             LocalDate fechaInicio = LocalDate.parse(txtFechaInicio.getText(), formatter);
             LocalDate fechaFin = LocalDate.parse(txtFechaFin.getText(), formatter).plusDays(1);
 
-            Auditoria auditoria = new Auditoria();
-            auditoria.agregarCompra(new Cliente("Cliente1", 3234364, 78754635,"Cota cota"), new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5)), 2, LocalDateTime.now());
+            
 
             auditoria.mostrarComprasEnRango(fechaInicio.atStartOfDay(), fechaFin.atStartOfDay(), txtADisplay);
         } catch (Exception ex) {
@@ -99,16 +99,6 @@ public class VentanaAuditoria extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new VentanaAuditoria();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    
 }
 

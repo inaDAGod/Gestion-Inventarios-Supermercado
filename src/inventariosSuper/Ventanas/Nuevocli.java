@@ -21,7 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import inventariosSuper.Elegirregistro;
+
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;
@@ -196,6 +196,12 @@ public class Nuevocli extends JFrame {
 			    	    // Agregar el cliente al archivo de texto
 			    	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
 			    	        writer.write(nuevoCliente.getNombre() + "," + nuevoCliente.getId() + "," + nuevoCliente.getNumero() + "," + nuevoCliente.getDireccion());
+			    	        writer.newLine();
+			    	    } catch (IOException ex) {
+			    	        ex.printStackTrace();
+			    	    }
+			    	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientescomp.txt", true))) {
+			    	        writer.write(nuevoCliente.getNombre() + "," + nuevoCliente.getId() + "," + nuevoCliente.getNumero() + "," + nuevoCliente.getDireccion()+ "," +nuevoCliente.getListaCompras());
 			    	        writer.newLine();
 			    	    } catch (IOException ex) {
 			    	        ex.printStackTrace();

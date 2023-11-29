@@ -32,12 +32,12 @@ public class ProductosProveedor extends JFrame {
 	private JPanel contentPane;
 	private Inventario inventario;
 	private Proveedor proveedor;
-
+	private Auditoria auditoria;
 	
-	public ProductosProveedor(Inventario inventario, Proveedor proveedor) {
+	public ProductosProveedor(Inventario inventario, Proveedor proveedor,Auditoria a) {
 		this.inventario = inventario;
 		this.proveedor = proveedor;
-		
+		this.auditoria = a;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		JMenuBar menuBar = new JMenuBar();
@@ -47,7 +47,7 @@ public class ProductosProveedor extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Proveedores ventanaProveedores= new Proveedores(inventario);
+				Proveedores ventanaProveedores= new Proveedores(inventario,auditoria);
 				ventanaProveedores.setVisible(true);
 			}
 		});
@@ -59,7 +59,7 @@ public class ProductosProveedor extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelCabecera = new JPanel();
-		panelCabecera.setBackground(new Color(255, 240, 245));
+		panelCabecera.setBackground(new Color(246, 196, 205));
 		panelCabecera.setPreferredSize(new Dimension(1200, 130));
 		contentPane.add(panelCabecera, BorderLayout.NORTH);
 		panelCabecera.setLayout(null);
@@ -105,7 +105,7 @@ public class ProductosProveedor extends JFrame {
 	            buttonProducto.add(labelImagen, BorderLayout.CENTER);
 	            buttonProducto.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				DetallesProducto detalleProducto = new DetallesProducto(producto,inventario);
+	    				DetallesProducto detalleProducto = new DetallesProducto(producto,inventario,auditoria);
 	    				detalleProducto.setVisible(true);
 	    				setVisible(false);
 	    			}

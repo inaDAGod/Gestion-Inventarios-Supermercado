@@ -17,6 +17,13 @@ public class Cliente {
         this.direccion = direccion;
         this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
     }
+    public Cliente(String nombre, int id, int numero, String direccion) {
+        this.nombre = nombre;
+        this.id = id;
+        this.numero = numero;
+        this.direccion = direccion;
+        this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
+    }
 
     // Getters y setters
 

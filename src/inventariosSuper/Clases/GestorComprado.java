@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import inventariosSuper.Comprado;
 
 public class GestorComprado {
     private List<Comprado> listaComp;

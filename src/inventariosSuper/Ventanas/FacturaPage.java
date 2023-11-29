@@ -109,12 +109,12 @@ public class FacturaPage extends JFrame {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("compras.txt", true))) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String formattedDate = fechaActual.format(formatter);
-            String data = cliente.getId() + "," + formattedDate + "\n";
+            String data = cliente.getNombre() + "," + formattedDate + "\n";
             writer.write(data);
             writer.flush(); // Asegúrate de que los datos se escriban en el archivo
             
             // Actualiza la visualización de compras en la instancia de MostrarClientes
-            mostrarClientes.mostrarCompras();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

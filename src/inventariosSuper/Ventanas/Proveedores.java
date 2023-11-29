@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Proveedor;
@@ -28,13 +29,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
 
 public class Proveedores extends JFrame {
 	private Inventario inventario;
 	private JPanel contentPane;
 	private JTextField txtBuscar;
 	private JPanel panelTarjetas;
-	public Proveedores(Inventario inventario) {
+	private Auditoria auditoria;
+	public Proveedores(Inventario inventario, Auditoria a) {
+		this.auditoria = a;
 		this.inventario = inventario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,  1200, 800);
@@ -46,7 +50,7 @@ public class Proveedores extends JFrame {
 		mntmVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ListaProductos frame = new ListaProductos(inventario);
+				ListaProductos frame = new ListaProductos(inventario,auditoria);
 				frame.setVisible(true);
 			}
 		});
@@ -57,7 +61,7 @@ public class Proveedores extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelBuscador = new JPanel();
-		panelBuscador.setBackground(new Color(255, 192, 203));
+		panelBuscador.setBackground(new Color(246, 196, 205));
 		contentPane.add(panelBuscador, BorderLayout.NORTH);
 		panelBuscador.setLayout(null);
 		panelBuscador.setPreferredSize(new Dimension(1200, 200));
@@ -93,6 +97,12 @@ public class Proveedores extends JFrame {
 		btnMostrarTodo.setBounds(961, 150, 189, 23);
 		panelBuscador.add(btnMostrarTodo);
 		
+		JLabel lblTitulo = new JLabel("PROVEEDORES");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Times New Roman", Font.BOLD, 44));
+		lblTitulo.setBounds(354, 42, 479, 47);
+		panelBuscador.add(lblTitulo);
+		
 		panelTarjetas = new JPanel();
 		JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         contentPane.add(scrollPane, BorderLayout.CENTER);
@@ -111,7 +121,7 @@ public class Proveedores extends JFrame {
 	            JButton buttonProvee = new JButton();
 	            buttonProvee.setLayout(new BorderLayout());
 
-	            String rutaImagen = "/imagenes/producto.png";
+	            String rutaImagen = "/imagenes/proveedores.png";
 	            ImageIcon iconProducto = new ImageIcon(ListaProductos.class.getResource(rutaImagen));
 	            Image imagenRedimensionada = iconProducto.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 	            ImageIcon iconRedimensionado = new ImageIcon(imagenRedimensionada);
@@ -119,7 +129,7 @@ public class Proveedores extends JFrame {
 	            buttonProvee.add(labelImagen, BorderLayout.CENTER);
 	            buttonProvee.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				ProductosProveedor ventanaProductosProve = new ProductosProveedor(inventario, proveedor);
+	    				ProductosProveedor ventanaProductosProve = new ProductosProveedor(inventario, proveedor,auditoria);
 	    				ventanaProductosProve.setVisible(true);
 	    				setVisible(false);
 	    			}

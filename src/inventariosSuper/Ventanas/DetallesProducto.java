@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
@@ -27,12 +28,13 @@ public class DetallesProducto extends JFrame {
 	private JTextField txtExistencias;
 	private JTextField txtFechaVence;
 	private JTextField txtProveedor;
-
+	private Auditoria auditoria;
 	
 
-	public DetallesProducto(Producto produ,Inventario i) {
+	public DetallesProducto(Producto produ,Inventario i,Auditoria a) {
 		this.producto = produ;
 		this.inventario = i;
+		this.auditoria = a;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		
@@ -43,7 +45,7 @@ public class DetallesProducto extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ListaProductos frame = new ListaProductos(inventario);
+				ListaProductos frame = new ListaProductos(inventario,auditoria);
 				frame.setVisible(true);
 			}
 		});
@@ -55,7 +57,7 @@ public class DetallesProducto extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelCabecera = new JPanel();
-		panelCabecera.setBackground(new Color(255, 240, 245));
+		panelCabecera.setBackground(new Color(246, 196, 205));
 		panelCabecera.setPreferredSize(new Dimension(1200, 130));
 		contentPane.add(panelCabecera, BorderLayout.NORTH);
 		panelCabecera.setLayout(null);
@@ -67,6 +69,7 @@ public class DetallesProducto extends JFrame {
 		panelCabecera.add(lblTitulo);
 		
 		JPanel panelFormularioProducto = new JPanel();
+		panelFormularioProducto.setBackground(new Color(233, 225,221));
 		contentPane.add(panelFormularioProducto, BorderLayout.CENTER);
 		panelFormularioProducto.setLayout(null);
 		
