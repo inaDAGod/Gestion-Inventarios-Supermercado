@@ -87,7 +87,7 @@ public class Elegirproduc extends JFrame {
     btnAtras.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			setVisible(false);
-    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
+    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
     			ventanaInicio.setVisible(true);
     			
     		}
@@ -237,7 +237,7 @@ public class Elegirproduc extends JFrame {
         btnAtras.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
         			setVisible(false);
-        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
+        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
         			ventanaInicio.setVisible(true);
         			
         		}
