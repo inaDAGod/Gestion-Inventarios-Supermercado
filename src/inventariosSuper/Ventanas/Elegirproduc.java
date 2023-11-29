@@ -57,8 +57,9 @@ public class Elegirproduc extends JFrame {
 	private List<Cliente> listaClientes;
     private Comprado historialCompras;
 	
-	public Elegirproduc(Inventario inventario) {
+	public Elegirproduc(Inventario inventario, Auditoria a) {
         this.inventario = inventario;
+        this.auditoria = a;
         this.listaCompras = ListaComprasCompartida.getListaCompras();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -237,7 +238,7 @@ public class Elegirproduc extends JFrame {
         btnAtras.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
         			setVisible(false);
-        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+        			VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria);
         			ventanaInicio.setVisible(true);
         			
         		}
