@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorClientes {
+public class GestorCilientecompras {
     private List<Cliente> listaClientes;
 
-    public GestorClientes() {
+    public GestorCilientecompras() {
         listaClientes = new ArrayList<>();
-        cargarClientesDesdeArchivo("clientes.txt");
+        cargarClientesDesdeArchivo("clientescomp.txt");
     }
 
     private void cargarClientesDesdeArchivo(String rutaArchivo) {
@@ -20,7 +20,7 @@ public class GestorClientes {
             while ((linea = br.readLine()) != null) {
                 String[] datosCliente = linea.split(",");
                 // Crear el cliente a partir de los datos del archivo
-                Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3]);
+                Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3], null);
                 listaClientes.add(cliente);
             }
         } catch (IOException e) {
@@ -32,4 +32,3 @@ public class GestorClientes {
         return listaClientes;
     }
 }
-

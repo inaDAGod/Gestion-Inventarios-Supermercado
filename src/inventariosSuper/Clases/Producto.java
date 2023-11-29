@@ -29,7 +29,11 @@ public class Producto {
         this.categorias = new LinkedList<CategoriaProducto>();
     }
 
-    public String getNombre() {
+    public Producto(String producto) {
+    	this.nombre = nombre;
+	}
+
+	public String getNombre() {
         return nombre;
     }
 

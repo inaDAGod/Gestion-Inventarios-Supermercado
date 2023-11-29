@@ -200,6 +200,12 @@ public class Nuevocli extends JFrame {
 			    	    } catch (IOException ex) {
 			    	        ex.printStackTrace();
 			    	    }
+			    	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientescomp.txt", true))) {
+			    	        writer.write(nuevoCliente.getNombre() + "," + nuevoCliente.getId() + "," + nuevoCliente.getNumero() + "," + nuevoCliente.getDireccion()+ "," +nuevoCliente.getListaCompras());
+			    	        writer.newLine();
+			    	    } catch (IOException ex) {
+			    	        ex.printStackTrace();
+			    	    }
 
 			    	    clienteRegistrado = nuevoCliente;
 

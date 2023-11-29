@@ -1,10 +1,1 @@
-Chucky,768,2345678,Nose
-Jan,12345,12345,Direcion
-Petra,1234,345,Direcion
-Ale,123,234,Direcion
-Jess,123,556,Direcion
-Nombre,123,32435,Direcion
-Petra,123,456,Alto
-Nombre,1234,2343,Direcion
-Nombre,5,7,Direcion
-Rey,324,765,Direcion
+Petra,123,45,a

@@ -26,7 +26,9 @@ import java.util.List;
 import java.awt.Font;
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -185,6 +187,12 @@ public class RegistrandoCli extends JFrame {
         private void abrirPaginaFactura() {
             if (clienteSeleccionado != null) {
                 if (!clienteSeleccionado.getListaCompras().isEmpty()) {
+                	try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientescomp.txt", true))) {
+		    	        writer.write(clienteSeleccionado.getNombre() + "," + clienteSeleccionado.getId() + "," + clienteSeleccionado.getNumero() + "," + clienteSeleccionado.getDireccion()+ "," +clienteSeleccionado.getListaCompras());
+		    	        writer.newLine();
+		    	    } catch (IOException ex) {
+		    	        ex.printStackTrace();
+		    	    }
                     FacturaPage facturaPage = new FacturaPage(clienteSeleccionado);
                     facturaPage.setVisible(true);
                     setVisible(false);
