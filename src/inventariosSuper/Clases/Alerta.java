@@ -48,7 +48,7 @@ public class Alerta {
             // Producto a punto de vencer
             this.mensaje = "Producto a punto de vencer";
             this.prioridad = 2;
-        } else if (producto.getCantidadStock() <= 7) {
+        } else if (producto.getCantidadStock() <= 7 && producto.getCantidadStock() >0) {
             // Producto bajo en cantidad
             this.mensaje = "Producto bajo en cantidad solo quedan " + getProducto().getCantidadStock();
             this.prioridad = 3;
