@@ -21,7 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import inventariosSuper.Elegirregistro;
+
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;

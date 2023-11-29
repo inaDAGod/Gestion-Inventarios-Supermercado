@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
@@ -27,12 +28,13 @@ public class DetallesProducto extends JFrame {
 	private JTextField txtExistencias;
 	private JTextField txtFechaVence;
 	private JTextField txtProveedor;
-
+	private Auditoria auditoria;
 	
 
-	public DetallesProducto(Producto produ,Inventario i) {
+	public DetallesProducto(Producto produ,Inventario i,Auditoria a) {
 		this.producto = produ;
 		this.inventario = i;
+		this.auditoria = a;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		
@@ -43,7 +45,7 @@ public class DetallesProducto extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ListaProductos frame = new ListaProductos(inventario);
+				ListaProductos frame = new ListaProductos(inventario,auditoria);
 				frame.setVisible(true);
 			}
 		});

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Proveedor;
@@ -35,7 +36,9 @@ public class Proveedores extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtBuscar;
 	private JPanel panelTarjetas;
-	public Proveedores(Inventario inventario) {
+	private Auditoria auditoria;
+	public Proveedores(Inventario inventario, Auditoria a) {
+		this.auditoria = a;
 		this.inventario = inventario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,  1200, 800);
@@ -47,7 +50,7 @@ public class Proveedores extends JFrame {
 		mntmVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ListaProductos frame = new ListaProductos(inventario);
+				ListaProductos frame = new ListaProductos(inventario,auditoria);
 				frame.setVisible(true);
 			}
 		});
@@ -126,7 +129,7 @@ public class Proveedores extends JFrame {
 	            buttonProvee.add(labelImagen, BorderLayout.CENTER);
 	            buttonProvee.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				ProductosProveedor ventanaProductosProve = new ProductosProveedor(inventario, proveedor);
+	    				ProductosProveedor ventanaProductosProve = new ProductosProveedor(inventario, proveedor,auditoria);
 	    				ventanaProductosProve.setVisible(true);
 	    				setVisible(false);
 	    			}

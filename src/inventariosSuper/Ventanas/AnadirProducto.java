@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
@@ -28,10 +29,11 @@ public class AnadirProducto extends JFrame {
 	private JTextField txtDia;
 	private JTextField txtExistencias;
 	private JPanel panelCategorias;
-
+	private Auditoria auditoria;
 	
-	public AnadirProducto(Inventario i) {
+	public AnadirProducto(Inventario i,Auditoria a) {
 		this.inventario = i;
+		this.auditoria = a;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		
@@ -197,7 +199,7 @@ public class AnadirProducto extends JFrame {
 	   				i.añadirProducto(produ, p);
 	   				//System.out.println(produ);
 	   				//System.out.println(i);
-	   				JOptionPane.showMessageDialog(null, "El producto se registro correctamente", "Error", JOptionPane.INFORMATION_MESSAGE);
+	   				JOptionPane.showMessageDialog(null, "El producto se registro correctamente", "Se logro :)", JOptionPane.INFORMATION_MESSAGE);
 	   				txtNombreProducto.setText("");
 		   	        txtPrecioProducto.setText("");
 		   	        txtAnio.setText("Ej: 2023");
@@ -248,7 +250,7 @@ public class AnadirProducto extends JFrame {
 	     mntmNewMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
-					VentanaInicio ventanaInicio = new VentanaInicio(inventario);
+					VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
 					ventanaInicio.setVisible(true);
 				}
 			});
