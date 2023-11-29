@@ -32,8 +32,9 @@ public class PanelAlertas extends JPanel {
         List<Alerta> alertasOrdenadas = recordatorios.obtenerAlertasOrdenadas();
 
         for (Alerta alerta : alertasOrdenadas) {
-            JButton btnHecho = new JButton("HECHO");
+            JButton btnHecho = new JButton("REVISAR");
             panelRecordatorios.add(crearPanelRecordatorio(alerta, btnHecho));
+
         }
 
         // Añadir un componente invisible al final para forzar el tamaño del JScrollPane

@@ -17,6 +17,7 @@ public class RecordatoriosVentana extends JFrame {
         setJMenuBar(menuBar);
 
         JMenuItem mntmNewMenuItem = new JMenuItem("< Volver");
+
         mntmNewMenuItem.addActionListener(e -> setVisible(false));
         menuBar.add(mntmNewMenuItem);
 
@@ -26,7 +27,7 @@ public class RecordatoriosVentana extends JFrame {
 
         // Crear y agregar el panel de la cabecera
         JPanel panelCabecera = new JPanel();
-        panelCabecera.setBackground(new Color(255, 240, 245));
+        panelCabecera.setBackground(new Color(246, 196, 205));
         panelCabecera.setPreferredSize(new Dimension(1800, 130));
         getContentPane().add(panelCabecera, BorderLayout.NORTH);
         panelCabecera.setLayout(null);
