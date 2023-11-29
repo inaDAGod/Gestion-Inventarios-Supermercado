@@ -22,6 +22,10 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.Container;
 import java.awt.EventQueue;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class Agregarproduc extends JFrame {
 
@@ -89,6 +93,9 @@ public class Agregarproduc extends JFrame {
         textField.setColumns(10);
 
         JButton btnCalcular = new JButton("Calcular");
+        btnCalcular.setBackground(Color.PINK);
+        btnCalcular.setForeground(Color.WHITE);
+        btnCalcular.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         btnCalcular.setBounds(713, 409, 126, 56);
         contentPane.add(btnCalcular);
 
@@ -117,6 +124,9 @@ public class Agregarproduc extends JFrame {
         
         
         JButton btnRegistrar = new JButton("Registrar");
+        btnRegistrar.setBackground(Color.PINK);
+        btnRegistrar.setForeground(Color.WHITE);
+        btnRegistrar.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         btnRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -147,7 +157,10 @@ public class Agregarproduc extends JFrame {
         
         
 
-        JButton btnNewButton = new JButton("Siguiente");
+        JButton btnNewButton = new JButton("Finalizar Compras");
+        btnNewButton.setBackground(Color.PINK);
+        btnNewButton.setForeground(Color.WHITE);
+        btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -163,13 +176,13 @@ public class Agregarproduc extends JFrame {
 
 
         	
-        btnNewButton.setBounds(752, 500, 217, 76);
+        btnNewButton.setBounds(735, 500, 245, 76);
         contentPane.add(btnNewButton);
         
         
         
         textArea_1 = new JTextArea();
-        textArea_1.setBounds(713, 146, 284, 226);
+        textArea_1.setBounds(713, 244, 284, 128);
         contentPane.add(textArea_1);
         
         
@@ -179,9 +192,40 @@ public class Agregarproduc extends JFrame {
         
         
         
-        JButton btnVolver = new JButton("Volver");
-        btnVolver.setBounds(36, 619, 126, 56);
+        JButton btnVolver = new JButton("Elegir otro producto");
+        btnVolver.setBackground(Color.PINK);
+        btnVolver.setForeground(Color.WHITE);
+        btnVolver.setFont(new Font("Times New Roman", Font.ITALIC, 25));
+        btnVolver.setBounds(79, 618, 347, 56);
         contentPane.add(btnVolver);
+        
+        JLabel lblNewLabel = new JLabel("Producto Elegido");
+        lblNewLabel.setForeground(Color.PINK);
+        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+        lblNewLabel.setBounds(169, 53, 180, 20);
+        contentPane.add(lblNewLabel);
+        
+        JLabel lblProductosElegidos = new JLabel("Productos Elegidos");
+        lblProductosElegidos.setHorizontalAlignment(SwingConstants.CENTER);
+        lblProductosElegidos.setForeground(Color.PINK);
+        lblProductosElegidos.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+        lblProductosElegidos.setBounds(169, 352, 180, 20);
+        contentPane.add(lblProductosElegidos);
+        
+        JLabel lblCantidadDeseada = new JLabel("Cantidad Deseada");
+        lblCantidadDeseada.setHorizontalAlignment(SwingConstants.CENTER);
+        lblCantidadDeseada.setForeground(Color.PINK);
+        lblCantidadDeseada.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+        lblCantidadDeseada.setBounds(762, 56, 180, 20);
+        contentPane.add(lblCantidadDeseada);
+        
+        JLabel lblCostoTotal = new JLabel("Costo Total");
+        lblCostoTotal.setHorizontalAlignment(SwingConstants.CENTER);
+        lblCostoTotal.setForeground(Color.PINK);
+        lblCostoTotal.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+        lblCostoTotal.setBounds(762, 199, 180, 20);
+        contentPane.add(lblCostoTotal);
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	Elegirproduc paginaAnterior = new Elegirproduc(i, listaCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
