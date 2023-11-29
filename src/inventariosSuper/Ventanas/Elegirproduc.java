@@ -96,15 +96,7 @@ public class Elegirproduc extends JFrame {
     
     panelBotonesCabecera.add(btnAtras);
 
-    JButton btnPerfil = new JButton("");
-    ImageIcon iconOriginal = new ImageIcon("/imagenes/perfilpersona.png");
-    Image imagenOriginal = iconOriginal.getImage();
-    int nuevoAncho = 100;
-    int nuevoAlto = 100;
-    Image imagenRedimensionada = imagenOriginal.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
-    ImageIcon iconRedimensionadoPerfil = new ImageIcon(imagenRedimensionada);
-    btnPerfil.setIcon(iconRedimensionadoPerfil);
-    panelBotonesCabecera.add(btnPerfil);
+    
 
     JSeparator separator = new JSeparator();
     panelCabecera.add(separator, BorderLayout.SOUTH);
