@@ -8,7 +8,6 @@ import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.GestorComprado;
-import inventariosSuper.Clases.GestorCilientecompras;
 
 import javax.swing.JTextArea;
 import java.awt.Font;
