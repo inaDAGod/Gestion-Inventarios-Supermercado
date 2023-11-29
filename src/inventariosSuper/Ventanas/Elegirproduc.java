@@ -104,6 +104,11 @@ public class Elegirproduc extends JFrame {
 			}
 		});
 	}
+	public Elegirproduc(Inventario inventario) {
+        this.inventario = inventario;
+        //this.listaCompras = ListaComprasCompartida.getListaCompras();
+        // Resto de tu lógica del constructor
+    }
 
 	/**
 	 * Create the frame.
