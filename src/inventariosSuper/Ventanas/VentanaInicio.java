@@ -36,7 +36,7 @@ public class VentanaInicio extends JFrame {
 
         // Crear y agregar el panel de la cabecera
         JPanel panelCabecera = new JPanel();
-        panelCabecera.setBackground(new Color(255, 240, 245));
+        panelCabecera.setBackground(new Color(246, 196, 205));
         panelCabecera.setPreferredSize(new Dimension(1800, 130));
         getContentPane().add(panelCabecera, BorderLayout.NORTH);
         panelCabecera.setLayout(null);
@@ -73,7 +73,7 @@ public class VentanaInicio extends JFrame {
         btnCliente.setPreferredSize(new Dimension(280, 120)); // Ajuste en el ancho
         panelBotones.add(btnCliente);
 
-        // Botón "Productos"
+        // Botón "Inventario"
         JButton btnProductos = new JButton("INVENTARIO");
         btnProductos.setFont(fontBotones);
         btnProductos.setPreferredSize(new Dimension(280, 120)); // Ajuste en el ancho
@@ -96,7 +96,6 @@ public class VentanaInicio extends JFrame {
         //Botón Añadir Producto
         btnAnadirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 AnadirProducto frame = new AnadirProducto(inventario,auditoria);
                 frame.setVisible(true);
                 setVisible(false);
@@ -141,14 +140,13 @@ public class VentanaInicio extends JFrame {
         // ActionListener para el botón "Recordatorios"
         btnRecordatorios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
                 RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(creacionRecordatorio());
                 recordatoriosVentana.setVisible(true);
             }
         });
 
     }
-    
+
     public Recordatorios creacionRecordatorio() {
     	Recordatorios recordatorios = new Recordatorios();
         for (Producto producto : inventario.getProductos()) {
