@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +73,7 @@ public class ListaProductos extends JFrame {
         panelBotonesCabecera.setBackground(new Color(246, 196, 205)); 
         JButton btnAtras = new JButton("< Volver");
         btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        btnAtras.setPreferredSize(new Dimension(200, 50));
+        btnAtras.setPreferredSize(new Dimension(150, 40));
         btnAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
@@ -82,7 +84,7 @@ public class ListaProductos extends JFrame {
 
         JButton btnProveedor = new JButton(" Proveedores");
         btnProveedor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        btnProveedor.setPreferredSize(new Dimension(200, 50));
+        btnProveedor.setPreferredSize(new Dimension(150, 40));
 
         panelBotonesCabecera.add(btnAtras);
         panelBotonesCabecera.add(btnProveedor);
@@ -131,16 +133,35 @@ public class ListaProductos extends JFrame {
         txtDatoABuscar.setBounds(302, 48, 701, 37);
         panel_1.add(txtDatoABuscar);
         txtDatoABuscar.setColumns(10);
+        
+        txtDatoABuscar.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+              txtDatoABuscar.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+            
+            }
+        });
+
+        
+        
         ButtonGroup buttonGroup = new ButtonGroup();
 
         JRadioButton rdbtnNewRadioButton = new JRadioButton(" Nombre");
         rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
         rdbtnNewRadioButton.setBounds(721, 5, 123, 39);
+
+        rdbtnNewRadioButton.setBackground(new Color(246, 196, 205)); 
         panel_1.add(rdbtnNewRadioButton);
 
         JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Categoria");
         rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
         rdbtnNewRadioButton_1.setBounds(415, 5, 133, 39);
+
+        rdbtnNewRadioButton_1.setBackground(new Color(246, 196, 205)); 
         panel_1.add(rdbtnNewRadioButton_1);
 
         buttonGroup.add(rdbtnNewRadioButton); // Agregar al ButtonGroup
