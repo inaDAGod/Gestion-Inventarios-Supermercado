@@ -76,7 +76,6 @@ public class Agregarproduc extends JFrame {
         JTextArea textArea = new JTextArea();
         textArea.setBounds(36, 96, 470, 171);
         contentPane.add(textArea);
-        textArea.setEditable(false);
 
         if (produ != null) {
             StringBuilder productDetails = new StringBuilder();
@@ -92,7 +91,6 @@ public class Agregarproduc extends JFrame {
         textField.setBounds(713, 86, 284, 45);
         contentPane.add(textField);
         textField.setColumns(10);
-        
 
         JButton btnCalcular = new JButton("Calcular");
         btnCalcular.setBackground(Color.PINK);
@@ -119,7 +117,6 @@ public class Agregarproduc extends JFrame {
         textArea_2 = new JTextArea();
         textArea_2.setBounds(36, 405, 470, 171);
         contentPane.add(textArea_2);
-        textArea_2.setEditable(false);
 
         comprasTexto = new StringBuilder(); // Inicializa comprasTexto aquí
         actualizarListaCompras();

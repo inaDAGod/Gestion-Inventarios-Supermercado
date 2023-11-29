@@ -64,7 +64,6 @@ public class FacturaPage extends JFrame {
         textAreaCompras = new JTextArea();
         textAreaCompras.setBounds(279, 97, 574, 384);
         contentPane.add(textAreaCompras);
-        textAreaCompras.setEditable(false);
 
         btnMostrarCompras = new JButton("Mostrar Compras");
         btnMostrarCompras.setFont(new Font("Times New Roman", Font.ITALIC, 10));
