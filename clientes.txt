@@ -1,2 +1,5 @@
 Petra,123,45,a
 daniela,846888,14,achumani al fondo
+Lea,1234,654,aloja
+u,1234,8765,Direcion
+petra,1234,543,Direcion

@@ -7,15 +7,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class VentanaInicio extends JFrame {
 	private Inventario inventario;
 	private Auditoria auditoria;
+	private List<Cliente> listaClientes;
+    private Comprado historialCompras;
 
     public VentanaInicio(Inventario i, Auditoria a) {
     	this.inventario = i;
     	this.auditoria = a;
+    	this.listaClientes = listaClientes;
+        this.historialCompras = historialCompras;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 
@@ -99,15 +105,16 @@ public class VentanaInicio extends JFrame {
             }
         });
 
-        //Botón Clientes
+     // Assuming you have the list of clients (listaClientes) and purchase history (historialCompras)
+
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //Compras compras = new Compras();
-
-                //Elegirregistro frame = new Elegirregistro(compras);
-                //frame.setVisible(true);
+                MostrarClientes frame = new MostrarClientes();
+                
+                frame.setVisible(true);
             }
         });
+
 
         //Botón Productos
         btnProductos.addActionListener(new ActionListener() {

@@ -6,8 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import javax.swing.border.EmptyBorder;
+
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Compras;
+import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.ManejadorArchivo;
@@ -26,7 +29,8 @@ public class FacturaPage extends JFrame {
     private JButton btnMostrarCompras;
     private JTextArea textAreaCompras;
     private Comprado historialCompras;
-
+    private Inventario inventario;
+	private Auditoria auditoria;
 
 
     private MostrarClientes mostrarClientes;
@@ -78,12 +82,29 @@ public class FacturaPage extends JFrame {
             }
         });
         
+       
+        
         JButton btnRegistrarCompra = new JButton("Registrar Compra");
         btnRegistrarCompra.setBackground(Color.PINK);
         btnRegistrarCompra.setFont(new Font("Times New Roman", Font.ITALIC, 10));
         btnRegistrarCompra.setForeground(Color.WHITE);
         btnRegistrarCompra.setBounds(279, 516, 150, 30);
         contentPane.add(btnRegistrarCompra);
+        
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+				ventanaInicio.setVisible(true);
+				
+			}
+		});
+        btnVolver.setForeground(Color.WHITE);
+        btnVolver.setFont(new Font("Times New Roman", Font.ITALIC, 10));
+        btnVolver.setBackground(Color.PINK);
+        btnVolver.setBounds(1014, 21, 150, 30);
+        contentPane.add(btnVolver);
 
         btnRegistrarCompra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -127,6 +148,6 @@ public class FacturaPage extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
-
 }
