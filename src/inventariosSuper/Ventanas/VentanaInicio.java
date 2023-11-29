@@ -128,12 +128,22 @@ public class VentanaInicio extends JFrame {
         // ActionListener para el botón "Recordatorios"
         btnRecordatorios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana();
+            	
+                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(creacionRecordatorio());
                 recordatoriosVentana.setVisible(true);
             }
         });
 
     }
+    
+    public Recordatorios creacionRecordatorio() {
+    	Recordatorios recordatorios = new Recordatorios();
+        for (Producto producto : inventario.getProductos()) {
+            recordatorios.agregarAlerta(new Alerta(producto));
+        }
+        return recordatorios;
+
+	}
 
 
 }

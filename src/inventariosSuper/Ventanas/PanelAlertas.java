@@ -28,20 +28,7 @@ public class PanelAlertas extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
         panelRecordatorios.setLayout(new GridLayout(0, 1, 0, 10));
 
-        // Alertas De Prueba
-        List<Producto> productos = new ArrayList<>();
-        productos.add(new Producto("Producto1", "Detalle1", 10.0, 5, LocalDate.now().plusDays(2)));
-        productos.add(new Producto("Producto2", "Detalle2", 15.0, 8, LocalDate.now().plusDays(3)));
-        productos.add(new Producto("Producto3", "Detalle3", 18.0, 3, LocalDate.now().plusDays(6)));
-        productos.add(new Producto("Producto4", "Detalle4", 20.0, 2, LocalDate.now().plusDays(1)));
-        productos.add(new Producto("Producto5", "Detalle5", 12.0, 15, LocalDate.now().plusDays(5)));
-        productos.add(new Producto("Producto6", "Detalle6", 8.0, 3, LocalDate.now().minusDays(1)));
-        productos.add(new Producto("Producto7", "Detalle7", 25.0, 2, LocalDate.now().plusDays(4)));
-
-        for (Producto producto : productos) {
-            recordatorios.agregarAlerta(new Alerta(producto));
-        }
-
+    
         List<Alerta> alertasOrdenadas = recordatorios.obtenerAlertasOrdenadas();
 
         for (Alerta alerta : alertasOrdenadas) {

@@ -8,8 +8,8 @@ import inventariosSuper.Clases.Recordatorios;
 public class RecordatoriosVentana extends JFrame {
     private Recordatorios recordatorios;
 
-    public RecordatoriosVentana() {
-        this.recordatorios = new Recordatorios();
+    public RecordatoriosVentana(Recordatorios r) {
+        this.recordatorios = r;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 
@@ -38,14 +38,5 @@ public class RecordatoriosVentana extends JFrame {
         panelCabecera.add(lblTitulo);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                RecordatoriosVentana frame = new RecordatoriosVentana();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+   
 }
