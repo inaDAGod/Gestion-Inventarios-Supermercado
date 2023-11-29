@@ -6,13 +6,14 @@ import java.util.List;
 
 public class Recordatorios {
     private MinHeap alertas;
-    
+
     public Recordatorios() {
         this.alertas = new MinHeap();
     }
 
     public void agregarAlerta(Alerta alerta) {
-        alertas.insertar(alerta);
+        if (alerta.getPrioridad() != 10)
+            alertas.insertar(alerta);
     }
 
     public void eliminarAlerta(Alerta alerta) {
@@ -26,7 +27,6 @@ public class Recordatorios {
         }
     }
 
-  
 
     //Para la Interfaz
     public List<Alerta> obtenerAlertasOrdenadas() {

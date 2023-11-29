@@ -85,7 +85,7 @@ public class Main2 {
 	    inventario.añadirProveedor(proveedor16);
 	    
 	    // Productos
-	    Producto producto1 = new Producto("Leche", "Leche deslactosada", 2.5, 100, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(bebidasCategoria)));
+	    Producto producto1 = new Producto("Leche", "Leche deslactosada", 2.5, 5, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(bebidasCategoria)));
 	    Producto producto2 = new Producto("Arroz", "Arroz blanco", 1.8, 200, LocalDate.of(2024, 10, 15), new LinkedList<>(Arrays.asList(comidaCategoria)));
 	    Producto producto3 = new Producto("Jabón", "Jabón de manos", 3.0, 50, LocalDate.of(2023, 9, 30), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria, limpiezaCategoria)));
 	    Producto producto4 = new Producto("Refresco", "Refresco de cola", 1.0, 150, LocalDate.of(2023, 11, 30), new LinkedList<>(Arrays.asList(bebidasCategoria)));
@@ -96,7 +96,7 @@ public class Main2 {
 	    Producto producto9 = new Producto("Yogur", "Yogur natural", 1.2, 120, LocalDate.of(2024, 9, 30), new LinkedList<>(Arrays.asList(comidaCategoria)));
 	    Producto producto10 = new Producto("Pasta de dientes", "Pasta de dientes blanqueadora", 2.8, 60, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria)));
 	    Producto producto11 = new Producto("Chips", "Chips de maíz", 2.0, 100, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(snacksCategoria)));
-	    Producto producto12 = new Producto("Salsa de tomate", "Salsa de tomate natural", 2.0, 80, LocalDate.of(2024, 8, 15), new LinkedList<>(Arrays.asList(comidaCategoria)));
+	    Producto producto12 = new Producto("Salsa de tomate", "Salsa de tomate natural", 2.0, 3, LocalDate.of(2024, 8, 15), new LinkedList<>(Arrays.asList(comidaCategoria)));
 	    Producto producto13 = new Producto("Desodorante", "Desodorante en aerosol", 3.5, 40, LocalDate.of(2023, 9, 30), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria)));
 	    Producto producto14 = new Producto("Bebida energética", "Bebida energética", 2.5, 150, LocalDate.of(2023, 11, 30), new LinkedList<>(Arrays.asList(bebidasCategoria)));
 	    Producto producto15 = new Producto("Galletas", "Galletas de chocolate", 2.2, 90, LocalDate.of(2024, 7, 31), new LinkedList<>(Arrays.asList(snacksCategoria)));
