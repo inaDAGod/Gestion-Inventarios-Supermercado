@@ -99,6 +99,7 @@ public class Elegirregistro extends JFrame {
 		textArea = new JTextArea();
         textArea.setBounds(353, 506, 421, 237);
         panel.add(textArea);
+        textArea.setEditable(false);
 
         if (listaCompras != null && !listaCompras.isEmpty()) {
             StringBuilder comprasTexto = new StringBuilder();
