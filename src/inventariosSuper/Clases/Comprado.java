@@ -7,6 +7,9 @@ import java.util.Map;
 public class Comprado {
     private HashMap<Cliente, LocalDateTime> compras;
 
+    public Comprado() {
+        this.compras = new HashMap<>();
+    }
     public Comprado(Cliente cliente, LocalDateTime localDateTime) {
         this.compras = new HashMap<>();
     }
