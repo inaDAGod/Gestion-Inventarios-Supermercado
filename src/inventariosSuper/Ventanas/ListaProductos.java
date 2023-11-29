@@ -2,6 +2,7 @@ package inventariosSuper.Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -55,27 +56,39 @@ public class ListaProductos extends JFrame {
         JPanel panelCabecera = new JPanel();
         panelCabecera.setBounds(5, 5, 1176, 117);
         contentPane.add(panelCabecera);
-        panelCabecera.setLayout(new BorderLayout(0, 0));
+        panelCabecera.setBackground(new Color(246, 196, 205)); 
+        panelCabecera.setLayout(new BorderLayout());
+
+        JLabel lblNewLabel2 = new JLabel("Productos");
+        lblNewLabel2.setFont(new Font("Times New Roman", Font.PLAIN, 70));
+        panelCabecera.add(lblNewLabel2, BorderLayout.CENTER);
 
         JLabel imagenCaritas = new JLabel("");
         panelCabecera.add(imagenCaritas, BorderLayout.WEST);
 
         JPanel panelBotonesCabecera = new JPanel();
-        panelCabecera.add(panelBotonesCabecera, BorderLayout.EAST);
-        panelBotonesCabecera.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
+        panelBotonesCabecera.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));  // Ajusta la orientación a la derecha
+        panelBotonesCabecera.setBackground(new Color(246, 196, 205)); 
         JButton btnAtras = new JButton("< Volver");
-        panelBotonesCabecera.add(btnAtras);
+        btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        btnAtras.setPreferredSize(new Dimension(200, 50));
         btnAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				VentanaInicio ventanaInicio = new VentanaInicio(inventario);
-				ventanaInicio.setVisible(true);
-				
-			}
-		});
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                VentanaInicio ventanaInicio = new VentanaInicio(inventario);
+                ventanaInicio.setVisible(true);
+            }
+        });
 
         JButton btnProveedor = new JButton(" Proveedores");
+        btnProveedor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        btnProveedor.setPreferredSize(new Dimension(200, 50));
+
+        panelBotonesCabecera.add(btnAtras);
+        panelBotonesCabecera.add(btnProveedor);
+
+        panelCabecera.add(panelBotonesCabecera, BorderLayout.NORTH);
+
         ImageIcon iconOriginal = new ImageIcon("/imagenes/perfilpersona.png");
         Image imagenOriginal = iconOriginal.getImage();
         int nuevoAncho = 100;
@@ -99,11 +112,13 @@ public class ListaProductos extends JFrame {
         panel.setBounds(5, 120, 1176, 638);
         contentPane.add(panel);
         panel.setLayout(null);
-
+        panel.setBackground(new Color(246, 196, 205)); 
         JPanel panel_1 = new JPanel();
         panel_1.setBounds(0, 0, 1176, 96);
         panel.add(panel_1);
         panel_1.setLayout(null);
+
+        panel_1.setBackground(new Color(246, 196, 205)); 
         
         JLabel lblNewLabel = new JLabel("Ingrese el dato a buscar:");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -136,6 +151,7 @@ public class ListaProductos extends JFrame {
         panel_2.setBounds(0, 96, 1176, 542);
         panel.add(panel_2);
         panel_2.setLayout(new BorderLayout());
+        panel_2.setBackground(new Color(246, 196, 205)); 
 
         JPanel panelTarjetas = new JPanel(new GridLayout(0, 4, 10, 10));
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
@@ -169,7 +185,8 @@ public class ListaProductos extends JFrame {
             }
         });
         panel_1.add(btnNewButton);
-
+        
+       
        
      
         
@@ -179,6 +196,7 @@ public class ListaProductos extends JFrame {
     }
 	 private void mostrarProductos(List<Producto> listaProductos, JPanel panelTarjetas) {
 		  panelTarjetas.removeAll();
+		  panelTarjetas.setBackground(new Color(246, 196, 205)); 
 		 int numProductos = listaProductos.size();
 		    
 		    // Asegúrate de que haya al menos una fila
