@@ -40,11 +40,10 @@ public class MostrarClientes extends JFrame {
 	private Auditoria auditoria;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public MostrarClientes(Inventario i, Auditoria a, List<Cliente> listaClientes, Comprado comprado) {
+    public MostrarClientes(List<Cliente> listaClientes, Comprado comprado) {
         this.listaClientes = listaClientes;
         this.comprado = comprado;
-        this.inventario = i;
-        this.auditoria = a;
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         JPanel contentPane = new JPanel();
@@ -69,7 +68,7 @@ public class MostrarClientes extends JFrame {
         btnNewButton.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
         			setVisible(false);
-        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, comprado);
         			ventanaInicio.setVisible(true);
         			
         		}
@@ -99,7 +98,19 @@ public class MostrarClientes extends JFrame {
         }
     }
 
- 
+    public static void main(String[] args) {
+        List<Cliente> listaClientes = cargarClientesDesdeArchivo("clientescomp.txt");
+        Comprado historialCompras = cargarComprasDesdeArchivo("compras.txt", listaClientes);
+
+        EventQueue.invokeLater(() -> {
+            try {
+                MostrarClientes frame = new MostrarClientes(listaClientes, historialCompras);
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     private static List<Cliente> cargarClientesDesdeArchivo(String rutaArchivo) {
         List<Cliente> clientes = new ArrayList<>();
