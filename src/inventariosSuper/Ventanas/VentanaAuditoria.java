@@ -10,14 +10,17 @@ import java.time.format.DateTimeFormatter;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Inventario;
 
 public class VentanaAuditoria extends JFrame {
 	private Auditoria auditoria;
     private JTextArea txtADisplay;
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
+    private Inventario inventario;
 
-    public VentanaAuditoria(Auditoria auditoria) {
+    public VentanaAuditoria(Inventario i,Auditoria auditoria) {
+    	this.inventario = i;
     	this.auditoria = auditoria;
         getContentPane().setBackground(new Color(246, 196, 205));
         setTitle("Ventana Auditoria");
@@ -75,6 +78,8 @@ public class VentanaAuditoria extends JFrame {
         JButton btnVolver = new JButton("Volver");
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria);
+            	ventanaInicio.setVisible(true);
                 setVisible(false);
             }
         });

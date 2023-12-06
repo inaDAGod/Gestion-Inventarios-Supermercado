@@ -48,15 +48,19 @@ public class Alerta {
             // Producto a punto de vencer
             this.mensaje = "Producto a punto de vencer";
             this.prioridad = 2;
-        } else if (producto.getCantidadStock() <= 3) {
+        } else if (producto.getCantidadStock() <= 7 && producto.getCantidadStock() >0) {
             // Producto bajo en cantidad
-            this.mensaje = "Producto bajo en cantidad";
+            this.mensaje = "Producto bajo en cantidad solo quedan " + getProducto().getCantidadStock();
             this.prioridad = 3;
-        } else {
+        } else if (producto.getCantidadStock() == 0){
             // Producto agotado, ordenar más
             this.mensaje = "Producto agotado, ordenar más";
             this.prioridad = 1;
+        }  else {
+            this.mensaje = "nada que hacer";
+            this.prioridad = 10;
         }
+
     }
 
     @Override

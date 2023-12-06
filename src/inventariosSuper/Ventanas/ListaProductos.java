@@ -47,8 +47,7 @@ public class ListaProductos extends JFrame {
 	private JTextField txtDatoABuscar;
 	private Auditoria auditoria;
 
-	private List<Cliente> listaClientes;
-    private Comprado historialCompras;
+
 	
 	
 	public ListaProductos(Inventario inventario,Auditoria a) {
@@ -85,7 +84,7 @@ public class ListaProductos extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
+				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
 				ventanaInicio.setVisible(true);
 				
 			}
