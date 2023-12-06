@@ -28,13 +28,12 @@ public class PanelAlertas extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
         panelRecordatorios.setLayout(new GridLayout(0, 1, 0, 10));
 
-
+    
         List<Alerta> alertasOrdenadas = recordatorios.obtenerAlertasOrdenadas();
 
         for (Alerta alerta : alertasOrdenadas) {
             JButton btnHecho = new JButton("HECHO");
             panelRecordatorios.add(crearPanelRecordatorio(alerta, btnHecho));
-
         }
 
         // Añadir un componente invisible al final para forzar el tamaño del JScrollPane
@@ -64,7 +63,6 @@ public class PanelAlertas extends JPanel {
         // Modificar la acción del botón "HECHO"
         btnHecho.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 // Eliminar la alerta del montículo
                 recordatorios.eliminarAlerta(alerta);
 

@@ -255,7 +255,7 @@ public class AnadirProducto extends JFrame {
 	     mntmNewMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
-					VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+					VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
 					ventanaInicio.setVisible(true);
 				}
 			});

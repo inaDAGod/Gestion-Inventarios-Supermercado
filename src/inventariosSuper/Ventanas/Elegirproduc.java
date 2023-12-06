@@ -57,9 +57,8 @@ public class Elegirproduc extends JFrame {
 	private List<Cliente> listaClientes;
     private Comprado historialCompras;
 	
-	public Elegirproduc(Inventario inventario, Auditoria a) {
+	public Elegirproduc(Inventario inventario) {
         this.inventario = inventario;
-        this.auditoria = a;
         this.listaCompras = ListaComprasCompartida.getListaCompras();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -88,7 +87,7 @@ public class Elegirproduc extends JFrame {
     btnAtras.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			setVisible(false);
-    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
     			ventanaInicio.setVisible(true);
     			
     		}
@@ -96,7 +95,15 @@ public class Elegirproduc extends JFrame {
     
     panelBotonesCabecera.add(btnAtras);
 
-    
+    JButton btnPerfil = new JButton("");
+    ImageIcon iconOriginal = new ImageIcon("/imagenes/perfilpersona.png");
+    Image imagenOriginal = iconOriginal.getImage();
+    int nuevoAncho = 100;
+    int nuevoAlto = 100;
+    Image imagenRedimensionada = imagenOriginal.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+    ImageIcon iconRedimensionadoPerfil = new ImageIcon(imagenRedimensionada);
+    btnPerfil.setIcon(iconRedimensionadoPerfil);
+    panelBotonesCabecera.add(btnPerfil);
 
     JSeparator separator = new JSeparator();
     panelCabecera.add(separator, BorderLayout.SOUTH);
@@ -230,7 +237,7 @@ public class Elegirproduc extends JFrame {
         btnAtras.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
         			setVisible(false);
-        			VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria);
+        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
         			ventanaInicio.setVisible(true);
         			
         		}
