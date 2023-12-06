@@ -81,6 +81,15 @@ public class VentanaAuditoria extends JFrame {
         btnVolver.setBounds(1039, 11, 115, 30);
         getContentPane().add(btnVolver);
 
+        JButton btnLimpiar = new JButton("Limpiar");
+        btnLimpiar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                txtADisplay.setText("");
+            }
+        });
+        btnLimpiar.setBounds(863, 210, 150, 35);
+
+        getContentPane().add(btnLimpiar);
         setVisible(true);
     }
 
@@ -90,8 +99,6 @@ public class VentanaAuditoria extends JFrame {
         try {
             LocalDate fechaInicio = LocalDate.parse(txtFechaInicio.getText(), formatter);
             LocalDate fechaFin = LocalDate.parse(txtFechaFin.getText(), formatter).plusDays(1);
-
-            
 
             auditoria.mostrarComprasEnRango(fechaInicio.atStartOfDay(), fechaFin.atStartOfDay(), txtADisplay);
         } catch (Exception ex) {
