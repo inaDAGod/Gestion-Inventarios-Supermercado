@@ -6,8 +6,6 @@ import javax.swing.border.EmptyBorder;
 
 
 import inventariosSuper.Clases.*;
-import inventariosSuper.Clases.Comprado;
-
 
 import javax.swing.*;
 import javax.swing.*;
@@ -42,27 +40,16 @@ public class RegistrandoCli extends JFrame {
     private JTextArea areaResultado;
     private GestorClientes gestorClientes;
     
-    public static void main(String[] args) {
-    	 List<Compras> listaCompras = new ArrayList<>(); // Populate this with your actual data
-
- 	    EventQueue.invokeLater(new Runnable() {
- 	        public void run() {
- 	            try {
- 	                RegistrandoCli frame = new RegistrandoCli(listaCompras);
- 	                frame.setVisible(true);
- 	            } catch (Exception e) {
- 	                e.printStackTrace();
- 	            }
- 	        }
- 	    });
- 	}
     
-    public RegistrandoCli(List<Compras> listaCompras) {
+ 
+    
+    public RegistrandoCli(List<Compras> listaCompras,Inventario inventario) {
     	
         super("Búsqueda de Clientes");
         listaClientes = new ArrayList<>();
         areaResultado = new JTextArea();
         this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
+        this.inventario = inventario;
 
         gestorClientes = new GestorClientes();
         mostrarClientesRegistrados();
@@ -184,7 +171,7 @@ public class RegistrandoCli extends JFrame {
 		    	    } catch (IOException ex) {
 		    	        ex.printStackTrace();
 		    	    }
-                    FacturaPage facturaPage = new FacturaPage(clienteSeleccionado);
+                    FacturaPage facturaPage = new FacturaPage(clienteSeleccionado,inventario);
                     facturaPage.setVisible(true);
                     setVisible(false);
                     dispose();

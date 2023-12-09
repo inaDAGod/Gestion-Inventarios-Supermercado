@@ -40,15 +40,12 @@ public class FacturaPage extends JFrame {
     private MostrarClientes mostrarClientes;
 
     // Constructor que recibe MostrarClientes como parámetro adicional
-    public FacturaPage(Cliente cliente) {
+    public FacturaPage(Cliente cliente, Inventario inventario) {
         this.cliente = cliente;
+        this.inventario = inventario;
         this.u = new Comprado(cliente, LocalDateTime.now()); // Crear instancia con tiempo actual
         this.mostrarClientes = mostrarClientes; // Guarda la instancia de MostrarClientes
-        initialize();
-    }
-
-
-    public void initialize() {
+      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 713);
         contentPane = new JPanel();

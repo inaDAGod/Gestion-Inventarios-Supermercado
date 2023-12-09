@@ -57,30 +57,16 @@ public class Elegirregistro extends JFrame {
 	private List<Compras> listaCompras;
 	private JTextArea textAreaCompras;
 	private JTextArea textArea;
+	private Inventario inventario;
+	
 
 	/**
 	 * Launch the application.
 	 */
-    public static void main(String[] args) {
-        List<Compras> listaCompras = new ArrayList<>(); // Crear la lista de compras
-
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Elegirregistro frame = new Elegirregistro(listaCompras); // Pasar la lista de compras al constructor
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-	/**
-	 * Create the frame.
-	 */
-	public Elegirregistro(List<Compras> listaCompras) {
+    
+	public Elegirregistro(List<Compras> listaCompras, Inventario inventario) {
 		this.listaCompras = listaCompras;
+		this.inventario =inventario;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -122,7 +108,7 @@ public class Elegirregistro extends JFrame {
 		JButton btnNewButton = new JButton("Nuevo Cliente");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Nuevocli clienteRecurrenteWindow = new Nuevocli(listaCompras);
+				Nuevocli clienteRecurrenteWindow = new Nuevocli(listaCompras,inventario);
 		        clienteRecurrenteWindow.setVisible(true);
 		        setVisible(false);
 		        dispose();
@@ -137,7 +123,7 @@ public class Elegirregistro extends JFrame {
 		JButton btnClienteRecurente = new JButton("Cliente Recurente");
 		btnClienteRecurente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrandoCli clienteRecurrenteWindow = new RegistrandoCli(listaCompras);
+				RegistrandoCli clienteRecurrenteWindow = new RegistrandoCli(listaCompras,inventario);
 		        clienteRecurrenteWindow.setVisible(true);
 		        setVisible(false);
 	            dispose();
@@ -167,7 +153,7 @@ public class Elegirregistro extends JFrame {
 		
 	}
 	private void abrirFacturaConCliente(Cliente cliente) {
-	    FacturaPage facturaPage = new FacturaPage(cliente);
+	    FacturaPage facturaPage = new FacturaPage(cliente, inventario);
 	    facturaPage.setVisible(true);
 	    dispose();  // Cerrar la ventana actual
 	}

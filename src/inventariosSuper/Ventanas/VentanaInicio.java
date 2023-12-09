@@ -109,7 +109,7 @@ public class VentanaInicio extends JFrame {
 
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                MostrarClientes frame = new MostrarClientes(listaClientes, historialCompras);
+                MostrarClientes frame = new MostrarClientes(listaClientes, historialCompras, inventario);
                 
                 frame.setVisible(true);
             }
