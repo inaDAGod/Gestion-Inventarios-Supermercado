@@ -54,13 +54,16 @@ public class Elegirproduc extends JFrame {
 	private JTextField txtDatoABuscar;
 	private List<Compras> listaCompras = new ArrayList<>();
 	private Auditoria auditoria;
-	private List<Cliente> listaClientes;
-    private Comprado historialCompras;
+    private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
 	
-    public Elegirproduc(Inventario inventario, Auditoria auditoria, List<Compras> listaCompras) {
+    public Elegirproduc(Inventario inventario, Auditoria auditoria, List<Compras> listaCompras,List<Cliente> listaClientes, List<Comprado> historialCompras) {
         this.inventario = inventario;
         this.auditoria = auditoria;
         this.listaCompras = listaCompras != null ? new ArrayList<>(listaCompras) : new ArrayList<>();
+        this.listaClientes=listaClientes;
+        this.historialCompras=historialCompras;
+        
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -91,7 +94,7 @@ public class Elegirproduc extends JFrame {
     btnAtras.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			setVisible(false);
-    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
+    			VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria, listaClientes, historialCompras);
     			ventanaInicio.setVisible(true);
     			
     		}
@@ -237,8 +240,8 @@ public class Elegirproduc extends JFrame {
 	            buttonProducto.add(labelImagen, BorderLayout.CENTER);
 	            buttonProducto.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				System.out.println("Lista de compras en Elegirproduc: " + listaCompras);
-	    				Agregarproduc frame = new Agregarproduc(producto, inventario, listaCompras, auditoria);
+	    				
+	    				Agregarproduc frame = new Agregarproduc(producto, inventario, listaCompras, auditoria, listaClientes, historialCompras);
 
 	    				frame.setVisible(true);
 	    				setVisible(false);

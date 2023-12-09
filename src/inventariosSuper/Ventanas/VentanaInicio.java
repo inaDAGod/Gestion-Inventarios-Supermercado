@@ -15,11 +15,11 @@ public class VentanaInicio extends JFrame {
 	private Inventario inventario;
 	private Auditoria auditoria;
 	private List<Cliente> listaClientes;
-    private Comprado historialCompras;
     private Producto produ;
     private List<Compras> listaCompras = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
 
-    public VentanaInicio(Inventario i, Auditoria a,List<Cliente> listaClientes,Comprado historialCompras) {
+    public VentanaInicio(Inventario i, Auditoria a,List<Cliente> listaClientes,List<Comprado> historialCompras) {
     	this.inventario = i;
     	this.auditoria = a;
     	this.listaClientes = listaClientes;
@@ -94,7 +94,7 @@ public class VentanaInicio extends JFrame {
         btnAnadirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                AnadirProducto frame = new AnadirProducto(inventario,auditoria);
+                AnadirProducto frame = new AnadirProducto(inventario, auditoria, historialCompras, listaClientes);
                 frame.setVisible(true);
                 setVisible(false);
             }
@@ -103,7 +103,7 @@ public class VentanaInicio extends JFrame {
         //Botón elegir Producto
         btnElegirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Elegirproduc frame = new Elegirproduc(inventario, auditoria, listaCompras);
+                Elegirproduc frame = new Elegirproduc(inventario, auditoria, listaCompras, listaClientes, historialCompras);
                 frame.setVisible(true);
             }
         });
@@ -112,7 +112,7 @@ public class VentanaInicio extends JFrame {
 
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                MostrarClientes frame = new MostrarClientes(listaClientes, historialCompras, inventario);
+                MostrarClientes frame = new MostrarClientes(listaClientes, inventario, auditoria, historialCompras);
                 
                 frame.setVisible(true);
             }
@@ -122,7 +122,7 @@ public class VentanaInicio extends JFrame {
         //Botón Productos
         btnProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ListaProductos frame = new ListaProductos(inventario,auditoria);
+                ListaProductos frame = new ListaProductos(inventario, auditoria, listaClientes, historialCompras);
                 frame.setVisible(true);
                 setVisible(false);
             }

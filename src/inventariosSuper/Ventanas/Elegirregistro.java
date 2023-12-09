@@ -60,15 +60,20 @@ public class Elegirregistro extends JFrame {
 	private JTextArea textArea;
 	private Inventario inventario;
 	private Auditoria auditoria;
-	
+	private List<Cliente> listaClientes = new ArrayList<>();
+	private List<Comprado> historialCompras = new ArrayList<>();
 
 	/**
 	 * Launch the application.
 	 */
     
-	public Elegirregistro(List<Compras> listaCompras, Inventario inventario,Auditoria auditoria) {
+	public Elegirregistro(List<Compras> listaCompras, Inventario inventario,Auditoria auditoria,List<Cliente> listaClientes, List<Comprado> historialCompras ) {
 		this.listaCompras = listaCompras;
 		this.inventario =inventario;
+		this.auditoria = auditoria;
+		this.listaClientes=listaClientes;
+		this.historialCompras=historialCompras;
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -110,7 +115,7 @@ public class Elegirregistro extends JFrame {
 		JButton btnNewButton = new JButton("Nuevo Cliente");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Nuevocli clienteRecurrenteWindow = new Nuevocli(listaCompras,inventario, auditoria);
+				Nuevocli clienteRecurrenteWindow = new Nuevocli(listaCompras,inventario, auditoria, listaClientes, historialCompras);
 		        clienteRecurrenteWindow.setVisible(true);
 		        setVisible(false);
 		        dispose();
@@ -125,7 +130,7 @@ public class Elegirregistro extends JFrame {
 		JButton btnClienteRecurente = new JButton("Cliente Recurente");
 		btnClienteRecurente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrandoCli clienteRecurrenteWindow = new RegistrandoCli(listaCompras,inventario, auditoria);
+				RegistrandoCli clienteRecurrenteWindow = new RegistrandoCli(listaCompras,inventario, auditoria, listaClientes, historialCompras);
 		        clienteRecurrenteWindow.setVisible(true);
 		        setVisible(false);
 	            dispose();
@@ -155,7 +160,7 @@ public class Elegirregistro extends JFrame {
 		
 	}
 	private void abrirFacturaConCliente(Cliente cliente) {
-	    FacturaPage facturaPage = new FacturaPage(cliente, inventario, auditoria);
+	    FacturaPage facturaPage = new FacturaPage(cliente, inventario, auditoria, listaClientes, historialCompras);
 	    facturaPage.setVisible(true);
 	    dispose();  // Cerrar la ventana actual
 	}

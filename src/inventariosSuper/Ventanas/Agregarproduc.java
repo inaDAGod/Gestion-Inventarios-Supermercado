@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import inventariosSuper.Clases.Auditoria;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;
@@ -42,16 +44,20 @@ public class Agregarproduc extends JFrame {
     private Inventario inventario;
     private List<Compras> comprasList;
     private Auditoria auditoria;
+    private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
     
     
 
     
 
-    public Agregarproduc(Producto produ, Inventario inventario, List<Compras> listaCompras,Auditoria auditoria) {
+    public Agregarproduc(Producto produ, Inventario inventario, List<Compras> listaCompras,Auditoria auditoria,List<Cliente> listaClientes, List<Comprado> historialCompras ) {
         this.producto = produ;
         this.listaCompras = listaCompras != null ? new ArrayList<>(listaCompras) : new ArrayList<>();
         this.inventario = inventario;
         this.auditoria = auditoria;
+        this.listaClientes=listaClientes;
+        this.historialCompras=historialCompras;
         
 
 
@@ -132,7 +138,7 @@ public class Agregarproduc extends JFrame {
                         listaCompras.add(nuevaCompra);
 
                         JOptionPane.showMessageDialog(null, "¡Registro exitoso!\n");
-                        System.out.println(listaCompras);
+                        
 
                         actualizarListaCompras();
                     } else {
@@ -157,7 +163,7 @@ public class Agregarproduc extends JFrame {
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Elegirregistro detalleProducto = new Elegirregistro(listaCompras,inventario, auditoria);
+                    Elegirregistro detalleProducto = new Elegirregistro(listaCompras,inventario, auditoria, listaClientes, historialCompras);
                     detalleProducto.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -223,7 +229,7 @@ public class Agregarproduc extends JFrame {
         contentPane.add(lblCostoTotal);
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	Elegirproduc paginaAnterior = new Elegirproduc(inventario, auditoria, listaCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
+            	Elegirproduc paginaAnterior = new Elegirproduc(inventario, auditoria, listaCompras, listaClientes, historialCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
                 paginaAnterior.setVisible(true); // Muestra la página anterior
                 dispose(); // Cierra la página actual
             }

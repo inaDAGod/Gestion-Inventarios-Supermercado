@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import inventariosSuper.Clases.Auditoria;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Proveedor;
@@ -37,9 +39,13 @@ public class Proveedores extends JFrame {
 	private JTextField txtBuscar;
 	private JPanel panelTarjetas;
 	private Auditoria auditoria;
-	public Proveedores(Inventario inventario, Auditoria a) {
+	private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
+	public Proveedores(Inventario inventario, Auditoria a,List<Cliente> listaClientes, List<Comprado> historialCompras) {
 		this.auditoria = a;
 		this.inventario = inventario;
+		this.listaClientes=listaClientes;
+		this.historialCompras=historialCompras;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,  1200, 800);
 		
@@ -50,7 +56,7 @@ public class Proveedores extends JFrame {
 		mntmVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ListaProductos frame = new ListaProductos(inventario,auditoria);
+				ListaProductos frame = new ListaProductos(inventario, a, listaClientes, historialCompras);
 				frame.setVisible(true);
 			}
 		});
@@ -129,7 +135,7 @@ public class Proveedores extends JFrame {
 	            buttonProvee.add(labelImagen, BorderLayout.CENTER);
 	            buttonProvee.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				ProductosProveedor ventanaProductosProve = new ProductosProveedor(inventario, proveedor,auditoria);
+	    				ProductosProveedor ventanaProductosProve = new ProductosProveedor(inventario, proveedor, auditoria, listaClientes, historialCompras);
 	    				ventanaProductosProve.setVisible(true);
 	    				setVisible(false);
 	    			}

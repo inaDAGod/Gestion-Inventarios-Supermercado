@@ -33,12 +33,14 @@ public class AnadirProducto extends JFrame {
 	private JTextField txtExistencias;
 	private JPanel panelCategorias;
 	private Auditoria auditoria;
-	private List<Cliente> listaClientes;
-    private Comprado historialCompras;
+	private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
 	
-	public AnadirProducto(Inventario i,Auditoria a) {
+	public AnadirProducto(Inventario i,Auditoria a,List<Comprado> historialCompras,List<Cliente> listaClientes) {
 		this.inventario = i;
 		this.auditoria = a;
+		this.listaClientes=listaClientes;
+		this.historialCompras=historialCompras;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		
@@ -255,7 +257,7 @@ public class AnadirProducto extends JFrame {
 	     mntmNewMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
-					VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
+					VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria, listaClientes, historialCompras);
 					ventanaInicio.setVisible(true);
 				}
 			});

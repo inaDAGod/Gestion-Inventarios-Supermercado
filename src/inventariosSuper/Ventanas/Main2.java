@@ -14,14 +14,26 @@ public class Main2 {
 	
 	public static void main(String[] args) {
 		try {
-			 List<Cliente> listaClientes = cargarClientesDesdeArchivo("clientescomp.txt");
-		        Comprado historialCompras = cargarComprasDesdeArchivo("compras.txt", listaClientes);
+			List<Cliente> listaClientes = new ArrayList<>();
+		    List<Comprado> historialCompras = new ArrayList<>();
+		    Cliente cliente1 = new Cliente("Natalia Dávalos", 3234364, 78754635, "Chasquipampa");
+		    Cliente cliente2 = new Cliente("Emili Poroso", 3234, 78743635, "Bolonia");
+		    Comprado comprado1 = new Comprado();
+		    comprado1.agregarCompra(cliente1, LocalDateTime.now());
+
+		    Comprado comprado2 = new Comprado();
+		    comprado2.agregarCompra(cliente2, LocalDateTime.of(2003, 8, 11, 15, 30, 0));
+		    listaClientes.add(cliente1);
+		    listaClientes.add(cliente2);
+		    historialCompras.add(comprado1);
+		    historialCompras.add(comprado2);
+
 			Inventario inventario = new Inventario();
 			Auditoria auditoria = new Auditoria();
 			
 			llenadoInventario(inventario);
 			llenadoAuditoria(auditoria);
-			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);//se manda el inventario como parametro
+			VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria, listaClientes, historialCompras);//se manda el inventario como parametro
 			ventanaInicio.setVisible(true);
 		} catch (Exception e) {
 			System.out.println(e);

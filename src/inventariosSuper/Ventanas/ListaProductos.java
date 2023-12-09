@@ -46,14 +46,15 @@ public class ListaProductos extends JFrame {
 	private Inventario inventario;
 	private JTextField txtDatoABuscar;
 	private Auditoria auditoria;
-
-	private List<Cliente> listaClientes;
-    private Comprado historialCompras;
+	private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
 	
 	
-	public ListaProductos(Inventario inventario,Auditoria a) {
+	public ListaProductos(Inventario inventario,Auditoria a,List<Cliente> listaClientes, List<Comprado> historialCompras) {
 			this.inventario = inventario;
 	        this.auditoria = a;
+	        this.listaClientes=listaClientes;
+	        this.historialCompras=historialCompras;
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setBounds(100, 100, 1200, 800);
 	        contentPane = new JPanel();
@@ -112,7 +113,7 @@ public class ListaProductos extends JFrame {
         btnProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				Proveedores ventanaProveedores= new Proveedores(inventario,auditoria);
+				Proveedores ventanaProveedores= new Proveedores(inventario, a, listaClientes, historialCompras);
 				ventanaProveedores.setVisible(true);
 			}
 		});
@@ -246,7 +247,7 @@ public class ListaProductos extends JFrame {
 	            buttonProducto.add(labelImagen, BorderLayout.CENTER);
 	            buttonProducto.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				DetallesProducto detalleProducto = new DetallesProducto(producto,inventario,auditoria);
+	    				DetallesProducto detalleProducto = new DetallesProducto(producto, inventario, auditoria, listaClientes, historialCompras);
 	    				detalleProducto.setVisible(true);
 	    				setVisible(false);
 	    			}

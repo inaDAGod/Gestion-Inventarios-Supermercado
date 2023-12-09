@@ -7,6 +7,8 @@ import javax.swing.border.*;
 
 import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Proveedor;
@@ -16,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.awt.event.ActionEvent;
@@ -29,12 +32,16 @@ public class DetallesProducto extends JFrame {
 	private JTextField txtFechaVence;
 	private JTextField txtProveedor;
 	private Auditoria auditoria;
+	private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
 	
 
-	public DetallesProducto(Producto produ,Inventario i,Auditoria a) {
+	public DetallesProducto(Producto produ,Inventario i,Auditoria a,List<Cliente> listaClientes,List<Comprado> historialCompras ) {
 		this.producto = produ;
 		this.inventario = i;
 		this.auditoria = a;
+		this.listaClientes=listaClientes;
+		this.historialCompras=historialCompras;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		
@@ -45,7 +52,7 @@ public class DetallesProducto extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				ListaProductos frame = new ListaProductos(inventario,auditoria);
+				ListaProductos frame = new ListaProductos(inventario,auditoria, listaClientes, historialCompras);
 				frame.setVisible(true);
 			}
 		});
