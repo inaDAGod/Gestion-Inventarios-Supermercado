@@ -67,6 +67,8 @@ public class Elegirproduc extends JFrame {
         setContentPane(contentPane);
     contentPane.setLayout(null);
 
+    contentPane.setBackground(new Color(233, 225, 221));
+
     JPanel panelCabecera = new JPanel();
     panelCabecera.setBackground(Color.WHITE);
     panelCabecera.setBounds(5, 5, 1176, 117);
@@ -81,7 +83,7 @@ public class Elegirproduc extends JFrame {
     panelBotonesCabecera.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
     JButton btnAtras = new JButton("< Volver");
-    btnAtras.setBackground(Color.PINK);
+    btnAtras.setBackground(new Color(246,196,205));
     btnAtras.setForeground(Color.WHITE);
     btnAtras.setFont(new Font("Times New Roman", Font.ITALIC, 10));
     btnAtras.addActionListener(new ActionListener() {
@@ -94,6 +96,7 @@ public class Elegirproduc extends JFrame {
     	});
     
     panelBotonesCabecera.add(btnAtras);
+    panelBotonesCabecera.setBackground(new Color(163, 163, 163));
 
     JButton btnPerfil = new JButton("");
     ImageIcon iconOriginal = new ImageIcon("/imagenes/perfilpersona.png");
@@ -119,12 +122,13 @@ public class Elegirproduc extends JFrame {
     panel_1.setLayout(null);
     
     JLabel lblNewLabel = new JLabel("Ingrese el dato a buscar:");
-    lblNewLabel.setForeground(Color.PINK);
+    lblNewLabel.setForeground(new Color(246,196,205));
     lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 25));
     lblNewLabel.setBounds(10, 51, 282, 31);
     panel_1.add(lblNewLabel);
     
     txtDatoABuscar = new JTextField();
+    txtDatoABuscar.setForeground(new Color(163, 163, 163));
     txtDatoABuscar.setFont(new Font("Times New Roman", Font.ITALIC, 25));
     txtDatoABuscar.setText("Dato a Buscar");
     txtDatoABuscar.setBounds(302, 48, 701, 37);
@@ -133,13 +137,13 @@ public class Elegirproduc extends JFrame {
     ButtonGroup buttonGroup = new ButtonGroup();
 
     JRadioButton rdbtnNewRadioButton = new JRadioButton(" Nombre");
-    rdbtnNewRadioButton.setForeground(Color.PINK);
+    rdbtnNewRadioButton.setForeground(new Color(246,196,205));
     rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
     rdbtnNewRadioButton.setBounds(721, 5, 123, 39);
     panel_1.add(rdbtnNewRadioButton);
 
     JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Categoria");
-    rdbtnNewRadioButton_1.setForeground(Color.PINK);
+    rdbtnNewRadioButton_1.setForeground(new Color(246,196,205));
     rdbtnNewRadioButton_1.setFont(new Font("Times New Roman", Font.ITALIC, 25));
     rdbtnNewRadioButton_1.setBounds(415, 5, 133, 39);
     panel_1.add(rdbtnNewRadioButton_1);
@@ -161,13 +165,13 @@ public class Elegirproduc extends JFrame {
     mostrarProductos(inventario.getProductos(), panelTarjetas);
     
     JLabel lblSedatoABuscar = new JLabel("Seleccione el tipo de dato:");
-    lblSedatoABuscar.setForeground(Color.PINK);
+    lblSedatoABuscar.setForeground(new Color(246,196,205));
     lblSedatoABuscar.setFont(new Font("Times New Roman", Font.ITALIC, 25));
     lblSedatoABuscar.setBounds(0, 9, 298, 31);
     panel_1.add(lblSedatoABuscar);
     
     JButton btnNewButton = new JButton("Buscar ");
-    btnNewButton.setBackground(Color.PINK);
+    btnNewButton.setBackground(new Color(246,196,205));
     btnNewButton.setForeground(Color.WHITE);
     btnNewButton.setBounds(1013, 47, 153, 39);
     btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
@@ -212,6 +216,7 @@ public class Elegirproduc extends JFrame {
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setBounds(100, 100, 1200, 800);
 	        contentPane = new JPanel();
+	        contentPane.setBackground(new Color(233, 225, 221));
 	        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	        setContentPane(contentPane);
         contentPane.setLayout(null);
@@ -227,11 +232,12 @@ public class Elegirproduc extends JFrame {
         panelCabecera.add(imagenCaritas, BorderLayout.WEST);
 
         JPanel panelBotonesCabecera = new JPanel();
+        panelBotonesCabecera.setBackground(new Color(163, 163, 163));
         panelCabecera.add(panelBotonesCabecera, BorderLayout.EAST);
         panelBotonesCabecera.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
         JButton btnAtras = new JButton("< Volver");
-        btnAtras.setBackground(Color.PINK);
+        btnAtras.setBackground(new Color(246, 196, 205));
         btnAtras.setForeground(Color.WHITE);
         btnAtras.setFont(new Font("Times New Roman", Font.ITALIC, 10));
         btnAtras.addActionListener(new ActionListener() {
@@ -264,17 +270,19 @@ public class Elegirproduc extends JFrame {
         panel.setLayout(null);
 
         JPanel panel_1 = new JPanel();
+        panel_1.setBackground(new Color(233, 225, 221));
         panel_1.setBounds(0, 0, 1176, 96);
         panel.add(panel_1);
         panel_1.setLayout(null);
         
         JLabel lblNewLabel = new JLabel("Ingrese el dato a buscar:");
-        lblNewLabel.setForeground(Color.PINK);
+        lblNewLabel.setForeground(new Color(246, 196, 205));
         lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         lblNewLabel.setBounds(10, 51, 282, 31);
         panel_1.add(lblNewLabel);
         
         txtDatoABuscar = new JTextField();
+        txtDatoABuscar.setForeground(new Color(163, 163, 163));
         txtDatoABuscar.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         txtDatoABuscar.setText("Dato a Buscar");
         txtDatoABuscar.setBounds(302, 48, 701, 37);
@@ -283,13 +291,13 @@ public class Elegirproduc extends JFrame {
         ButtonGroup buttonGroup = new ButtonGroup();
 
         JRadioButton rdbtnNewRadioButton = new JRadioButton(" Nombre");
-        rdbtnNewRadioButton.setForeground(Color.PINK);
+        rdbtnNewRadioButton.setForeground(new Color(246, 196, 205));
         rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         rdbtnNewRadioButton.setBounds(721, 5, 123, 39);
         panel_1.add(rdbtnNewRadioButton);
 
         JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Categoria");
-        rdbtnNewRadioButton_1.setForeground(Color.PINK);
+        rdbtnNewRadioButton_1.setForeground(new Color(246, 196, 205));
         rdbtnNewRadioButton_1.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         rdbtnNewRadioButton_1.setBounds(415, 5, 133, 39);
         panel_1.add(rdbtnNewRadioButton_1);
@@ -304,20 +312,20 @@ public class Elegirproduc extends JFrame {
         panel_2.setLayout(new BorderLayout());
 
         JPanel panelTarjetas = new JPanel(new GridLayout(0, 4, 10, 10));
-        panelTarjetas.setBackground(Color.WHITE);
+        panelTarjetas.setBackground(new Color(163, 163, 163));
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         panel_2.add(scrollPane, BorderLayout.CENTER);
 
         mostrarProductos(inventario.getProductos(), panelTarjetas);
         
         JLabel lblSedatoABuscar = new JLabel("Seleccione el tipo de dato:");
-        lblSedatoABuscar.setForeground(Color.PINK);
+        lblSedatoABuscar.setForeground(new Color(246, 196, 205));
         lblSedatoABuscar.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         lblSedatoABuscar.setBounds(0, 9, 298, 31);
         panel_1.add(lblSedatoABuscar);
         
         JButton btnNewButton = new JButton("Buscar ");
-        btnNewButton.setBackground(Color.PINK);
+        btnNewButton.setBackground(new Color(246, 196, 205));
         btnNewButton.setForeground(Color.WHITE);
         btnNewButton.setBounds(1013, 47, 153, 39);
         btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
