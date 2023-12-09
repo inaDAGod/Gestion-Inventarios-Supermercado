@@ -43,13 +43,14 @@ public class RegistrandoCli extends JFrame {
     
  
     
-    public RegistrandoCli(List<Compras> listaCompras,Inventario inventario) {
+    public RegistrandoCli(List<Compras> listaCompras,Inventario inventario,Auditoria auditoria) {
     	
         super("Búsqueda de Clientes");
         listaClientes = new ArrayList<>();
         areaResultado = new JTextArea();
         this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
         this.inventario = inventario;
+        this.auditoria=auditoria;
 
         gestorClientes = new GestorClientes();
         mostrarClientesRegistrados();
@@ -171,7 +172,7 @@ public class RegistrandoCli extends JFrame {
 		    	    } catch (IOException ex) {
 		    	        ex.printStackTrace();
 		    	    }
-                    FacturaPage facturaPage = new FacturaPage(clienteSeleccionado,inventario);
+                    FacturaPage facturaPage = new FacturaPage(clienteSeleccionado,inventario, auditoria);
                     facturaPage.setVisible(true);
                     setVisible(false);
                     dispose();
