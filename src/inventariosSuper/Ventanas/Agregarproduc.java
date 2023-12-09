@@ -38,28 +38,17 @@ public class Agregarproduc extends JFrame {
     private JTextArea textArea_2;
     private StringBuilder comprasTexto;
     private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
-
+    private Inventario inventario;
+    private List<Compras> comprasList;
     
     
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Agregarproduc frame = new Agregarproduc(null, null, null);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    
 
-    ;
-
-    public Agregarproduc(Producto produ, Inventario i, List<Compras> listaCompras) {
+    public Agregarproduc(Producto produ, Inventario inventario, List<Compras> listaCompras) {
         this.producto = produ;
         this.listaCompras = listaCompras != null ? new ArrayList<>(listaCompras) : new ArrayList<>();
+        this.inventario = inventario;
         
 
 
@@ -165,7 +154,7 @@ public class Agregarproduc extends JFrame {
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Elegirregistro detalleProducto = new Elegirregistro(listaCompras);
+                    Elegirregistro detalleProducto = new Elegirregistro(listaCompras,inventario);
                     detalleProducto.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -231,7 +220,7 @@ public class Agregarproduc extends JFrame {
         contentPane.add(lblCostoTotal);
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	Elegirproduc paginaAnterior = new Elegirproduc(i, listaCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
+            	Elegirproduc paginaAnterior = new Elegirproduc(inventario, listaCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
                 paginaAnterior.setVisible(true); // Muestra la página anterior
                 dispose(); // Cierra la página actual
             }

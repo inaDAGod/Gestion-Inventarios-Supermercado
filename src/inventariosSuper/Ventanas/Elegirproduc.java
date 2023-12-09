@@ -47,7 +47,7 @@ import inventariosSuper.Clases.Compras;
 
 public class Elegirproduc extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private Inventario inventario;
 	private Compras compras;

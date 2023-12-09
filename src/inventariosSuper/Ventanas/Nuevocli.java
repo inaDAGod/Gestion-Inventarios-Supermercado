@@ -47,33 +47,12 @@ public class Nuevocli extends JFrame {
 	private JButton btnRegistro;
 	private Compras compras;
 	private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
+	private Inventario inventario;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-	    // Assuming you have a reference to listaCompras in the scope of Elegirregistro
-	    List<Compras> listaCompras = new ArrayList<>(); // Populate this with your actual data
-
-	    EventQueue.invokeLater(new Runnable() {
-	        public void run() {
-	            try {
-	                Nuevocli frame = new Nuevocli(listaCompras);
-	                frame.setVisible(true);
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    });
-	}
-
-
-
-	/**
-	 * Create the frame.
-	 */
-	public Nuevocli(List<Compras> listaCompras) {
+	
+	public Nuevocli(List<Compras> listaCompras, Inventario inventario) {
 	    this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
+	    this.inventario=inventario;
 	    
 
 
@@ -230,7 +209,7 @@ public class Nuevocli extends JFrame {
 			    private void abrirPaginaFactura() {
 			        if (clienteRegistrado != null) {
 			            if (!clienteRegistrado.getListaCompras().isEmpty()) {
-			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
+			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado,inventario);
 			                facturaPage.setVisible(true);
 			                setVisible(false);
 			                dispose();
