@@ -89,11 +89,12 @@ public class Nuevocli extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(233, 225, 221));
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Registro de Nuevo Cliente");
-		lblNewLabel.setForeground(Color.PINK);
+		lblNewLabel.setForeground(new Color(246, 196, 205));
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 45));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,27 +110,27 @@ public class Nuevocli extends JFrame {
 		txtNombre = new JTextField();
 		txtNombre.setBounds(48, 103, 152, 38);
 		txtNombre.setText("Nombre");
-		txtNombre.setForeground(Color.PINK);
+		txtNombre.setForeground(new Color(246, 196, 205));
 		panel_1.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtCarnet = new JTextField();
 		txtCarnet.setText("Carnet");
-		txtCarnet.setForeground(Color.PINK);
+		txtCarnet.setForeground(new Color(255, 175, 175));
 		txtCarnet.setColumns(10);
 		txtCarnet.setBounds(48, 195, 152, 38);
 		panel_1.add(txtCarnet);
 		
 		txtDirecion = new JTextField();
 		txtDirecion.setText("Direcion");
-		txtDirecion.setForeground(Color.PINK);
+		txtDirecion.setForeground(new Color(255, 175, 175));
 		txtDirecion.setColumns(10);
 		txtDirecion.setBounds(48, 297, 152, 38);
 		panel_1.add(txtDirecion);
 		
 		txtNumero = new JTextField();
 		txtNumero.setText("Numero");
-		txtNumero.setForeground(Color.PINK);
+		txtNumero.setForeground(new Color(255, 175, 175));
 		txtNumero.setColumns(10);
 		txtNumero.setBounds(436, 195, 152, 38);
 		panel_1.add(txtNumero);
@@ -155,7 +156,7 @@ public class Nuevocli extends JFrame {
 		panel_1.add(lblNewLabel_5);
 		
 		btnRegistro = new JButton("Registro");
-		btnRegistro.setBackground(Color.PINK);
+		btnRegistro.setBackground(new Color(255, 175, 175));
 		btnRegistro.setForeground(Color.WHITE);
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
