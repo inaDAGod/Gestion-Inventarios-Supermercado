@@ -21,7 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;
@@ -46,34 +46,18 @@ public class Nuevocli extends JFrame {
 	private JLabel lblNewLabel_5;
 	private JButton btnRegistro;
 	private Compras compras;
+	private Auditoria auditoria;
 	private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
+	private Inventario inventario;
+	private List<Comprado> historialCompras = new ArrayList<>();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-	    // Assuming you have a reference to listaCompras in the scope of Elegirregistro
-	    List<Compras> listaCompras = new ArrayList<>(); // Populate this with your actual data
-
-	    EventQueue.invokeLater(new Runnable() {
-	        public void run() {
-	            try {
-	                Nuevocli frame = new Nuevocli(listaCompras);
-	                frame.setVisible(true);
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    });
-	}
-
-
-
-	/**
-	 * Create the frame.
-	 */
-	public Nuevocli(List<Compras> listaCompras) {
+	
+	public Nuevocli(List<Compras> listaCompras, Inventario inventario,Auditoria auditoria,List<Cliente> listaClientes,List<Comprado> historialCompras ) {
 	    this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
+	    this.inventario=inventario;
+	    this.auditoria = auditoria;
+	    this.listaClientes = listaClientes;
+	    this.historialCompras=historialCompras;
 	    
 
 
@@ -191,21 +175,10 @@ public class Nuevocli extends JFrame {
 			    	    Cliente nuevoCliente = new Cliente(nombre, id, numero, direccion, listaCompras);
 			    	    listaClientes.add(nuevoCliente);
 
-			    	    // Agregar el cliente al archivo de texto
-			    	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
-			    	        writer.write(nuevoCliente.getNombre() + "," + nuevoCliente.getId() + "," + nuevoCliente.getNumero() + "," + nuevoCliente.getDireccion());
-			    	        writer.newLine();
-			    	    } catch (IOException ex) {
-			    	        ex.printStackTrace();
-			    	    }
-			    	    try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientescomp.txt", true))) {
-			    	        writer.write(nuevoCliente.getNombre() + "," + nuevoCliente.getId() + "," + nuevoCliente.getNumero() + "," + nuevoCliente.getDireccion()+ "," +nuevoCliente.getListaCompras());
-			    	        writer.newLine();
-			    	    } catch (IOException ex) {
-			    	        ex.printStackTrace();
-			    	    }
+			    	    
 
 			    	    clienteRegistrado = nuevoCliente;
+
 
 			    	    JOptionPane.showMessageDialog(null, "Nuevo cliente registrado: " + nuevoCliente.getNombre(), "Nuevo Cliente", JOptionPane.INFORMATION_MESSAGE);
 
@@ -230,7 +203,7 @@ public class Nuevocli extends JFrame {
 			    private void abrirPaginaFactura() {
 			        if (clienteRegistrado != null) {
 			            if (!clienteRegistrado.getListaCompras().isEmpty()) {
-			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado);
+			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado, inventario, auditoria, listaClientes, historialCompras);
 			                facturaPage.setVisible(true);
 			                setVisible(false);
 			                dispose();

@@ -6,8 +6,6 @@ import javax.swing.border.EmptyBorder;
 
 
 import inventariosSuper.Clases.*;
-import inventariosSuper.Clases.Comprado;
-
 
 import javax.swing.*;
 import javax.swing.*;
@@ -31,7 +29,7 @@ import java.awt.Color;
 
 public class RegistrandoCli extends JFrame {
 
-    private List<Cliente> listaClientes;
+	private List<Cliente> listaClientes = new ArrayList<>();
     private Compras compras;
     private Inventario inventario;
     private Auditoria auditoria;
@@ -40,36 +38,27 @@ public class RegistrandoCli extends JFrame {
     private Cliente clienteSeleccionado;
     private JTextField campoBusqueda;
     private JTextArea areaResultado;
-    private GestorClientes gestorClientes;
+    private List<Comprado> historialCompras = new ArrayList<>();
     
-    public static void main(String[] args) {
-    	 List<Compras> listaCompras = new ArrayList<>(); // Populate this with your actual data
-
- 	    EventQueue.invokeLater(new Runnable() {
- 	        public void run() {
- 	            try {
- 	                RegistrandoCli frame = new RegistrandoCli(listaCompras);
- 	                frame.setVisible(true);
- 	            } catch (Exception e) {
- 	                e.printStackTrace();
- 	            }
- 	        }
- 	    });
- 	}
     
-    public RegistrandoCli(List<Compras> listaCompras) {
+ 
+    
+    public RegistrandoCli(List<Compras> listaCompras,Inventario inventario,Auditoria auditoria,List<Cliente> listaClientes,List<Comprado> historialCompras ) {
     	
-        super("Búsqueda de Clientes");
-        listaClientes = new ArrayList<>();
+        
+    	super("Búsqueda de Clientes");
+        this.listaClientes = listaClientes;
         areaResultado = new JTextArea();
-        this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
-
-        gestorClientes = new GestorClientes();
-        mostrarClientesRegistrados();
+        this.listaCompras = listaCompras;
+        this.inventario = inventario;
+        this.auditoria=auditoria;
+        this.listaClientes=listaClientes;
+        this.historialCompras=historialCompras;
+        
+        mostrarClientesRegistrados(clienteSeleccionado);
         setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        cargarClientesDesdeArchivo("clientes.txt");
         
 
         JPanel panel = new JPanel();
@@ -125,15 +114,43 @@ public class RegistrandoCli extends JFrame {
         lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 45));
         lblNewLabel.setBounds(349, 54, 500, 84);
         panel.add(lblNewLabel);
-        setVisible(true);}
+        setVisible(true);
+        }
     
 
+    
+        
+    private void abrirPaginaFactura() {
+        if (clienteSeleccionado != null) {
+        	clienteSeleccionado.setListaCompras(listaCompras);
+            if (!clienteSeleccionado.getListaCompras().isEmpty()) {
+                 
+                FacturaPage facturaPage = new FacturaPage(clienteSeleccionado, inventario, auditoria, listaClientes, historialCompras);
+                facturaPage.setVisible(true);
+                setVisible(false);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "El cliente no tiene compras registradas.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+        
+
+        
+        
+        
+//-----------        
+        
     private void buscarCliente1() {
-        String nombreBusqueda = campoBusqueda.getText().toLowerCase(); // Convert input to lowercase
+        String nombreBusqueda = campoBusqueda.getText(); 
         List<Cliente> clientesEncontrados = new ArrayList<>();
 
         for (Cliente cliente : listaClientes) {
-            if (cliente.getNombre().toLowerCase().contains(nombreBusqueda)) {
+            String nombreCliente = cliente.getNombre().toLowerCase(); 
+            if (nombreCliente.startsWith(nombreBusqueda.toLowerCase())) {
                 clientesEncontrados.add(cliente);
             }
         }
@@ -141,93 +158,46 @@ public class RegistrandoCli extends JFrame {
         if (!clientesEncontrados.isEmpty()) {
             clienteSeleccionado = seleccionarCliente(clientesEncontrados);
             if (clienteSeleccionado != null) {
-                StringBuilder resultText = new StringBuilder("Clientes encontrados:\n");
-                for (Cliente cliente : clientesEncontrados) {
-                    resultText.append("Nombre: ").append(cliente.getNombre())
-                            .append(", ID: ").append(cliente.getId())
-                            .append(", Número: ").append(cliente.getNumero())
-                            .append(", Dirección: ").append(cliente.getDireccion())
-                            .append("\n");
-                }
-                areaResultado.setText(resultText.toString());
+                mostrarClientesRegistrados(clienteSeleccionado);
             }
         } else {
             areaResultado.setText("Cliente no encontrado.");
         }
     }
 
-    
-    
 
+    private Cliente seleccionarCliente(List<Cliente> clientes) {
+        Cliente[] clientesArray = clientes.toArray(new Cliente[0]);
+        Cliente clienteSeleccionado = (Cliente) JOptionPane.showInputDialog(
+                this,
+                "Selecciona un cliente:",
+                "Clientes encontrados",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                clientesArray,
+                clientesArray[0]
+        );
 
-        private Cliente seleccionarCliente(List<Cliente> clientes) {
-            Cliente[] clientesArray = clientes.toArray(new Cliente[0]);
-            Cliente clienteSeleccionado = (Cliente) JOptionPane.showInputDialog(
-                    this,
-                    "Selecciona un cliente:",
-                    "Clientes encontrados",
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    clientesArray,
-                    clientesArray[0]
-            );
+        return clienteSeleccionado;
+    }
 
-            return clienteSeleccionado;
-        }
-        
-        private void abrirPaginaFactura() {
-            if (clienteSeleccionado != null) {
-                if (!clienteSeleccionado.getListaCompras().isEmpty()) {
-                	try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientescomp.txt", true))) {
-		    	        writer.write(clienteSeleccionado.getNombre() + "," + clienteSeleccionado.getId() + "," + clienteSeleccionado.getNumero() + "," + clienteSeleccionado.getDireccion()+ "," +clienteSeleccionado.getListaCompras());
-		    	        writer.newLine();
-		    	    } catch (IOException ex) {
-		    	        ex.printStackTrace();
-		    	    }
-                    FacturaPage facturaPage = new FacturaPage(clienteSeleccionado);
-                    facturaPage.setVisible(true);
-                    setVisible(false);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "El cliente no tiene compras registradas.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Por favor, selecciona un cliente primero.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-        
-        
-        
-//-----------        
-        private void cargarClientesDesdeArchivo(String rutaArchivo) {
-            try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    String[] datosCliente = linea.split(",");
-                    // Crear el cliente a partir de los datos del archivo
-                    Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]), Integer.parseInt(datosCliente[2]), datosCliente[3], listaCompras);
-                    listaClientes.add(cliente);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        
-        private void mostrarClientesRegistrados() {
-            List<Cliente> clientes = gestorClientes.getListaClientes();
-
+    private void mostrarClientesRegistrados(Cliente cliente) {
+        if (cliente != null) {
             StringBuilder clientesRegistrados = new StringBuilder();
-            for (Cliente cliente : clientes) {
-                clientesRegistrados.append("Nombre: ").append(cliente.getNombre())
-                        .append(", ID: ").append(cliente.getId())
-                        .append(", Número: ").append(cliente.getNumero())
-                        .append(", Dirección: ").append(cliente.getDireccion())
-                        .append("\n");
-            }
+            clientesRegistrados.append("Nombre: ").append(cliente.getNombre())
+                .append(", ID: ").append(cliente.getId())
+                .append(", Número: ").append(cliente.getNumero())
+                .append(", Dirección: ").append(cliente.getDireccion())
+                .append("\n");
 
             areaResultado.setText(clientesRegistrados.toString());
+        } else {
+            areaResultado.setText("Cliente no encontrado.");
         }
+    }
+
+
+
         
 //--------    
        

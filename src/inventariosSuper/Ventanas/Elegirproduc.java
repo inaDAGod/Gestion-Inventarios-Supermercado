@@ -47,19 +47,24 @@ import inventariosSuper.Clases.Compras;
 
 public class Elegirproduc extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private Inventario inventario;
 	private Compras compras;
 	private JTextField txtDatoABuscar;
-	private static List<Compras> listaCompras = new ArrayList<>();
+	private List<Compras> listaCompras = new ArrayList<>();
 	private Auditoria auditoria;
-	private List<Cliente> listaClientes;
-    private Comprado historialCompras;
+    private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
 	
-	public Elegirproduc(Inventario inventario) {
+    public Elegirproduc(Inventario inventario, Auditoria auditoria, List<Compras> listaCompras,List<Cliente> listaClientes, List<Comprado> historialCompras) {
         this.inventario = inventario;
-        this.listaCompras = ListaComprasCompartida.getListaCompras();
+        this.auditoria = auditoria;
+        this.listaCompras = listaCompras != null ? new ArrayList<>(listaCompras) : new ArrayList<>();
+        this.listaClientes=listaClientes;
+        this.historialCompras=historialCompras;
+        
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         contentPane = new JPanel();
@@ -89,7 +94,7 @@ public class Elegirproduc extends JFrame {
     btnAtras.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     			setVisible(false);
-    			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
+    			VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria, listaClientes, historialCompras);
     			ventanaInicio.setVisible(true);
     			
     		}
@@ -205,155 +210,16 @@ public class Elegirproduc extends JFrame {
 
     
 
+
+
+
+
+
 	/**
 	 * Create the frame.
 	 * @wbp.parser.constructor
 	 */
-	public Elegirproduc(Inventario inventario, List<Compras> listaCompras) {
-			this.inventario = inventario;
-	        
-
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        setBounds(100, 100, 1200, 800);
-	        contentPane = new JPanel();
-	        contentPane.setBackground(new Color(233, 225, 221));
-	        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	        setContentPane(contentPane);
-        contentPane.setLayout(null);
-
-        // Panel de cabecera
-        JPanel panelCabecera = new JPanel();
-        panelCabecera.setBackground(Color.WHITE);
-        panelCabecera.setBounds(5, 5, 1176, 117);
-        contentPane.add(panelCabecera);
-        panelCabecera.setLayout(new BorderLayout(0, 0));
-
-        JLabel imagenCaritas = new JLabel("");
-        panelCabecera.add(imagenCaritas, BorderLayout.WEST);
-
-        JPanel panelBotonesCabecera = new JPanel();
-        panelBotonesCabecera.setBackground(new Color(163, 163, 163));
-        panelCabecera.add(panelBotonesCabecera, BorderLayout.EAST);
-        panelBotonesCabecera.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-        JButton btnAtras = new JButton("< Volver");
-        btnAtras.setBackground(new Color(246, 196, 205));
-        btnAtras.setForeground(Color.WHITE);
-        btnAtras.setFont(new Font("Times New Roman", Font.ITALIC, 10));
-        btnAtras.addActionListener(new ActionListener() {
-        		public void actionPerformed(ActionEvent e) {
-        			setVisible(false);
-        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
-        			ventanaInicio.setVisible(true);
-        			
-        		}
-        	});
-        
-        panelBotonesCabecera.add(btnAtras);
-
-        JButton btnPerfil = new JButton("");
-        ImageIcon iconOriginal = new ImageIcon("/imagenes/perfilpersona.png");
-        Image imagenOriginal = iconOriginal.getImage();
-        int nuevoAncho = 100;
-        int nuevoAlto = 100;
-        Image imagenRedimensionada = imagenOriginal.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
-        ImageIcon iconRedimensionadoPerfil = new ImageIcon(imagenRedimensionada);
-        btnPerfil.setIcon(iconRedimensionadoPerfil);
-        panelBotonesCabecera.add(btnPerfil);
-
-        JSeparator separator = new JSeparator();
-        panelCabecera.add(separator, BorderLayout.SOUTH);
-        
-        JPanel panel = new JPanel();
-        panel.setBounds(5, 120, 1176, 638);
-        contentPane.add(panel);
-        panel.setLayout(null);
-
-        JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(233, 225, 221));
-        panel_1.setBounds(0, 0, 1176, 96);
-        panel.add(panel_1);
-        panel_1.setLayout(null);
-        
-        JLabel lblNewLabel = new JLabel("Ingrese el dato a buscar:");
-        lblNewLabel.setForeground(new Color(246, 196, 205));
-        lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-        lblNewLabel.setBounds(10, 51, 282, 31);
-        panel_1.add(lblNewLabel);
-        
-        txtDatoABuscar = new JTextField();
-        txtDatoABuscar.setForeground(new Color(163, 163, 163));
-        txtDatoABuscar.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-        txtDatoABuscar.setText("Dato a Buscar");
-        txtDatoABuscar.setBounds(302, 48, 701, 37);
-        panel_1.add(txtDatoABuscar);
-        txtDatoABuscar.setColumns(10);
-        ButtonGroup buttonGroup = new ButtonGroup();
-
-        JRadioButton rdbtnNewRadioButton = new JRadioButton(" Nombre");
-        rdbtnNewRadioButton.setForeground(new Color(246, 196, 205));
-        rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-        rdbtnNewRadioButton.setBounds(721, 5, 123, 39);
-        panel_1.add(rdbtnNewRadioButton);
-
-        JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Categoria");
-        rdbtnNewRadioButton_1.setForeground(new Color(246, 196, 205));
-        rdbtnNewRadioButton_1.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-        rdbtnNewRadioButton_1.setBounds(415, 5, 133, 39);
-        panel_1.add(rdbtnNewRadioButton_1);
-
-        buttonGroup.add(rdbtnNewRadioButton); // Agregar al ButtonGroup
-        buttonGroup.add(rdbtnNewRadioButton_1); // Agregar al ButtonGroup
-
-
-        JPanel panel_2 = new JPanel();
-        panel_2.setBounds(0, 96, 1176, 542);
-        panel.add(panel_2);
-        panel_2.setLayout(new BorderLayout());
-
-        JPanel panelTarjetas = new JPanel(new GridLayout(0, 4, 10, 10));
-        panelTarjetas.setBackground(new Color(163, 163, 163));
-        JScrollPane scrollPane = new JScrollPane(panelTarjetas);
-        panel_2.add(scrollPane, BorderLayout.CENTER);
-
-        mostrarProductos(inventario.getProductos(), panelTarjetas);
-        
-        JLabel lblSedatoABuscar = new JLabel("Seleccione el tipo de dato:");
-        lblSedatoABuscar.setForeground(new Color(246, 196, 205));
-        lblSedatoABuscar.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-        lblSedatoABuscar.setBounds(0, 9, 298, 31);
-        panel_1.add(lblSedatoABuscar);
-        
-        JButton btnNewButton = new JButton("Buscar ");
-        btnNewButton.setBackground(new Color(246, 196, 205));
-        btnNewButton.setForeground(Color.WHITE);
-        btnNewButton.setBounds(1013, 47, 153, 39);
-        btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para buscar productos
-                String datoABuscar = txtDatoABuscar.getText();
-
-                if (rdbtnNewRadioButton.isSelected()) {
-                    // Buscar por nombre
-                    List<Producto> productosPorNombre = buscarPorNombre(inventario.getProductos(), datoABuscar);
-                    mostrarProductos(productosPorNombre, panelTarjetas);
-                } else if (rdbtnNewRadioButton_1.isSelected()) {
-                    // Buscar por categoría
-                    List<Producto> productosPorCategoria = buscarPorCategoria(inventario.getProductos(), datoABuscar);
-                    mostrarProductos(productosPorCategoria, panelTarjetas);
-                }
-            }
-        });
-        panel_1.add(btnNewButton);
-
-       
-     
-        
-     // Agrupar los JRadioButtons para permitir solo una selección
-       
-        
-    }
+	
 	 private void mostrarProductos(List<Producto> listaProductos, JPanel panelTarjetas) {
 		  panelTarjetas.removeAll();
 		 int numProductos = listaProductos.size();
@@ -374,8 +240,8 @@ public class Elegirproduc extends JFrame {
 	            buttonProducto.add(labelImagen, BorderLayout.CENTER);
 	            buttonProducto.addActionListener(new ActionListener() {
 	    			public void actionPerformed(ActionEvent e) {
-	    				System.out.println("Lista de compras en Elegirproduc: " + listaCompras);
-	    				Agregarproduc frame = new Agregarproduc(producto, inventario, listaCompras);
+	    				
+	    				Agregarproduc frame = new Agregarproduc(producto, inventario, listaCompras, auditoria, listaClientes, historialCompras);
 
 	    				frame.setVisible(true);
 	    				setVisible(false);

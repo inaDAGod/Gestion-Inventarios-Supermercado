@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.border.EmptyBorder;
@@ -33,22 +34,24 @@ public class FacturaPage extends JFrame {
     private Comprado u;
     private Inventario inventario;
 	private Auditoria auditoria;
-	private List<Cliente> listaClientes;
-	private Comprado historialCompras;
+	private List<Cliente> listaClientes = new ArrayList<>();
+	private List<Comprado> historialCompras = new ArrayList<>();
+	//private MostrarClientes ventanaMostrarClientes;
 	
 
     private MostrarClientes mostrarClientes;
 
     // Constructor que recibe MostrarClientes como parámetro adicional
-    public FacturaPage(Cliente cliente) {
+    public FacturaPage(Cliente cliente, Inventario inventario,Auditoria auditoria, List<Cliente> listaClientes,List<Comprado> historialCompras ) {
         this.cliente = cliente;
+        this.inventario = inventario;
         this.u = new Comprado(cliente, LocalDateTime.now()); // Crear instancia con tiempo actual
-        this.mostrarClientes = mostrarClientes; // Guarda la instancia de MostrarClientes
-        initialize();
-    }
-
-
-    public void initialize() {
+        this.mostrarClientes = mostrarClientes;
+        this.auditoria = auditoria;
+        this.listaClientes = listaClientes;
+        this.historialCompras=historialCompras;
+        //this.ventanaMostrarClientes = ventanaMostrarClientes;
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 713);
         contentPane = new JPanel();
@@ -132,27 +135,19 @@ public class FacturaPage extends JFrame {
                     " - Costo Total: $" + costoTotal + "\n");
         }
     }
-
+    
     
     
     public void registrarCompra() {
-        LocalDateTime fechaActual = LocalDateTime.now(); // Obtiene la fecha actual
-        u.agregarCompra(cliente, fechaActual); // Agrega la compra al historial
+        LocalDateTime fechaActual = LocalDateTime.now(); 
+        historialCompras.add(new Comprado(cliente, fechaActual));
+
+
+
         JOptionPane.showMessageDialog(null, "Compra registrada para " + cliente.getNombre());
 
-        // Guardar en un archivo de texto
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("compras.txt", true))) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String formattedDate = fechaActual.format(formatter);
-            String data = cliente.getNombre() + "," + formattedDate + "\n";
-            writer.write(data);
-            writer.flush(); // Asegúrate de que los datos se escriban en el archivo
-            
-            // Actualiza la visualización de compras en la instancia de MostrarClientes
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         
     }
+
+	
 }

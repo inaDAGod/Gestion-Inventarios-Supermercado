@@ -34,19 +34,24 @@ import java.awt.event.ActionEvent;
 public class MostrarClientes extends JFrame {
 
     private JTextArea textArea;
-    private List<Cliente> listaClientes;
+    private List<Cliente> listaClientes = new ArrayList<>();
     private Comprado comprado;
     private Inventario inventario;
 	private Auditoria auditoria;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private List<Comprado> historialCompras = new ArrayList<>();
 
-    public MostrarClientes(List<Cliente> listaClientes, Comprado comprado) {
+    public MostrarClientes(List<Cliente> listaClientes,Inventario inventario,Auditoria auditoria,List<Comprado> historialCompras) {
         this.listaClientes = listaClientes;
         this.comprado = comprado;
+        this.inventario = inventario;
+        this.auditoria=auditoria;
+        this.historialCompras=historialCompras;
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         JPanel contentPane = new JPanel();
+        contentPane.setBackground(new Color(233, 225, 221));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
@@ -58,7 +63,7 @@ public class MostrarClientes extends JFrame {
         textArea.setEditable(false);
         
         JLabel lblNewLabel = new JLabel("Clientes registrados");
-        lblNewLabel.setForeground(Color.PINK);
+        lblNewLabel.setForeground(new Color(246,196,205));
         lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 40));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setBounds(437, 74, 346, 59);
@@ -68,13 +73,13 @@ public class MostrarClientes extends JFrame {
         btnNewButton.addActionListener(new ActionListener() {
         		public void actionPerformed(ActionEvent e) {
         			setVisible(false);
-        			VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, comprado);
+        			VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria, listaClientes, historialCompras);
         			ventanaInicio.setVisible(true);
         			
         		}
         	});;
         btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-        btnNewButton.setBackground(Color.PINK);
+        btnNewButton.setBackground(new Color(246,196,205));
         btnNewButton.setForeground(Color.WHITE);
         btnNewButton.setBounds(989, 26, 133, 53);
         contentPane.add(btnNewButton);
@@ -84,10 +89,12 @@ public class MostrarClientes extends JFrame {
     
 
     public void mostrarCompras() {
-        if (listaClientes != null && comprado != null) {
+        if (listaClientes != null && historialCompras != null && !listaClientes.isEmpty() && !historialCompras.isEmpty()) {
             textArea.append("\n\nHistorial de compras:\n");
-            for (Cliente cliente : listaClientes) {
-                LocalDateTime fechaCompra = comprado.obtenerFechaDeCompra(cliente);
+            for (int i = 0; i < listaClientes.size(); i++) {
+                Cliente cliente = listaClientes.get(i);
+                Comprado compras = historialCompras.get(i);
+                LocalDateTime fechaCompra = compras.obtenerFechaDeCompra(cliente);
                 if (fechaCompra != null) {
                     textArea.append("Cliente: " + cliente.getNombre() + "\n");
                     textArea.append("Fecha de compra: " + fechaCompra.format(formatter) + "\n\n");
@@ -97,63 +104,20 @@ public class MostrarClientes extends JFrame {
             textArea.setText("No se han proporcionado clientes o historial de compras.");
         }
     }
+    public void actualizarClientes(List<Cliente> listaClientes, List<Comprado> historialCompras) {
+        // Actualiza la lista de clientes y su historial de compras
+        this.listaClientes = listaClientes;
+        this.historialCompras = historialCompras;
 
-    public static void main(String[] args) {
-        List<Cliente> listaClientes = cargarClientesDesdeArchivo("clientescomp.txt");
-        Comprado historialCompras = cargarComprasDesdeArchivo("compras.txt", listaClientes);
-
-        EventQueue.invokeLater(() -> {
-            try {
-                MostrarClientes frame = new MostrarClientes(listaClientes, historialCompras);
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        // Vuelve a mostrar las compras con la nueva información
+        mostrarCompras();
     }
 
-    private static List<Cliente> cargarClientesDesdeArchivo(String rutaArchivo) {
-        List<Cliente> clientes = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datosCliente = linea.split(",");
-                Cliente cliente = new Cliente(datosCliente[0], Integer.parseInt(datosCliente[1]),
-                        Integer.parseInt(datosCliente[2]), datosCliente[3], null);
-                clientes.add(cliente);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return clientes;
-    }
 
-    private static Comprado cargarComprasDesdeArchivo(String rutaArchivo, List<Cliente> listaClientes) {
-        Comprado historialCompras = new Comprado(null, null);
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datosCompra = linea.split(",");
-                String nombreCliente = datosCompra[0];
-                // Buscar por nombre
-                Cliente cliente = buscarClientePorNombre(nombreCliente, listaClientes);
-                if (cliente != null) {
-                    LocalDateTime fechaCompra = LocalDateTime.parse(datosCompra[1], formatter);
-                    historialCompras.agregarCompra(cliente, fechaCompra);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return historialCompras;
-    }
+    
 
-    private static Cliente buscarClientePorNombre(String nombreCliente, List<Cliente> listaClientes) {
-        for (Cliente cliente : listaClientes) {
-            if (cliente.getNombre().equals(nombreCliente)) {
-                return cliente;
-            }
-        }
-        return null;
-    }
+    
+
+    
+    
 }
