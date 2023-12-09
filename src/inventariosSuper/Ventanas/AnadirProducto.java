@@ -218,9 +218,9 @@ public class AnadirProducto extends JFrame {
 	     		
 	     	}
 	     });
-	     btnRegistrar.setBackground(new Color(250, 240, 230));
+	     btnRegistrar.setBackground(new Color(246, 196, 205));
 	     btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 15));
-	     btnRegistrar.setBounds(915, 533, 184, 23);
+	     btnRegistrar.setBounds(823, 353, 195, 38);
 	     panelFormularioProducto.add(btnRegistrar);
 	     
 	     JButton btnAñadirCategoria = new JButton("+");
