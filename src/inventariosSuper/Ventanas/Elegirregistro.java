@@ -81,24 +81,27 @@ public class Elegirregistro extends JFrame {
 	 */
 	public Elegirregistro(List<Compras> listaCompras) {
 		this.listaCompras = listaCompras;
-		for (Compras compra : listaCompras) {
-		    System.out.println("Producto: " + compra.getProd().getNombre() + ", Cantidad: " + compra.getCant());
-		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
+		contentPane.setForeground(new Color(233, 225, 221));
+		contentPane.setBackground(new Color(233, 225, 221));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setForeground(new Color(233, 225, 221));
+		panel.setBackground(new Color(233, 225, 221));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		textArea = new JTextArea();
         textArea.setBounds(353, 506, 421, 237);
         panel.add(textArea);
+        textArea.setEditable(false);
 
         if (listaCompras != null && !listaCompras.isEmpty()) {
             StringBuilder comprasTexto = new StringBuilder();
@@ -127,7 +130,7 @@ public class Elegirregistro extends JFrame {
 		});
 		btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 22));
 		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(Color.PINK);
+		btnNewButton.setBackground(new Color(246, 196, 205));
 		btnNewButton.setBounds(101, 292, 352, 96);
 		panel.add(btnNewButton);
 		
@@ -141,21 +144,21 @@ public class Elegirregistro extends JFrame {
 			}
 		});
 		btnClienteRecurente.setForeground(Color.WHITE);
-		btnClienteRecurente.setBackground(Color.PINK);
+		btnClienteRecurente.setBackground(new Color(246, 196, 205));
 		btnClienteRecurente.setFont(new Font("Times New Roman", Font.ITALIC, 20));
 		btnClienteRecurente.setBounds(699, 293, 352, 96);
 		panel.add(btnClienteRecurente);
 		
 		JLabel lblNewLabel = new JLabel("Eleccion de Cliente");
-		lblNewLabel.setBackground(new Color(255, 175, 175));
-		lblNewLabel.setForeground(Color.PINK);
+		lblNewLabel.setBackground(new Color(246, 196, 205));
+		lblNewLabel.setForeground(new Color(246, 196, 205));
 		lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 45));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(310, 80, 488, 96);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Compras");
-		lblNewLabel_1.setForeground(Color.PINK);
+		lblNewLabel_1.setForeground(new Color(246, 196, 205));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.ITALIC, 16));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(479, 448, 168, 48);

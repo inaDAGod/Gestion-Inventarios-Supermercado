@@ -5,15 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.border.EmptyBorder;
 
 
-import inventariosSuper.Clases.CategoriaProducto;
-import inventariosSuper.Clases.Inventario;
-import inventariosSuper.Clases.ListaComprasCompartida;
-import inventariosSuper.Clases.Producto;
-import inventariosSuper.Clases.Proveedor;
-import inventariosSuper.Clases.Cliente;
-import inventariosSuper.Clases.Compras;
-import inventariosSuper.Clases.GestorClientes;
-import inventariosSuper.Clases.Comprado;
+import inventariosSuper.Clases.*;
 import inventariosSuper.Clases.Comprado;
 
 
@@ -41,6 +33,8 @@ public class RegistrandoCli extends JFrame {
 
     private List<Cliente> listaClientes;
     private Compras compras;
+    private Inventario inventario;
+    private Auditoria auditoria;
     private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
     private Cliente clienteRegistrado;
     private Cliente clienteSeleccionado;
@@ -69,18 +63,9 @@ public class RegistrandoCli extends JFrame {
         listaClientes = new ArrayList<>();
         areaResultado = new JTextArea();
         this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
-	    // ... rest of your constructor code
-	    for (Compras compra : listaCompras) {
-	        System.out.println("Producto: " + compra.getProd().getNombre() + ", Cantidad: " + compra.getCant());;
-        
+
         gestorClientes = new GestorClientes();
         mostrarClientesRegistrados();
-        //Cliente cliente1 = new Cliente("Juan", 1, 12345, "Calle A");
-        //Cliente cliente2 = new Cliente("María", 2, 67890, "Calle B");
-        //listaClientes.add(cliente1);
-        //listaClientes.add(cliente2);
-
-        // Configurar la interfaz gráfica
         setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -88,15 +73,16 @@ public class RegistrandoCli extends JFrame {
         
 
         JPanel panel = new JPanel();
+        panel.setBackground(new Color(233, 225, 221));
         JLabel etiqueta = new JLabel("Nombre del Cliente:");
-        etiqueta.setForeground(Color.PINK);
+        etiqueta.setForeground(new Color(246, 196, 205));
         etiqueta.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
         etiqueta.setBounds(69, 222, 146, 53);
         campoBusqueda = new JTextField(20);
         campoBusqueda.setBounds(225, 229, 221, 42);
         JButton botonBuscar = new JButton("Buscar");
-        botonBuscar.setBackground(Color.PINK);
+        botonBuscar.setBackground(new Color(246, 196, 205));
         botonBuscar.setForeground(Color.WHITE);
         botonBuscar.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         botonBuscar.setBounds(646, 227, 130, 42);
@@ -122,7 +108,7 @@ public class RegistrandoCli extends JFrame {
         getContentPane().add(panel);
         
         JButton btnNewButton = new JButton("Siguiente");
-        btnNewButton.setBackground(Color.PINK);
+        btnNewButton.setBackground(new Color(246, 196, 205));
         btnNewButton.setForeground(Color.WHITE);
         btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 20));
         btnNewButton.addActionListener(new ActionListener() {
@@ -134,20 +120,20 @@ public class RegistrandoCli extends JFrame {
         panel.add(btnNewButton);
         
         JLabel lblNewLabel = new JLabel("Clientes Recurentes");
-        lblNewLabel.setForeground(Color.PINK);
+        lblNewLabel.setForeground(new Color(246, 196, 205));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 45));
         lblNewLabel.setBounds(349, 54, 500, 84);
         panel.add(lblNewLabel);
         setVisible(true);}
-    }
+    
 
     private void buscarCliente1() {
-        String nombreBusqueda = campoBusqueda.getText();
+        String nombreBusqueda = campoBusqueda.getText().toLowerCase(); // Convert input to lowercase
         List<Cliente> clientesEncontrados = new ArrayList<>();
 
         for (Cliente cliente : listaClientes) {
-            if (cliente.getNombre().equalsIgnoreCase(nombreBusqueda)) {
+            if (cliente.getNombre().toLowerCase().contains(nombreBusqueda)) {
                 clientesEncontrados.add(cliente);
             }
         }
@@ -155,18 +141,23 @@ public class RegistrandoCli extends JFrame {
         if (!clientesEncontrados.isEmpty()) {
             clienteSeleccionado = seleccionarCliente(clientesEncontrados);
             if (clienteSeleccionado != null) {
-                areaResultado.setText(
-                        "Cliente seleccionado:\n" +
-                                "Nombre: " + clienteSeleccionado.getNombre() + "\n" +
-                                "ID: " + clienteSeleccionado.getId() + "\n" +
-                                "Número: " + clienteSeleccionado.getNumero() + "\n" +
-                                "Dirección: " + clienteSeleccionado.getDireccion()
-                );
+                StringBuilder resultText = new StringBuilder("Clientes encontrados:\n");
+                for (Cliente cliente : clientesEncontrados) {
+                    resultText.append("Nombre: ").append(cliente.getNombre())
+                            .append(", ID: ").append(cliente.getId())
+                            .append(", Número: ").append(cliente.getNumero())
+                            .append(", Dirección: ").append(cliente.getDireccion())
+                            .append("\n");
+                }
+                areaResultado.setText(resultText.toString());
             }
         } else {
             areaResultado.setText("Cliente no encontrado.");
         }
     }
+
+    
+    
 
 
         private Cliente seleccionarCliente(List<Cliente> clientes) {

@@ -5,9 +5,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import javax.swing.border.EmptyBorder;
+
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.Cliente;
 import inventariosSuper.Clases.Compras;
+import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.ManejadorArchivo;
@@ -25,16 +30,19 @@ public class FacturaPage extends JFrame {
     private Cliente cliente;
     private JButton btnMostrarCompras;
     private JTextArea textAreaCompras;
-    private Comprado historialCompras;
-
-
+    private Comprado u;
+    private Inventario inventario;
+	private Auditoria auditoria;
+	private List<Cliente> listaClientes;
+	private Comprado historialCompras;
+	
 
     private MostrarClientes mostrarClientes;
 
     // Constructor que recibe MostrarClientes como parámetro adicional
     public FacturaPage(Cliente cliente) {
         this.cliente = cliente;
-        this.historialCompras = new Comprado(cliente, LocalDateTime.now()); // Crear instancia con tiempo actual
+        this.u = new Comprado(cliente, LocalDateTime.now()); // Crear instancia con tiempo actual
         this.mostrarClientes = mostrarClientes; // Guarda la instancia de MostrarClientes
         initialize();
     }
@@ -64,6 +72,7 @@ public class FacturaPage extends JFrame {
         textAreaCompras = new JTextArea();
         textAreaCompras.setBounds(279, 97, 574, 384);
         contentPane.add(textAreaCompras);
+        textAreaCompras.setEditable(false);
 
         btnMostrarCompras = new JButton("Mostrar Compras");
         btnMostrarCompras.setFont(new Font("Times New Roman", Font.ITALIC, 10));
@@ -78,12 +87,29 @@ public class FacturaPage extends JFrame {
             }
         });
         
+       
+        
         JButton btnRegistrarCompra = new JButton("Registrar Compra");
         btnRegistrarCompra.setBackground(Color.PINK);
         btnRegistrarCompra.setFont(new Font("Times New Roman", Font.ITALIC, 10));
         btnRegistrarCompra.setForeground(Color.WHITE);
         btnRegistrarCompra.setBounds(279, 516, 150, 30);
         contentPane.add(btnRegistrarCompra);
+        
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
+				ventanaInicio.setVisible(true);
+				
+			}
+		});
+        btnVolver.setForeground(Color.WHITE);
+        btnVolver.setFont(new Font("Times New Roman", Font.ITALIC, 10));
+        btnVolver.setBackground(Color.PINK);
+        btnVolver.setBounds(1014, 21, 150, 30);
+        contentPane.add(btnVolver);
 
         btnRegistrarCompra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -111,7 +137,7 @@ public class FacturaPage extends JFrame {
     
     public void registrarCompra() {
         LocalDateTime fechaActual = LocalDateTime.now(); // Obtiene la fecha actual
-        historialCompras.agregarCompra(cliente, fechaActual); // Agrega la compra al historial
+        u.agregarCompra(cliente, fechaActual); // Agrega la compra al historial
         JOptionPane.showMessageDialog(null, "Compra registrada para " + cliente.getNombre());
 
         // Guardar en un archivo de texto
@@ -127,6 +153,6 @@ public class FacturaPage extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
-
 }

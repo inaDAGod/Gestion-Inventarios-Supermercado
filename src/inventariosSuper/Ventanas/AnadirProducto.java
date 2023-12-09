@@ -7,6 +7,8 @@ import javax.swing.border.*;
 
 import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
+import inventariosSuper.Clases.Cliente;
+import inventariosSuper.Clases.Comprado;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.Producto;
 import inventariosSuper.Clases.Proveedor;
@@ -16,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.awt.event.ActionEvent;
@@ -30,6 +33,8 @@ public class AnadirProducto extends JFrame {
 	private JTextField txtExistencias;
 	private JPanel panelCategorias;
 	private Auditoria auditoria;
+	private List<Cliente> listaClientes;
+    private Comprado historialCompras;
 	
 	public AnadirProducto(Inventario i,Auditoria a) {
 		this.inventario = i;
@@ -250,7 +255,7 @@ public class AnadirProducto extends JFrame {
 	     mntmNewMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
-					VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria);
+					VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
 					ventanaInicio.setVisible(true);
 				}
 			});
