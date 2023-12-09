@@ -68,6 +68,7 @@ public class Agregarproduc extends JFrame {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         contentPane = new JPanel();
+        contentPane.setBackground(new Color(233, 225, 221));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
@@ -93,7 +94,7 @@ public class Agregarproduc extends JFrame {
         textField.setColumns(10);
 
         JButton btnCalcular = new JButton("Calcular");
-        btnCalcular.setBackground(Color.PINK);
+        btnCalcular.setBackground(new Color(246, 196, 205));
         btnCalcular.setForeground(Color.WHITE);
         btnCalcular.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         btnCalcular.setBounds(713, 409, 126, 56);
@@ -124,7 +125,7 @@ public class Agregarproduc extends JFrame {
         
         
         JButton btnRegistrar = new JButton("Registrar");
-        btnRegistrar.setBackground(Color.PINK);
+        btnRegistrar.setBackground(new Color(246, 196, 205));
         btnRegistrar.setForeground(Color.WHITE);
         btnRegistrar.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         btnRegistrar.addActionListener(new ActionListener() {
@@ -158,7 +159,7 @@ public class Agregarproduc extends JFrame {
         
 
         JButton btnNewButton = new JButton("Finalizar Compras");
-        btnNewButton.setBackground(Color.PINK);
+        btnNewButton.setBackground(new Color(246, 196, 205));
         btnNewButton.setForeground(Color.WHITE);
         btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         btnNewButton.addActionListener(new ActionListener() {
@@ -194,14 +195,14 @@ public class Agregarproduc extends JFrame {
         
         
         JButton btnVolver = new JButton("Elegir otro producto");
-        btnVolver.setBackground(Color.PINK);
+        btnVolver.setBackground(new Color(246, 196, 205));
         btnVolver.setForeground(Color.WHITE);
         btnVolver.setFont(new Font("Times New Roman", Font.ITALIC, 25));
         btnVolver.setBounds(79, 618, 347, 56);
         contentPane.add(btnVolver);
         
         JLabel lblNewLabel = new JLabel("Producto Elegido");
-        lblNewLabel.setForeground(Color.PINK);
+        lblNewLabel.setForeground(new Color(246, 196, 205));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         lblNewLabel.setBounds(169, 53, 180, 20);
@@ -209,21 +210,22 @@ public class Agregarproduc extends JFrame {
         
         JLabel lblProductosElegidos = new JLabel("Productos Elegidos");
         lblProductosElegidos.setHorizontalAlignment(SwingConstants.CENTER);
-        lblProductosElegidos.setForeground(Color.PINK);
+        lblProductosElegidos.setForeground(new Color(246, 196, 205));
         lblProductosElegidos.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         lblProductosElegidos.setBounds(169, 352, 180, 20);
         contentPane.add(lblProductosElegidos);
         
         JLabel lblCantidadDeseada = new JLabel("Cantidad Deseada");
         lblCantidadDeseada.setHorizontalAlignment(SwingConstants.CENTER);
-        lblCantidadDeseada.setForeground(Color.PINK);
+        lblCantidadDeseada.setForeground(new Color(246, 196, 205));
         lblCantidadDeseada.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         lblCantidadDeseada.setBounds(762, 56, 180, 20);
         contentPane.add(lblCantidadDeseada);
         
         JLabel lblCostoTotal = new JLabel("Costo Total");
+        lblCostoTotal.setBackground(new Color(163, 163, 163));
         lblCostoTotal.setHorizontalAlignment(SwingConstants.CENTER);
-        lblCostoTotal.setForeground(Color.PINK);
+        lblCostoTotal.setForeground(new Color(246, 196, 205));
         lblCostoTotal.setFont(new Font("Times New Roman", Font.ITALIC, 16));
         lblCostoTotal.setBounds(762, 199, 180, 20);
         contentPane.add(lblCostoTotal);
