@@ -122,7 +122,19 @@ public class Main2 {
 	}
 	
 	public static void llenadoAuditoria(Auditoria auditoria) {
-        auditoria.agregarCompra(new Cliente("Cliente1", 3234364, 78754635,"Cota cota"), new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5)), 2, LocalDateTime.now());
+        auditoria.agregarCompra(new Cliente("Natalia Dávalos", 3234364, 78754635,"Chasquipampa"), new Producto("Tomate", "Fruta o verdura", 2.50, 5, LocalDate.now().plusDays(5)), 2, LocalDateTime.now());
+		auditoria.agregarCompra(new Cliente("Emili Poroso", 3234, 78743635,"Bolonia"), new Producto("Arroz", "Arroz Blanco", 1.8, 199, LocalDate.now().minusMonths(5)), 4, LocalDateTime.of(2003,8,11, 15, 30, 0));
+		auditoria.agregarCompra(new Cliente("Gabriel Zaballa", 423, 7878764,"Cota cota"),new Producto("Papas", "Papas fritas", 1.5, 119, LocalDate.of(2017, 01, 14)), 7, LocalDateTime.of(2004,7,03, 9, 15, 55));
+		auditoria.agregarCompra(new Cliente("Marco Mares", 624, 7898735,"San Pedro"),new Producto("Refresco", "Refresco de cola", 12.5, 149, LocalDate.of(2003, 8, 11)), 9, LocalDateTime.of(2016,1,14, 21, 45, 21));
+		auditoria.agregarCompra(new Cliente("Rodrigo Rodriguez", 420, 7895535,"Cala coto"), new Producto("Jabon y detergente", "Elementos de limpieza", 35.89, 149, LocalDate.of(2000, 1, 21)), 3, LocalDateTime.of(2017,12,20, 14, 36, 21));
+		auditoria.agregarCompra(new Cliente("Diego Duran", 120, 7876735,"Miraflores"), new Producto("Chips de maiz", "Snack", 5.89, 49, LocalDate.of(2012, 9, 21)), 2, LocalDateTime.of(2012,4,2, 16, 36, 21));
+		auditoria.agregarCompra(new Cliente("Alejandra Albania", 3223, 7344735,"Satelite"), new Producto("Maruchan", "Snack", 10.5, 10, LocalDate.of(2016, 6, 1)), 4, LocalDateTime.of(2014,9,17, 3, 33, 33));
+		auditoria.agregarCompra(new Cliente("Joaquin Jauregui ", 121, 7324435,"Obrajes"), new Producto("Cereal", "Cereal de maiz", 25.89, 149, LocalDate.of(2013, 2, 13)), 2, LocalDateTime.of(2013,2,4, 5, 12, 32));
+		auditoria.agregarCompra(new Cliente("Dafne Valenzuela", 232, 7123435,"Ovejullo"), new Producto("Jabon", "Jabon de manos", 15.5, 8, LocalDate.of(2014, 3, 16)), 1, LocalDateTime.of(2015,3,11, 8, 19, 6));
+		auditoria.agregarCompra(new Cliente("Nicole Quiroga", 433, 7322135,"Sopocachi"), new Producto("Fideos", "Fideos Integrales", 8.89, 129, LocalDate.of(2015, 5, 20)), 3, LocalDateTime.of(2018,5,21, 15, 26, 12));
+		auditoria.agregarCompra(new Cliente("Alan Plaza", 883, 7654325,"Vita"), new Producto("Carne Fria", "Comida", 10.5, 10, LocalDate.of(2017, 8, 21)), 7, LocalDateTime.of(2019,9,8, 22, 15, 20));
+		auditoria.agregarCompra(new Cliente("Esteban Flores", 765, 7556735,"Armentia"), new Producto("Detergente", "Detergente liquido", 45.99, 49, LocalDate.of(2018, 10, 23)), 2, LocalDateTime.of(2020,10,10, 21, 7, 25));
+		auditoria.agregarCompra(new Cliente("Belen Escobar", 356, 7654735,"Llojeta"), new Producto("Hamburguesa", "Hamburguesas veganas", 12.25, 15, LocalDate.of(2019, 11, 4)), 3, LocalDateTime.of(2021,11,17, 19, 18, 18));
 	}
 	
 	private static Comprado cargarComprasDesdeArchivo(String rutaArchivo, List<Cliente> listaClientes) {
