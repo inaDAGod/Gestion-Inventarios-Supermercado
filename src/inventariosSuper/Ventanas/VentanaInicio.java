@@ -17,12 +17,14 @@ public class VentanaInicio extends JFrame {
 	private List<Cliente> listaClientes;
     private Comprado historialCompras;
     private Producto produ;
+    private List<Compras> listaCompras = new ArrayList<>();
 
     public VentanaInicio(Inventario i, Auditoria a,List<Cliente> listaClientes,Comprado historialCompras) {
     	this.inventario = i;
     	this.auditoria = a;
     	this.listaClientes = listaClientes;
         this.historialCompras = historialCompras;
+        this.listaCompras = listaCompras;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 
@@ -101,7 +103,7 @@ public class VentanaInicio extends JFrame {
         //Botón elegir Producto
         btnElegirProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Elegirproduc frame = new Elegirproduc(inventario, auditoria,produ);
+                Elegirproduc frame = new Elegirproduc(inventario, auditoria, listaCompras);
                 frame.setVisible(true);
             }
         });

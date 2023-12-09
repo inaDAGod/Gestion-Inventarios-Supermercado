@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.Compras;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;
@@ -40,15 +41,17 @@ public class Agregarproduc extends JFrame {
     private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
     private Inventario inventario;
     private List<Compras> comprasList;
+    private Auditoria auditoria;
     
     
 
     
 
-    public Agregarproduc(Producto produ, Inventario inventario, List<Compras> listaCompras) {
+    public Agregarproduc(Producto produ, Inventario inventario, List<Compras> listaCompras,Auditoria auditoria) {
         this.producto = produ;
         this.listaCompras = listaCompras != null ? new ArrayList<>(listaCompras) : new ArrayList<>();
         this.inventario = inventario;
+        this.auditoria = auditoria;
         
 
 
@@ -154,7 +157,7 @@ public class Agregarproduc extends JFrame {
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Elegirregistro detalleProducto = new Elegirregistro(listaCompras,inventario);
+                    Elegirregistro detalleProducto = new Elegirregistro(listaCompras,inventario, auditoria);
                     detalleProducto.setVisible(true);
                     setVisible(false);
                     dispose();
@@ -220,7 +223,7 @@ public class Agregarproduc extends JFrame {
         contentPane.add(lblCostoTotal);
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	Elegirproduc paginaAnterior = new Elegirproduc(inventario, listaCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
+            	Elegirproduc paginaAnterior = new Elegirproduc(inventario, auditoria, listaCompras); // Reemplaza 'PaginaAnterior' con el nombre de tu clase de página anterior
                 paginaAnterior.setVisible(true); // Muestra la página anterior
                 dispose(); // Cierra la página actual
             }
