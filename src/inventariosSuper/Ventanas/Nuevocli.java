@@ -21,7 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;
@@ -46,11 +46,12 @@ public class Nuevocli extends JFrame {
 	private JLabel lblNewLabel_5;
 	private JButton btnRegistro;
 	private Compras compras;
+	private Auditoria auditoria;
 	private List<Compras> listaCompras = ListaComprasCompartida.getListaCompras();
 	private Inventario inventario;
 
 	
-	public Nuevocli(List<Compras> listaCompras, Inventario inventario) {
+	public Nuevocli(List<Compras> listaCompras, Inventario inventario,Auditoria auditoria) {
 	    this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
 	    this.inventario=inventario;
 	    
@@ -209,7 +210,7 @@ public class Nuevocli extends JFrame {
 			    private void abrirPaginaFactura() {
 			        if (clienteRegistrado != null) {
 			            if (!clienteRegistrado.getListaCompras().isEmpty()) {
-			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado,inventario);
+			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado,inventario, auditoria);
 			                facturaPage.setVisible(true);
 			                setVisible(false);
 			                dispose();

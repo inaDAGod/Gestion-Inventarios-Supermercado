@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import inventariosSuper.Clases.Auditoria;
 import inventariosSuper.Clases.CategoriaProducto;
 import inventariosSuper.Clases.Inventario;
 import inventariosSuper.Clases.ListaComprasCompartida;
@@ -58,13 +59,14 @@ public class Elegirregistro extends JFrame {
 	private JTextArea textAreaCompras;
 	private JTextArea textArea;
 	private Inventario inventario;
+	private Auditoria auditoria;
 	
 
 	/**
 	 * Launch the application.
 	 */
     
-	public Elegirregistro(List<Compras> listaCompras, Inventario inventario) {
+	public Elegirregistro(List<Compras> listaCompras, Inventario inventario,Auditoria auditoria) {
 		this.listaCompras = listaCompras;
 		this.inventario =inventario;
 		
@@ -108,7 +110,7 @@ public class Elegirregistro extends JFrame {
 		JButton btnNewButton = new JButton("Nuevo Cliente");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Nuevocli clienteRecurrenteWindow = new Nuevocli(listaCompras,inventario);
+				Nuevocli clienteRecurrenteWindow = new Nuevocli(listaCompras,inventario, auditoria);
 		        clienteRecurrenteWindow.setVisible(true);
 		        setVisible(false);
 		        dispose();
@@ -123,7 +125,7 @@ public class Elegirregistro extends JFrame {
 		JButton btnClienteRecurente = new JButton("Cliente Recurente");
 		btnClienteRecurente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrandoCli clienteRecurrenteWindow = new RegistrandoCli(listaCompras,inventario);
+				RegistrandoCli clienteRecurrenteWindow = new RegistrandoCli(listaCompras,inventario, auditoria);
 		        clienteRecurrenteWindow.setVisible(true);
 		        setVisible(false);
 	            dispose();
@@ -153,7 +155,7 @@ public class Elegirregistro extends JFrame {
 		
 	}
 	private void abrirFacturaConCliente(Cliente cliente) {
-	    FacturaPage facturaPage = new FacturaPage(cliente, inventario);
+	    FacturaPage facturaPage = new FacturaPage(cliente, inventario, auditoria);
 	    facturaPage.setVisible(true);
 	    dispose();  // Cerrar la ventana actual
 	}
