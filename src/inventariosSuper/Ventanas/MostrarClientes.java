@@ -51,6 +51,7 @@ public class MostrarClientes extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         JPanel contentPane = new JPanel();
+        contentPane.setBackground(new Color(233, 225, 221));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
@@ -62,7 +63,7 @@ public class MostrarClientes extends JFrame {
         textArea.setEditable(false);
         
         JLabel lblNewLabel = new JLabel("Clientes registrados");
-        lblNewLabel.setForeground(Color.PINK);
+        lblNewLabel.setForeground(new Color(246,196,205));
         lblNewLabel.setFont(new Font("Times New Roman", Font.ITALIC, 40));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setBounds(437, 74, 346, 59);
@@ -78,7 +79,7 @@ public class MostrarClientes extends JFrame {
         		}
         	});;
         btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 16));
-        btnNewButton.setBackground(Color.PINK);
+        btnNewButton.setBackground(new Color(246,196,205));
         btnNewButton.setForeground(Color.WHITE);
         btnNewButton.setBounds(989, 26, 133, 53);
         contentPane.add(btnNewButton);
