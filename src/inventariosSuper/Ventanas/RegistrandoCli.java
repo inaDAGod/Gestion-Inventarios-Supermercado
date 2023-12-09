@@ -143,11 +143,11 @@ public class RegistrandoCli extends JFrame {
     }
 
     private void buscarCliente1() {
-        String nombreBusqueda = campoBusqueda.getText();
+        String nombreBusqueda = campoBusqueda.getText().toLowerCase(); // Convert input to lowercase
         List<Cliente> clientesEncontrados = new ArrayList<>();
 
         for (Cliente cliente : listaClientes) {
-            if (cliente.getNombre().equalsIgnoreCase(nombreBusqueda)) {
+            if (cliente.getNombre().toLowerCase().contains(nombreBusqueda)) {
                 clientesEncontrados.add(cliente);
             }
         }
@@ -167,6 +167,7 @@ public class RegistrandoCli extends JFrame {
             areaResultado.setText("Cliente no encontrado.");
         }
     }
+
 
 
         private Cliente seleccionarCliente(List<Cliente> clientes) {
