@@ -52,18 +52,21 @@ public class FacturaPage extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 713);
         contentPane = new JPanel();
+        contentPane.setBackground(new Color(233, 225, 221));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JLabel lblClienteSeleccionado = new JLabel("Factura Para el Cliente");
         lblClienteSeleccionado.setHorizontalAlignment(SwingConstants.CENTER);
-        lblClienteSeleccionado.setForeground(Color.PINK);
+        lblClienteSeleccionado.setForeground(new Color(246, 196, 205));
         lblClienteSeleccionado.setFont(new Font("Times New Roman", Font.ITALIC, 30));
         lblClienteSeleccionado.setBounds(413, 21, 324, 52);
         contentPane.add(lblClienteSeleccionado);
 
         JLabel lblNombre = new JLabel("Cliente");
+        lblNombre.setForeground(new Color(163, 163, 163));
+        lblNombre.setFont(new Font("Times New Roman", Font.ITALIC, 14));
         lblNombre.setBounds(279, 73, 100, 14);
         contentPane.add(lblNombre);
 
@@ -76,7 +79,7 @@ public class FacturaPage extends JFrame {
 
         btnMostrarCompras = new JButton("Mostrar Compras");
         btnMostrarCompras.setFont(new Font("Times New Roman", Font.ITALIC, 10));
-        btnMostrarCompras.setBackground(Color.PINK);
+        btnMostrarCompras.setBackground(new Color(246, 196, 205));
         btnMostrarCompras.setForeground(Color.WHITE);
         btnMostrarCompras.setBounds(703, 516, 150, 30);
         contentPane.add(btnMostrarCompras);
@@ -90,7 +93,7 @@ public class FacturaPage extends JFrame {
        
         
         JButton btnRegistrarCompra = new JButton("Registrar Compra");
-        btnRegistrarCompra.setBackground(Color.PINK);
+        btnRegistrarCompra.setBackground(new Color(246, 196, 205));
         btnRegistrarCompra.setFont(new Font("Times New Roman", Font.ITALIC, 10));
         btnRegistrarCompra.setForeground(Color.WHITE);
         btnRegistrarCompra.setBounds(279, 516, 150, 30);
@@ -100,6 +103,7 @@ public class FacturaPage extends JFrame {
         btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				
 				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
 				ventanaInicio.setVisible(true);
 				
@@ -107,7 +111,7 @@ public class FacturaPage extends JFrame {
 		});
         btnVolver.setForeground(Color.WHITE);
         btnVolver.setFont(new Font("Times New Roman", Font.ITALIC, 10));
-        btnVolver.setBackground(Color.PINK);
+        btnVolver.setBackground(new Color(246, 196, 205));
         btnVolver.setBounds(1014, 21, 150, 30);
         contentPane.add(btnVolver);
 

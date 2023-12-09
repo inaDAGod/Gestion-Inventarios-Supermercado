@@ -74,10 +74,7 @@ public class Nuevocli extends JFrame {
 	 */
 	public Nuevocli(List<Compras> listaCompras) {
 	    this.listaCompras = new ArrayList<>(listaCompras != null ? listaCompras : new ArrayList<>());
-	    // ... rest of your constructor code
-	    for (Compras compra : listaCompras) {
-	        System.out.println("Producto: " + compra.getProd().getNombre() + ", Cantidad: " + compra.getCant());
-	    }
+	    
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,7 +153,7 @@ public class Nuevocli extends JFrame {
 		panel_1.add(lblNewLabel_5);
 		
 		btnRegistro = new JButton("Registro");
-		btnRegistro.setBackground(new Color(255, 175, 175));
+		btnRegistro.setBackground(new Color(246, 196, 205));
 		btnRegistro.setForeground(Color.WHITE);
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

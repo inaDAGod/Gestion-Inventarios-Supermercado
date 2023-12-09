@@ -81,9 +81,7 @@ public class Elegirregistro extends JFrame {
 	 */
 	public Elegirregistro(List<Compras> listaCompras) {
 		this.listaCompras = listaCompras;
-		for (Compras compra : listaCompras) {
-		    System.out.println("Producto: " + compra.getProd().getNombre() + ", Cantidad: " + compra.getCant());
-		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
