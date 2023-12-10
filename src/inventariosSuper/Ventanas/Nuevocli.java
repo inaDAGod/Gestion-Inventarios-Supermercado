@@ -182,7 +182,7 @@ public class Nuevocli extends JFrame {
 
 			    	    JOptionPane.showMessageDialog(null, "Nuevo cliente registrado: " + nuevoCliente.getNombre(), "Nuevo Cliente", JOptionPane.INFORMATION_MESSAGE);
 
-			    	    abrirPaginaFactura();
+			    	    abrirPaginaFactura(clienteRegistrado);
 
 			    	    limpiarCampos();
 			    	} catch (NumberFormatException e) {
@@ -200,7 +200,7 @@ public class Nuevocli extends JFrame {
 			    }
 			    
 			    
-			    private void abrirPaginaFactura() {
+			    private void abrirPaginaFactura(Cliente clienteRegistrado) {
 			        if (clienteRegistrado != null) {
 			            if (!clienteRegistrado.getListaCompras().isEmpty()) {
 			                FacturaPage facturaPage = new FacturaPage(clienteRegistrado, inventario, auditoria, listaClientes, historialCompras);

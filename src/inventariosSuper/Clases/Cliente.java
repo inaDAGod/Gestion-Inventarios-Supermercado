@@ -81,18 +81,20 @@ public class Cliente {
         return total;
     }
 
-    public void mostrarListaDeCompras() {
-        System.out.println("Lista de compras de " + nombre + ":");
+    public String mostrarListaDeCompras() {
+        StringBuilder result = new StringBuilder("Lista de compras de " + nombre + ":\n");
         for (Compras comp : listaCompras) {
             Producto producto = comp.getProd();
             int cantidad = comp.getCant();
             double costoTotal = comp.getCostoTotal();
 
-            System.out.println("Producto: " + producto.getNombre() +
-                    " - Cantidad: " + cantidad +
-                    " - Costo Total: $" + costoTotal);
+            result.append("Producto: ").append(producto.getNombre())
+                  .append(" - Cantidad: ").append(cantidad)
+                  .append(" - Costo Total: $").append(costoTotal).append("\n");
         }
+        return result.toString();
     }
+
 
     public void setListacompras(List<Compras> listaCompras) {
         this.listaCompras = listaCompras;

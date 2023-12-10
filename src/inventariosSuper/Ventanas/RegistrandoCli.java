@@ -102,7 +102,7 @@ public class RegistrandoCli extends JFrame {
         btnNewButton.setFont(new Font("Times New Roman", Font.ITALIC, 20));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		abrirPaginaFactura();
+        		abrirPaginaFactura(clienteSeleccionado);
         	}
         });
         btnNewButton.setBounds(882, 638, 221, 62);
@@ -120,7 +120,7 @@ public class RegistrandoCli extends JFrame {
 
     
         
-    private void abrirPaginaFactura() {
+    private void abrirPaginaFactura(Cliente clienteSeleccionado) {
         if (clienteSeleccionado != null) {
         	clienteSeleccionado.setListaCompras(listaCompras);
             if (!clienteSeleccionado.getListaCompras().isEmpty()) {

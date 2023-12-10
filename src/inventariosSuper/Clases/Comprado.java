@@ -32,15 +32,16 @@ public class Comprado {
         return null; // Return null if no matching cliente name is found
     }
 
-    public void mostrarCompras() {
-        System.out.println("Historial de compras:");
+    public String mostrarCompras() {
+        StringBuilder result = new StringBuilder("Historial de compras:\n");
         for (Map.Entry<Cliente, LocalDateTime> entry : compras.entrySet()) {
             Cliente cliente = entry.getKey();
             LocalDateTime fecha = entry.getValue();
 
-            System.out.println("Cliente: " + cliente.getNombre() + ", Fecha: " + fecha);
-            cliente.mostrarListaDeCompras(); // Método para mostrar la lista de compras del cliente
-            System.out.println();
+            result.append("Cliente: ").append(cliente.getNombre()).append(", Fecha: ").append(fecha).append("\n");
+            result.append(cliente.mostrarListaDeCompras()).append("\n\n"); // Append the client's purchase list
         }
+        return result.toString();
     }
+
 }
