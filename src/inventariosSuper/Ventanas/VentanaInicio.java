@@ -25,6 +25,7 @@ public class VentanaInicio extends JFrame {
     	this.listaClientes = listaClientes;
         this.historialCompras = historialCompras;
         this.listaCompras = listaCompras;
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
 

@@ -102,9 +102,11 @@ public class FacturaPage extends JFrame {
         JButton btnVolver = new JButton("Volver");
         btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				
+				
 				VentanaInicio ventanaInicio = new VentanaInicio(inventario,auditoria, listaClientes, historialCompras);
 				ventanaInicio.setVisible(true);
+				setVisible(false);
 				
 			}
 		});
@@ -116,7 +118,7 @@ public class FacturaPage extends JFrame {
 
         btnRegistrarCompra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	registrarCompra( );
+            	registrarCompra(cliente,historialCompras );
             }
         });
     }
@@ -138,16 +140,19 @@ public class FacturaPage extends JFrame {
     
     
     
-    public void registrarCompra() {
-        LocalDateTime fechaActual = LocalDateTime.now(); 
-        historialCompras.add(new Comprado(cliente, fechaActual));
-
-
-
-        JOptionPane.showMessageDialog(null, "Compra registrada para " + cliente.getNombre());
-
-        
+    public void registrarCompra(Cliente cliente, List<Comprado> historialCompras) {
+        LocalDateTime fechaActual = LocalDateTime.now();
+        if (!historialCompras.isEmpty()) {
+            Comprado firstItem = historialCompras.get(0);
+            firstItem.agregarCompra(cliente, fechaActual);
+            JOptionPane.showMessageDialog(null, "Compra registrada para " + cliente.getNombre());
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay compras en el historial.");
+        }
     }
+
+
+
 
 	
 }

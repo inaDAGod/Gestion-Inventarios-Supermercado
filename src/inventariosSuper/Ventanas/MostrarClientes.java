@@ -47,6 +47,7 @@ public class MostrarClientes extends JFrame {
         this.inventario = inventario;
         this.auditoria=auditoria;
         this.historialCompras=historialCompras;
+        
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -84,34 +85,24 @@ public class MostrarClientes extends JFrame {
         btnNewButton.setBounds(989, 26, 133, 53);
         contentPane.add(btnNewButton);
 
-        mostrarCompras();
+        mostrarCompras(historialCompras);
     }
     
 
-    public void mostrarCompras() {
+    public void mostrarCompras(List<Comprado> historialCompras) {
         if (listaClientes != null && historialCompras != null && !listaClientes.isEmpty() && !historialCompras.isEmpty()) {
-            textArea.append("\n\nHistorial de compras:\n");
-            for (int i = 0; i < listaClientes.size(); i++) {
-                Cliente cliente = listaClientes.get(i);
-                Comprado compras = historialCompras.get(i);
-                LocalDateTime fechaCompra = compras.obtenerFechaDeCompra(cliente);
-                if (fechaCompra != null) {
-                    textArea.append("Cliente: " + cliente.getNombre() + "\n");
-                    textArea.append("Fecha de compra: " + fechaCompra.format(formatter) + "\n\n");
-                }
+            //textArea.append("\n\nHistorial de compras:\n");
+            
+            for (Comprado comprado : historialCompras) {
+                // Call the modified mostrarCompras() method which now returns a String
+                textArea.append(comprado.mostrarCompras() + "\n\n");
             }
         } else {
             textArea.setText("No se han proporcionado clientes o historial de compras.");
         }
     }
-    public void actualizarClientes(List<Cliente> listaClientes, List<Comprado> historialCompras) {
-        // Actualiza la lista de clientes y su historial de compras
-        this.listaClientes = listaClientes;
-        this.historialCompras = historialCompras;
 
-        // Vuelve a mostrar las compras con la nueva información
-        mostrarCompras();
-    }
+    
 
 
     
