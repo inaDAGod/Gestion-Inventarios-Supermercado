@@ -12,19 +12,19 @@ import java.util.List;
 
 
 public class VentanaInicio extends JFrame {
-	private Inventario inventario;
-	private Auditoria auditoria;
-	private List<Cliente> listaClientes;
+    private Inventario inventario;
+    private Auditoria auditoria;
+    private List<Cliente> listaClientes;
     private Producto produ;
-    private List<Compras> listaCompras = new ArrayList<>();
-    private List<Comprado> historialCompras = new ArrayList<>();
+    private List<Compras> listaCompras;
+    private List<Comprado> historialCompras;
 
     public VentanaInicio(Inventario i, Auditoria a,List<Cliente> listaClientes,List<Comprado> historialCompras) {
-    	this.inventario = i;
-    	this.auditoria = a;
-    	this.listaClientes = listaClientes;
+        this.inventario = i;
+        this.auditoria = a;
+        this.listaClientes = listaClientes;
         this.historialCompras = historialCompras;
-        this.listaCompras = listaCompras;
+        this.listaCompras = new ArrayList<>();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -110,12 +110,12 @@ public class VentanaInicio extends JFrame {
             }
         });
 
-     // Assuming you have the list of clients (listaClientes) and purchase history (historialCompras)
+        // Assuming you have the list of clients (listaClientes) and purchase history (historialCompras)
 
         btnCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MostrarClientes frame = new MostrarClientes(listaClientes, inventario, auditoria, historialCompras);
-                
+
                 frame.setVisible(true);
                 setVisible(false);
             }
@@ -133,32 +133,37 @@ public class VentanaInicio extends JFrame {
         //Boton Auditorías
         btnAuditoria.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                VentanaAuditoria ventanaAuditoria = new VentanaAuditoria(auditoria);
+                VentanaAuditoria ventanaAuditoria = new VentanaAuditoria(auditoria,inventario, listaClientes, historialCompras);
                 ventanaAuditoria.setVisible(true);
-                
+                setVisible(false);
+
+
             }
         });
 
         // ActionListener para el botón "Recordatorios"
         btnRecordatorios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(creacionRecordatorio());
+
+                RecordatoriosVentana recordatoriosVentana = new RecordatoriosVentana(creacionRecordatorio(),auditoria,inventario, listaClientes, historialCompras);
                 recordatoriosVentana.setVisible(true);
-                
+                setVisible(false);
+
+
+
             }
         });
 
     }
-    
+
     public Recordatorios creacionRecordatorio() {
-    	Recordatorios recordatorios = new Recordatorios();
+        Recordatorios recordatorios = new Recordatorios();
         for (Producto producto : inventario.getProductos()) {
             recordatorios.agregarAlerta(new Alerta(producto));
         }
         return recordatorios;
 
-	}
+    }
 
 
 }

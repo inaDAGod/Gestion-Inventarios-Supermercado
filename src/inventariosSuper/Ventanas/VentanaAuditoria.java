@@ -7,18 +7,29 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import inventariosSuper.Clases.Producto;
-import inventariosSuper.Clases.Auditoria;
-import inventariosSuper.Clases.Cliente;
+import java.util.ArrayList;
+import java.util.List;
+
+import inventariosSuper.Clases.*;
 
 public class VentanaAuditoria extends JFrame {
-	private Auditoria auditoria;
+    private Auditoria auditoria;
     private JTextArea txtADisplay;
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
+    private Inventario inventario;
 
-    public VentanaAuditoria(Auditoria auditoria) {
-    	this.auditoria = auditoria;
+    private List<Cliente> listaClientes;
+    private Producto produ;
+    private List<Compras> listaCompras = new ArrayList<>();
+    private List<Comprado> historialCompras = new ArrayList<>();
+
+    public VentanaAuditoria(Auditoria auditoria,Inventario inventario, List<Cliente> listaClientes,List<Comprado> historialCompras) {
+        this.auditoria = auditoria;
+        this.inventario = inventario;
+        this.listaClientes = listaClientes;
+        this.historialCompras = historialCompras;
+        this.listaCompras = listaCompras;
         getContentPane().setBackground(new Color(246, 196, 205));
         setTitle("Ventana Auditoria");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +87,8 @@ public class VentanaAuditoria extends JFrame {
         btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+                VentanaInicio ventanaInicio = new VentanaInicio(inventario, auditoria, listaClientes, historialCompras);
+                ventanaInicio.setVisible(true);
             }
         });
         btnVolver.setBounds(1039, 11, 115, 30);
@@ -106,6 +119,5 @@ public class VentanaAuditoria extends JFrame {
         }
     }
 
-    
-}
 
+}
