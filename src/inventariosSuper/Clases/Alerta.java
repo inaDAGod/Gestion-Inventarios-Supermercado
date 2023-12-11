@@ -44,18 +44,22 @@ public class Alerta {
             // Producto vencido
             this.mensaje = "Producto vencido, Sacar del Stock";
             this.prioridad = 1;
-        } else if (fechaVencimiento.isEqual(fechaActual) || fechaVencimiento.minusDays(2).isBefore(fechaActual)) {
+        } else if (fechaVencimiento.isEqual(fechaActual) || fechaVencimiento.minusDays(7).isBefore(fechaActual)) {
             // Producto a punto de vencer
             this.mensaje = "Producto a punto de vencer";
             this.prioridad = 2;
-        } else if (producto.getCantidadStock() <= 3) {
+        } else if (producto.getCantidadStock() <= 10) {
             // Producto bajo en cantidad
             this.mensaje = "Producto bajo en cantidad";
             this.prioridad = 3;
-        } else {
+        } else if (producto.getCantidadStock() == 0){
             // Producto agotado, ordenar más
             this.mensaje = "Producto agotado, ordenar más";
             this.prioridad = 1;
+        } else {
+            //sin prioridad
+            this.mensaje = "nada";
+            this.prioridad = 10;
         }
     }
 

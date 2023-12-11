@@ -12,7 +12,8 @@ public class Recordatorios {
     }
 
     public void agregarAlerta(Alerta alerta) {
-        alertas.insertar(alerta);
+        if (alerta.getPrioridad()!=10)
+            alertas.insertar(alerta);
     }
 
     public void eliminarAlerta(Alerta alerta) {

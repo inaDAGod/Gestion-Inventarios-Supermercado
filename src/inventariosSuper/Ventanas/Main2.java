@@ -99,17 +99,17 @@ public class Main2 {
 	    // Productos
 	    Producto producto1 = new Producto("Leche", "Leche deslactosada", 2.5, 100, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(bebidasCategoria)));
 	    Producto producto2 = new Producto("Arroz", "Arroz blanco", 1.8, 200, LocalDate.of(2024, 10, 15), new LinkedList<>(Arrays.asList(comidaCategoria)));
-	    Producto producto3 = new Producto("Jabón", "Jabón de manos", 3.0, 50, LocalDate.of(2023, 9, 30), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria, limpiezaCategoria)));
+	    Producto producto3 = new Producto("Jabón", "Jabón de manos", 3.0, 2, LocalDate.of(2023, 12, 30), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria, limpiezaCategoria)));
 	    Producto producto4 = new Producto("Refresco", "Refresco de cola", 1.0, 150, LocalDate.of(2023, 11, 30), new LinkedList<>(Arrays.asList(bebidasCategoria)));
-	    Producto producto5 = new Producto("Toallas", "Toallas de papel", 2.2, 80, LocalDate.of(2024, 8, 20), new LinkedList<>(Arrays.asList(hogarCategoria)));
+	    Producto producto5 = new Producto("Toallas", "Toallas de papel", 2.2, 1, LocalDate.of(2024, 8, 20), new LinkedList<>(Arrays.asList(hogarCategoria)));
 	    Producto producto6 = new Producto("Papas", "Papas fritas", 1.5, 120, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(snacksCategoria)));
-	    Producto producto7 = new Producto("Cereal", "Cereal de maíz", 3.5, 90, LocalDate.of(2023, 11, 15), new LinkedList<>(Arrays.asList(comidaCategoria)));
+	    Producto producto7 = new Producto("Cereal", "Cereal de maíz", 3.5, 9, LocalDate.of(2024, 11, 15), new LinkedList<>(Arrays.asList(comidaCategoria)));
 	    Producto producto8 = new Producto("Detergente", "Detergente líquido", 4.0, 70, LocalDate.of(2023, 10, 31), new LinkedList<>(Arrays.asList(limpiezaCategoria)));
 	    Producto producto9 = new Producto("Yogur", "Yogur natural", 1.2, 120, LocalDate.of(2024, 9, 30), new LinkedList<>(Arrays.asList(comidaCategoria)));
 	    Producto producto10 = new Producto("Pasta de dientes", "Pasta de dientes blanqueadora", 2.8, 60, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria)));
 	    Producto producto11 = new Producto("Chips", "Chips de maíz", 2.0, 100, LocalDate.of(2023, 12, 31), new LinkedList<>(Arrays.asList(snacksCategoria)));
 	    Producto producto12 = new Producto("Salsa de tomate", "Salsa de tomate natural", 2.0, 80, LocalDate.of(2024, 8, 15), new LinkedList<>(Arrays.asList(comidaCategoria)));
-	    Producto producto13 = new Producto("Desodorante", "Desodorante en aerosol", 3.5, 40, LocalDate.of(2023, 9, 30), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria)));
+	    Producto producto13 = new Producto("Desodorante", "Desodorante en aerosol", 3.5, 40, LocalDate.of(2023, 12, 16), new LinkedList<>(Arrays.asList(cuidadoPersonalCategoria)));
 	    Producto producto14 = new Producto("Bebida energética", "Bebida energética", 2.5, 150, LocalDate.of(2023, 11, 30), new LinkedList<>(Arrays.asList(bebidasCategoria)));
 	    Producto producto15 = new Producto("Galletas", "Galletas de chocolate", 2.2, 90, LocalDate.of(2024, 7, 31), new LinkedList<>(Arrays.asList(snacksCategoria)));
 	    Producto producto16 = new Producto("Jugo de naranja", "Jugo de naranja natural", 1.8, 120, LocalDate.of(2023, 12, 15), new LinkedList<>(Arrays.asList(bebidasCategoria)));
